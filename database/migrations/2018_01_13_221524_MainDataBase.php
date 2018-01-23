@@ -130,7 +130,7 @@ class MainDataBase extends Migration
      */
     public function down()
     {
-        Schema::drop('coordinadores');
+        Schema::drop('coordinadors');
         Schema::drop('notas');
         Schema::drop('matriculas');
         Schema::drop('cursos');
