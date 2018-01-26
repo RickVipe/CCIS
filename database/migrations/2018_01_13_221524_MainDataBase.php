@@ -15,6 +15,7 @@ class MainDataBase extends Migration
 
     public function up()
     {
+          Schema::dropAllTables();
 
           Schema::create('alumnos', function($table){
 
@@ -130,6 +131,9 @@ class MainDataBase extends Migration
      */
     public function down()
     {
+        Schema::drop('coordinadors');
+        Schema::drop('notas');
+        Schema::drop('matriculas');
         Schema::drop('cursos');
         Schema::drop('asignaturas');
         Schema::drop('alumnos');
