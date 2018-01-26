@@ -129,6 +129,15 @@ class MainDataBase extends Migration
      */
     public function down()
     {
-        Schema::dropAllTables();
+        Schema::dropIfExists('coordinadors');
+        Schema::dropIfExists('notas');
+        Schema::dropIfExists('matriculas');
+        Schema::dropIfExists('cursos');
+        Schema::dropIfExists('asignaturas');
+        Schema::dropIfExists('alumnos');
+        Schema::dropIfExists('docentes');
+        Schema::dropIfExists('grados');
+        Schema::dropIfExists('fecha_ingreso');
+        Schema::dropIfExists('salon_horario');
     }
 }
