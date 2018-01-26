@@ -15,8 +15,6 @@ class MainDataBase extends Migration
 
     public function up()
     {
-          Schema::dropAllTables();
-
           Schema::create('alumnos', function($table){
 
             $table -> string('id', 20)->index()->unique();
@@ -131,15 +129,6 @@ class MainDataBase extends Migration
      */
     public function down()
     {
-        Schema::drop('coordinadors');
-        Schema::drop('notas');
-        Schema::drop('matriculas');
-        Schema::drop('cursos');
-        Schema::drop('asignaturas');
-        Schema::drop('alumnos');
-        Schema::drop('docentes');
-        Schema::drop('grados');
-        Schema::drop('fecha_ingreso');
-        Schema::drop('salon_horario');
+        Schema::dropAllTables();
     }
 }
