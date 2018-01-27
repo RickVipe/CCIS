@@ -103,7 +103,12 @@
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cambiar Contraseña</a>
             </i>
             <li class="divider"></li>
-            <li><a href="login.html"><i class="fa fa-sing-out fa-fw"></i>Logout</a>
+            <li>
+              <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                Logout
+                </a>
             </li>
           </ul>
           <!-- /.dropdown-user -->
