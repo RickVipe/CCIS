@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>..::BILLPAZ-INTUIC::..</title>
+  <title>CCIC</title>
 
   <!-- Bootstrap Core CSS -->
   <link href={{ URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')  }} rel="stylesheet">
@@ -139,11 +139,15 @@
                   <a href="/alumnos">Alumnos</a>
                 </li>
                 <li>
-                  <a href="/administrativos">Administrativos</a>
+                  <a href="/coordinadores">Coordinadores</a>
                 </li>
                 <li>
                   <a href="/salonhorarios">Disponibilidad de Horarios</a>
                 </li>
+                <li>
+                  <a href="/asignaturas">Asignaturas</a>
+                </li>
+
               </ul>
               <!-- /.nav-second-level -->
             </li>
