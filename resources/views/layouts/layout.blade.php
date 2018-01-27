@@ -142,12 +142,20 @@
                   <a href="/coordinadores">Coordinadores</a>
                 </li>
                 <li>
-                  <a href="/salonhorarios">Disponibilidad de Horarios</a>
+                  <a href="#">Administrar Grados</a>
                 </li>
                 <li>
-                  <a href="/asignaturas">Asignaturas</a>
+                  <a href="#">Administrar Asignaturas</a>
                 </li>
-
+                <li>
+                  <a href="#">Administrar cursos</a>
+                </li>
+                <li>
+                  <a href="#">Registrar Matricula</a>
+                </li>
+                <li>
+                  <a href="#">Establecer fechas de ingreso de notas</a>
+                </li>
               </ul>
               <!-- /.nav-second-level -->
             </li>
