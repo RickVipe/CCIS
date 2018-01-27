@@ -37,7 +37,7 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="/"><p class="text_primary">Ing. Willian Zamalloa Paro SysExample V1.0 </p></a>
+        <a class="navbar-brand" href="/"><p class="text_primary">Coordinador </p></a>
       </div>
       <!-- /.navbar-header -->
 
