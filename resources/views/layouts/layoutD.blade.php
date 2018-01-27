@@ -133,17 +133,16 @@
               <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mantenimientos<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="/docentes">Ver Info</a>
+                  <a href="/docentes">Ver mi informacion</a>
                 </li>
                 <li>
-                  <a href="#">Registrar Notas</a>
+                  <a href="#">Ver mis cursos</a>
                 </li>
                 <li>
-                  <a href="#">Ver Cursos</a>
+                  <a href="#">Ver mi horario</a>
                 </li>
-                
                 <li>
-                  
+                  <a href="#">Ingresar notas</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
