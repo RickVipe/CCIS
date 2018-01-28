@@ -39,6 +39,9 @@ Route::resource('coordinadores', 'CoordinadorController');
 Route::resource('docentes', 'DocenteController');
 Route::resource('alumnos', 'AlumnoController');
 
+Route::resource('asignaturas','AsignaturaController');
+Route::resource('grados','GradoController');
+
 Route::resource('fecha_ingreso','Fecha_IngresoController');
 
 //Route::get('/docentes', 'HomeController@index')->name('home');

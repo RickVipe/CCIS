@@ -147,10 +147,10 @@
                   <a href="/coordinadores">Coordinadores</a>
                 </li>
                 <li>
-                  <a href="#">Administrar Grados</a>
+                  <a href="/grados">Administrar Grados</a>
                 </li>
                 <li>
-                  <a href="#">Administrar Asignaturas</a>
+                  <a href="/asignaturas">Administrar Asignaturas</a>
                 </li>
                 <li>
                   <a href="#">Administrar cursos</a>

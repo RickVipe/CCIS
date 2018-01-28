@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Requests\Fecha_IngresoFormRequest;
-use App\Fecha_Ingreso;
+use App\Http\Requests\AsignaturaFormRequest;
+use App\Asignatura;
 
-class Fecha_IngresoController extends Controller
+class AsignaturaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class Fecha_IngresoController extends Controller
     public function index()
     {
         //
-        //$fecha_ingresos=Fecha_Ingreso::all();
-        return view('fecha_ingreso.index');
+        $asignaturas=Asignatura::all();
+        return view('asignaturas.index',['asignaturas'=>$asignaturas]);
     }
 
     /**
@@ -30,6 +30,7 @@ class Fecha_IngresoController extends Controller
     public function create()
     {
         //
+        return view('asignaturas.create');
     }
 
     /**
@@ -38,9 +39,16 @@ class Fecha_IngresoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AsignaturaFormRequest $request)
     {
         //
+        $asignatura=new Asignatura;
+        $asignatura->nombre=$request->get('nombre');
+        //lo siguiente esta mal
+        $contador=$asignatura->count()+1;
+        $asignatura->id=substr($asignatura->nombre,0,1).$contador;
+        $asignatura->save();
+        return redirect('/asignaturas')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -63,6 +71,8 @@ class Fecha_IngresoController extends Controller
     public function edit($id)
     {
         //
+        $asignatura=Asignatura::findOrFail($id);
+        return view('asignaturas.edit',compact('asignatura'));
     }
 
     /**
@@ -72,9 +82,14 @@ class Fecha_IngresoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AsignaturaFormRequest $request, $id)
     {
         //
+        $asignatura = Asignatura::find($id);
+        $asignatura->id=$request->get('id');
+        $asignatura->nombre=$request->get('nombre');
+        $asignatura->save();
+        return redirect('/asignaturas')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -86,5 +101,8 @@ class Fecha_IngresoController extends Controller
     public function destroy($id)
     {
         //
+        $asignatura=Asignatura::findOrFail($id);
+        $asignatura->delete();
+        return redirect('asignaturas')->with('mensaje','La Asignatura con id: '.$id.', se elimino correctamente!!');
     }
 }
