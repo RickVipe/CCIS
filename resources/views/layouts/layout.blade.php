@@ -159,7 +159,7 @@
                   <a href="#">Registrar Matricula</a>
                 </li>
                 <li>
-                  <a href="#">Establecer fechas de ingreso de notas</a>
+                  <a href="/fecha_ingreso">Establecer fechas de ingreso de notas</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

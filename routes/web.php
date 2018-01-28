@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 Route::prefix('coordinadores')->group(function() {
   Route::get('/login', 'Auth\CoordinadorLoginController@showLoginForm')->name('coordinador.login');
   Route::post('/login', 'Auth\CoordinadorLoginController@Login')->name('coordinador.login.submit');
@@ -36,6 +38,8 @@ Route::prefix('docentes')->group(function() {
 Route::resource('coordinadores', 'CoordinadorController');
 Route::resource('docentes', 'DocenteController');
 Route::resource('alumnos', 'AlumnoController');
+
+Route::resource('fecha_ingreso','Fecha_IngresoController');
 
 //Route::get('/docentes', 'HomeController@index')->name('home');
 //Route::get('/alumnos', 'HomeController@index')->name('home');
