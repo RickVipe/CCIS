@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'CEP Inmaculada Concepcion') }}</title>
+    <title>{{ config('CEP Inmaculada Concepcion', 'CEP Inmaculada Concepcion') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" color="#FF3B3F" href="{{ url('/') }}">
-                        {{ config('app.name', 'CEP Inmaculada Concepcion') }}
+                        {{ config('CEP Inmaculada Concepcion', 'CEP Inmaculada Concepcion') }}
                     </a>
                 </div>
 

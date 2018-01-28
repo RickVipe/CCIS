@@ -12,6 +12,10 @@
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
+                    @else
+                        <div class="alert alert-success">
+                            <strong>{{ auth::user()->id }}</strong>
+                        </div>
                     @endif
 
                     You are logged in as <strong>ALUMNO </strong>!
