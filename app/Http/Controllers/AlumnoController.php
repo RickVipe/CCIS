@@ -23,7 +23,8 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        return view('alumnos.index');
+
+      return view('alumnos.index');
     }
 
     /**
