@@ -37,6 +37,8 @@ Route::prefix('docentes')->group(function() {
 
 Route::resource('coordinadores', 'CoordinadorController');
 Route::resource('docentes', 'DocenteController');
+
+Route::get('alumnos/info', 'AlumnoController@info');
 Route::resource('alumnos', 'AlumnoController');
 
 Route::resource('asignaturas','AsignaturaController');

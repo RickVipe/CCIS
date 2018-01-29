@@ -14,7 +14,7 @@
                         </div>
                     @else
                         <div class="alert alert-success">
-                            <strong>{{ auth::user()->id }}</strong>
+                            <strong>{{ auth::user()->nombres }} {{ auth::user()->apellidos }}</strong>
                         </div>
                     @endif
 

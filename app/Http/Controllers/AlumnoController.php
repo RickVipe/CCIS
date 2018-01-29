@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\AlumnoFormRequest;
+use App\Alumno;
+
 class AlumnoController extends Controller
 {
     /**
@@ -91,5 +94,11 @@ class AlumnoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function info()
+    {
+        //$alumno = Alumno::findOrFail($id);
+        return view('alumnos.info');
     }
 }

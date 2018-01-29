@@ -138,13 +138,13 @@
               <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mantenimientos<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="/docentes">Docentes</a>
+                  <a href="#">Docentes</a>
                 </li>
                 <li>
-                  <a href="/alumnos">Alumnos</a>
+                  <a href="#">Alumnos</a>
                 </li>
                 <li>
-                  <a href="/coordinadores">Coordinadores</a>
+                  <a href="#">Coordinadores</a>
                 </li>
                 <li>
                   <a href="/grados">Administrar Grados</a>
