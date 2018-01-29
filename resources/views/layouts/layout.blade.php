@@ -59,6 +59,9 @@
                 document.getElementById('logout-form').submit();">
                 Logout
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
             </li>
           </ul>
           <!-- /.dropdown-user -->
@@ -91,7 +94,7 @@
                   <a href="#">Docentes</a>
                 </li>
                 <li>
-                  <a href="#">Alumnos</a>
+                  <a href=" {{ action('CoordinadorController@alumnoindex') }} ">Alumnos</a>
                 </li>
                 <li>
                   <a href="#">Coordinadores</a>

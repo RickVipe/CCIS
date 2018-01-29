@@ -101,4 +101,6 @@ class AlumnoController extends Controller
         //$alumno = Alumno::findOrFail($id);
         return view('alumnos.info');
     }
+
+    
 }
