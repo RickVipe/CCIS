@@ -77,6 +77,7 @@
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
                     @else
+                        <a href="{{ url('coordinadores/login') }}">Login Coordinador</a>
                         <a href="{{ url('docentes/login') }}">Login Docentes</a>
                         <a href="{{ url('alumnos/login') }}">Login Alumnos</a>
                     @endif
