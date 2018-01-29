@@ -18,8 +18,9 @@ class Fecha_IngresoController extends Controller
     public function index()
     {
         //
-        //$fecha_ingresos=Fecha_Ingreso::all();
-        return view('fecha_ingreso.index');
+        $fecha_ingresos=Fecha_Ingreso::all();
+        //return view('fecha_ingreso.index');
+        return view('fecha_ingreso.index',['fecha_ingresos'=>$fecha_ingresos]);
     }
 
     /**
@@ -30,6 +31,7 @@ class Fecha_IngresoController extends Controller
     public function create()
     {
         //
+        return view('fecha_ingreso.create');
     }
 
     /**
@@ -38,9 +40,17 @@ class Fecha_IngresoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Fecha_IngresoFormRequest $request)
     {
         //
+        $fecha_ingreso=new Fecha_Ingreso;
+        $fecha_ingreso->anio_academico=$request->get('anio_academico');
+        $fecha_ingreso->trimestre=$request->get('trimestre');
+        $fecha_ingreso->fecha_inicio=$request->get('fecha_inicio');
+        $fecha_ingreso->fecha_fin=$request->get('fecha_fin');
+        $fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
+        $fecha_ingreso->save();
+        return redirect('/fecha_ingreso')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -63,6 +73,8 @@ class Fecha_IngresoController extends Controller
     public function edit($id)
     {
         //
+        $fecha_ingreso=Fecha_Ingreso::findOrFail($id);
+        return view('fecha_ingreso.edit',compact('fecha_ingreso'));
     }
 
     /**
@@ -72,9 +84,17 @@ class Fecha_IngresoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Fecha_IngresoFormRequest $request, $id)
     {
         //
+        $fecha_ingreso = Fecha_Ingreso::find($id);
+        $fecha_ingreso->anio_academico=$request->get('anio_academico');
+        $fecha_ingreso->trimestre=$request->get('trimestre');
+        $fecha_ingreso->fecha_inicio=$request->get('fecha_inicio');
+        $fecha_ingreso->fecha_fin=$request->get('fecha_fin');
+        $fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
+        $fecha_ingreso->save();
+        return redirect('/fecha_ingreso')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -86,5 +106,8 @@ class Fecha_IngresoController extends Controller
     public function destroy($id)
     {
         //
+        $fecha_ingreso=Fecha_Ingreso::findOrFail($id);
+        $fecha_ingreso->delete();
+        return redirect('fecha_ingreso')->with('mensaje','La fecha de ingreso de notas con id : '.$id.', se elimino correctamente!!');
     }
 }

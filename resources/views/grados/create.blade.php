@@ -64,7 +64,7 @@
 
                 <div class="form-group">
                   <label>Vacantes</label>
-                  <input type="text" class="form-control" name="vacantes" style="text-transform:uppercase;"
+                  <input type="numeric" class="form-control" name="vacantes" style="text-transform:uppercase;"
                   onkeyup="javascript:this.value=this.value.toUpperCase();">
                 </div>
 

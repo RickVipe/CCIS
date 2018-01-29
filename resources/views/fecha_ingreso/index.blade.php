@@ -15,7 +15,7 @@
 <div class="row">
   <div class="col-lg-12">
     <h3 class="page-header">Fechas de Ingreso de Notas
-    <button type="button" class="btn btn-primary" onClick="location.href='alumnos/create'">Nuevo Fecha de Ingreso</button></h3>
+    <button type="button" class="btn btn-primary" onClick="location.href='fecha_ingreso/create'">Nuevo Fecha de Ingreso</button></h3>
   </div>
   <!-- /.row -->
   <div class="row">
@@ -42,6 +42,7 @@
               <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
+                      <th>Id Fecha</th>
                       <th>Año Academico</th>
                       <th>Trimestre</th>
                       <th>Fecha Inicial</th>
@@ -53,17 +54,14 @@
 
                   @foreach($fecha_ingresos as $fecha_ingreso)
                     <tr class="odd gradeA" rol="row">
-                      <td>{{ $fecha_ingreso->anioacademico }}</td>
+                      <td>{{ $fecha_ingreso->id }}</td>
+                      <td>{{ $fecha_ingreso->anio_academico }}</td>
                       <td>{{ $fecha_ingreso->trimestre }}</td>
                       <td>{{ $fecha_ingreso->fecha_inicio }}</td>
                       <td>{{ $fecha_ingreso->fecha_fin }}</td>
                       <td class="center">
                         <ul class="nav nav-pills">
-                          <li>
-                            <a href="{!! action('Fecha_IngresoController@show',$fecha_ingreso->id) !!}" title="Ver">
-                              <span class="glyphicon glyphicon-search"></span>
-                            </a>
-                          </li>
+                          
                           <li>
                             <a href= "{!! action('Fecha_IngresoController@edit' , $fecha_ingreso->id) !!}" title="Editar">
                               <span class="glyphicon glyphicon-pencil"></span>

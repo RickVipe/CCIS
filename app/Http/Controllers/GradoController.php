@@ -43,7 +43,6 @@ class GradoController extends Controller
     {
         //
         $grado=new Grado;
-        $grado->id=
         $grado->nro=$request->get('nro');
         $grado->seccion=$request->get('seccion');
         $grado->nivel=$request->get('nivel');
