@@ -42,7 +42,7 @@
       <!-- /.navbar-header -->
 
       <ul class="nav navbar-top-links navbar-right">
-        
+
         <!-- /.dropdown -->
 
         <!-- /.dropdown -->
@@ -92,16 +92,16 @@
               <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mantenimientos<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="/docentes">Ver mi informacion</a>
+                  <a href="{!! action('DocenteController@verPerfil') !!}">Ver mi informacion</a>
                 </li>
                 <li>
-                  <a href="#">Ver mis cursos</a>
+                  <a href="{!! action('DocenteController@verCursos') !!}">Ver mis cursos</a>
                 </li>
                 <li>
                   <a href="#">Ver mi horario</a>
                 </li>
                 <li>
-                  <a href="#">Ingresar notas</a>
+                  <a href="{!! action('DocenteController@verCursosNotas') !!}">Ingresar notas</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use App\Curso;
+use App\Grado;
+use App\Asignatura;
+use App\Nota;
+use App\Matricula;
+
 class DocenteController extends Controller
 {
     /**
@@ -11,12 +18,13 @@ class DocenteController extends Controller
      *
      * @return void
      */
+    /*public function __construct()
+    {
+
+    }*/
     public function __construct()
     {
-       $this->middleware('auth:coordinador');
-    }
-    public function __construct()
-    {
+        #$this->middleware('auth:coordinador');
         $this->middleware('auth:docente');
     }
 
@@ -94,5 +102,36 @@ class DocenteController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function verPerfil()
+    {
+        $docente = Auth::user();
+        return view('docentes.verPerfil',compact('docente'));
+    }
+
+    public function verCursos()
+    {
+        $id = Auth::user()->id;
+        $cursos = Curso::where('id_docente',$id)->get();
+        return view('docentes.verCursos',compact('cursos'));
+    }
+
+    public function verHorario()
+    {
+
+    }
+
+    public function verCursosNotas()
+    {
+        $id = Auth::user()->id;
+        $cursos = Curso::where('id_docente',$id)->get();
+        return view('docentes.verCursosNotas',compact('cursos'));
+    }
+
+    public function verAlumnosNotas($id_grado)
+    {
+        $matriculas = Matricula::where('id_grado',$id_grado)->get();
+        return view('docentes.verAlumnosNotas',compact('matriculas'));
     }
 }
