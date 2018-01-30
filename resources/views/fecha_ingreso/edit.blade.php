@@ -17,7 +17,7 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-6">
-              <form role="form" method="post" action="/fecha_ingreso/{{ $fecha_ingreso->id }}" autocomplete="off">
+              <form role="form" method="post" action="/coordinadores/fecha_ingreso/{{ $fecha_ingreso->id }}" autocomplete="off">
 
                 @foreach($errors->all() as $error)
                   <div class="alert alert-danger">

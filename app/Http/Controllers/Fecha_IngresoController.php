@@ -54,7 +54,7 @@ class Fecha_IngresoController extends Controller
         $fecha_ingreso->fecha_fin=$request->get('fecha_fin');
         $fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
         $fecha_ingreso->save();
-        return redirect('/fecha_ingreso')->with('mensaje','Se inserto correctamente!!');
+        return redirect('/coordinadores/fecha_ingreso')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -98,7 +98,7 @@ class Fecha_IngresoController extends Controller
         $fecha_ingreso->fecha_fin=$request->get('fecha_fin');
         $fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
         $fecha_ingreso->save();
-        return redirect('/fecha_ingreso')->with('mensaje','Se inserto correctamente!!');
+        return redirect('/coordinadores/fecha_ingreso')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -112,6 +112,6 @@ class Fecha_IngresoController extends Controller
         //
         $fecha_ingreso=Fecha_Ingreso::findOrFail($id);
         $fecha_ingreso->delete();
-        return redirect('fecha_ingreso')->with('mensaje','La fecha de ingreso de notas con id : '.$id.', se elimino correctamente!!');
+        return redirect('/coordinadores/fecha_ingreso')->with('mensaje','La fecha de ingreso de notas con id : '.$id.', se elimino correctamente!!');
     }
 }
