@@ -13,6 +13,10 @@ class DocenteController extends Controller
      */
     public function __construct()
     {
+       $this->middleware('auth:coordinador');
+    }
+    public function __construct()
+    {
         $this->middleware('auth:docente');
     }
 

@@ -94,16 +94,16 @@
                   <a href="#">Docentes</a>
                 </li>
                 <li>
-                  <a href=" {{ action('CoordinadorController@alumnoindex') }} ">Alumnos</a>
+                  <a href="/coordinadores/alumnos">Alumnos</a>
                 </li>
                 <li>
                   <a href="#">Coordinadores</a>
                 </li>
                 <li>
-                  <a href="/grados">Administrar Grados</a>
+                  <a href="/coordinadores/grados">Administrar Grados</a>
                 </li>
                 <li>
-                  <a href="/asignaturas">Administrar Asignaturas</a>
+                  <a href="/coordinadores/asignaturas">Administrar Asignaturas</a>
                 </li>
                 <li>
                   <a href="#">Administrar cursos</a>
@@ -112,7 +112,7 @@
                   <a href="#">Registrar Matricula</a>
                 </li>
                 <li>
-                  <a href="/fecha_ingreso">Establecer fechas de ingreso de notas</a>
+                  <a href="/coordinadores/fecha_ingreso">Establecer fechas de ingreso de notas</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

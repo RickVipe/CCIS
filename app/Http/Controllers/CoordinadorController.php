@@ -14,6 +14,7 @@ class CoordinadorController extends Controller
      *
      * @return void
      */
+    
     public function __construct()
     {
         $this->middleware('auth:coordinador');
@@ -93,32 +94,5 @@ class CoordinadorController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function alumnoindex()
-    {
-        $alumnos = Alumno::all();
-        return view('coordinadores.alumnos.index',['alumnos' => $alumnos]); 
-    }
-
-    public function alumnocreate()
-    {
-        return view('coordinadores.alumnos.create');
-    }
-
-    public function alumnostore($id)
-    {
-        $alumno = new Alumno;
-        $alumno->id =$request->get('dni');
-        $alumno->nombres =$request->get('nombres');
-        $alumno->apellidos =$request->get('apellidos');
-        $alumno->fecha_nacimiento =$request->get('fecha_nacimiento');
-        $alumno->direccion = $request->get('direccion');
-        $alumno->email =$request->get('email');
-        $alumno->password = $request->get('password');
-        $alumno->apoderado =$request->get('apoderado');
-        $alumno->telefono =$request->get('telefono');
-        $alumno->save();
-        return redirect('coordinadores/alumnos/index')->with('mensaje','Se inserto correctamente!');
     }
 }

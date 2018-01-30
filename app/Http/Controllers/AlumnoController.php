@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Http\Requests\AlumnoFormRequest;
 use App\Alumno;
@@ -16,7 +17,7 @@ class AlumnoController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:alumno');
+       $this->middleware('auth:coordinador');
     }
 
     /**
@@ -27,7 +28,8 @@ class AlumnoController extends Controller
     public function index()
     {
 
-      return view('alumnos.index');
+      $alumnos = Alumno::all();
+        return view('coordinadores.alumnos.index',['alumnos' => $alumnos]); 
     }
 
     /**
@@ -37,7 +39,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('coordinadores.alumnos.create');
     }
 
     /**
@@ -48,7 +50,18 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $alumno = new Alumno;
+        $alumno->id =$request->get('dni');
+        $alumno->nombres =$request->get('nombres');
+        $alumno->apellidos =$request->get('apellidos');
+        $alumno->fecha_nacimiento =$request->get('fecha_nacimiento');
+        $alumno->direccion = $request->get('direccion');
+        $alumno->email =$request->get('email');
+        $alumno->password = Hash::make($request->get('password'));
+        $alumno->apoderado =$request->get('apoderado');
+        $alumno->telefono =$request->get('telefono');
+        $alumno->save();
+        return redirect('/coordinadores/alumnos')->with('mensaje','Se inserto correctamente!');
     }
 
     /**

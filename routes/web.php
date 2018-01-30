@@ -18,6 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::prefix('coordinadores')->group(function(){
+	Route::resource('alumnos', 'AlumnoController');
+	Route::resource('coordinadores', 'CoordinadorController');
+	Route::resource('docentes', 'DocenteController');
+	Route::resource('asignaturas','AsignaturaController');
+	Route::resource('grados','GradoController');
+	Route::resource('fecha_ingreso','Fecha_IngresoController');
+});
 
 
 Route::prefix('coordinadores')->group(function() {
@@ -35,22 +43,16 @@ Route::prefix('docentes')->group(function() {
   Route::post('/login', 'Auth\DocenteLoginController@Login')->name('docente.login.submit');
 });
 
-Route::get('coordinadores/alumnos/index', 'CoordinadorController@alumnoindex');
-
-Route::get('coordinadores/alumnos/create', 'CoordinadorController@alumnocreate');
-
-Route::resource('coordinadores', 'CoordinadorController');
-Route::resource('docentes', 'DocenteController');
-
-Route::get('alumnos/info', 'AlumnoController@info');
-Route::resource('alumnos', 'AlumnoController');
 
 
 
-Route::resource('asignaturas','AsignaturaController');
-Route::resource('grados','GradoController');
 
-Route::resource('fecha_ingreso','Fecha_IngresoController');
+#Route::get('alumnos/info', 'AlumnoController@info');
+
+
+
+
+
 
 //Route::get('/docentes', 'HomeController@index')->name('home');
 //Route::get('/alumnos', 'HomeController@index')->name('home');
