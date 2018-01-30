@@ -24,8 +24,8 @@ class DocenteController extends Controller
     }*/
     public function __construct()
     {
-        #$this->middleware('auth:coordinador');
-        $this->middleware('auth:docente');
+        $this->middleware('auth:coordinador');
+        #$this->middleware('auth:docente');
     }
 
     /**

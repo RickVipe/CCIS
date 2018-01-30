@@ -45,11 +45,11 @@ Route::prefix('docentes')->group(function() {
 
 
 // opciones docente
-Route::get('docentes/perfil','DocenteController@verPerfil');
-Route::get('docentes/miscursos','DocenteController@verCursos');
-Route::get('docentes/cursos','DocenteController@verCursosNotas');
-Route::get('docentes/cursos/notasAlumnos','DocenteController@verAlumnosNotas');
-Route::resource('docentes', 'DocenteController');
+//Route::get('docentes/perfil','DocenteController@verPerfil');
+//Route::get('docentes/miscursos','DocenteController@verCursos');
+//Route::get('docentes/cursos','DocenteController@verCursosNotas');
+//Route::get('docentes/cursos/notasAlumnos','DocenteController@verAlumnosNotas');
+//Route::resource('docentes', 'DocenteController');
 //
 
 
