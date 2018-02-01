@@ -27,6 +27,13 @@ Route::prefix('coordinadores')->group(function(){
 	Route::resource('fecha_ingreso','Fecha_IngresoController');
 });
 
+Route::prefix('docentes')->group(function(){
+  Route::get('docentes/perfil','LoginDocenteController@verPerfil');
+  Route::get('docentes/miscursos','LoginDocenteController@verCursos');
+  Route::get('docentes/cursos','LoginDocenteController@verCursosNotas');
+  Route::get('docentes/cursos/notasAlumnos','LoginDocenteController@verAlumnosNotas');
+  Route::resource('docentes', 'LoginDocenteController');
+});
 
 Route::prefix('coordinadores')->group(function() {
   Route::get('/login', 'Auth\CoordinadorLoginController@showLoginForm')->name('coordinador.login');
@@ -42,15 +49,6 @@ Route::prefix('docentes')->group(function() {
   Route::get('/login', 'Auth\DocenteLoginController@showLoginForm')->name('docente.login');
   Route::post('/login', 'Auth\DocenteLoginController@Login')->name('docente.login.submit');
 });
-
-
-// opciones docente
-//Route::get('docentes/perfil','DocenteController@verPerfil');
-//Route::get('docentes/miscursos','DocenteController@verCursos');
-//Route::get('docentes/cursos','DocenteController@verCursosNotas');
-//Route::get('docentes/cursos/notasAlumnos','DocenteController@verAlumnosNotas');
-//Route::resource('docentes', 'DocenteController');
-//
 
 
 #Route::get('alumnos/info', 'AlumnoController@info');

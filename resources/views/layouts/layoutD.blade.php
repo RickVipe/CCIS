@@ -92,16 +92,16 @@
               <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mantenimientos<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="{!! action('DocenteController@verPerfil') !!}">Ver mi informacion</a>
+                  <a href="#">Ver mi informacion</a>
                 </li>
                 <li>
-                  <a href="{!! action('DocenteController@verCursos') !!}">Ver mis cursos</a>
+                  <a href="#">Ver mis cursos</a>
                 </li>
                 <li>
                   <a href="#">Ver mi horario</a>
                 </li>
                 <li>
-                  <a href="{!! action('DocenteController@verCursosNotas') !!}">Ingresar notas</a>
+                  <a href="#">Ingresar notas</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

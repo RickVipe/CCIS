@@ -4,13 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Auth;
-use App\Curso;
-use App\Grado;
-use App\Asignatura;
-use App\Nota;
-use App\Matricula;
-
 class DocenteController extends Controller
 {
     /**
@@ -98,5 +91,5 @@ class DocenteController extends Controller
     {
         //
     }
-    
+
 }
