@@ -4,33 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Auth;
-use App\Curso;
-use App\Grado;
-use App\Asignatura;
-use App\Nota;
-use App\Matricula;
-
-class DocenteController extends Controller
+class LoginDocenteController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:coordinador');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:docente');
+    }
+
     public function index()
     {
-        //
+        return view('docentes.index');
     }
 
     /**
@@ -98,5 +87,6 @@ class DocenteController extends Controller
     {
         //
     }
-    
+
+
 }
