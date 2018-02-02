@@ -94,16 +94,16 @@
                   <a href="#">Docentes</a>
                 </li>
                 <li>
-                  <a href="/coordinadores/alumnos">Alumnos</a>
+                  <a href="/menucoordinadores/alumnos">Alumnos</a>
                 </li>
                 <li>
                   <a href="#">Coordinadores</a>
                 </li>
                 <li>
-                  <a href="/coordinadores/grados">Administrar Grados</a>
+                  <a href="/menucoordinadores/grados">Administrar Grados</a>
                 </li>
                 <li>
-                  <a href="/coordinadores/asignaturas">Administrar Asignaturas</a>
+                  <a href="/menucoordinadores/asignaturas">Administrar Asignaturas</a>
                 </li>
                 <li>
                   <a href="#">Administrar cursos</a>
@@ -112,7 +112,7 @@
                   <a href="#">Registrar Matricula</a>
                 </li>
                 <li>
-                  <a href="/coordinadores/fecha_ingreso">Establecer fechas de ingreso de notas</a>
+                  <a href="/menucoordinadores/fecha_ingreso">Establecer fechas de ingreso de notas</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

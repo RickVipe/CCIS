@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('coordinadores')->group(function(){
+Route::prefix('menucoordinadores')->group(function(){
 	Route::resource('alumnos', 'AlumnoController');
 	Route::resource('coordinadores', 'CoordinadorController');
 	Route::resource('docentes', 'DocenteController');
@@ -27,11 +27,11 @@ Route::prefix('coordinadores')->group(function(){
 	Route::resource('fecha_ingreso','Fecha_IngresoController');
 });
 
-Route::prefix('docentes')->group(function(){
-  Route::get('docentes/perfil','LoginDocenteController@verPerfil');
-  Route::get('docentes/miscursos','LoginDocenteController@verCursos');
-  Route::get('docentes/cursos','LoginDocenteController@verCursosNotas');
-  Route::get('docentes/cursos/notasAlumnos','LoginDocenteController@verAlumnosNotas');
+Route::prefix('menudocentes')->group(function(){
+  Route::get('perfil','LoginDocenteController@verPerfil');
+  Route::get('miscursos','LoginDocenteController@verCursos');
+  Route::get('cursos','LoginDocenteController@verCursosNotas');
+  Route::get('cursos/notasAlumnos','LoginDocenteController@verAlumnosNotas');
   Route::resource('docentes', 'LoginDocenteController');
 });
 
