@@ -29,7 +29,7 @@ class AlumnoController extends Controller
     {
 
       $alumnos = Alumno::all();
-        return view('coordinadores.alumnos.index',['alumnos' => $alumnos]); 
+        return view('alumnos.index',['alumnos' => $alumnos]); 
     }
 
     /**
@@ -39,7 +39,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        return view('coordinadores.alumnos.create');
+        return view('alumnos.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class AlumnoController extends Controller
     public function show($id)
     {
         $alumno = Alumno::findOrFail($id);
-        return view('coordinadores.alumnos.show',compact('alumno'));
+        return view('alumnos.show',compact('alumno'));
     }
 
     /**
@@ -85,7 +85,7 @@ class AlumnoController extends Controller
     public function edit($id)
     {
         $alumno = Alumno::findOrFail($id);
-        return view('coordinadores.alumnos.edit',compact('alumno'));
+        return view('alumnos.edit',compact('alumno'));
     }
 
     /**
