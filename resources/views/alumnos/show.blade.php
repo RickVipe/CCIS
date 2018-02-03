@@ -46,7 +46,8 @@
 										<label>Telefono</label>
 										<input disabled="" type="tel" value=" {{$alumno -> telefono}} " class="form-control"  name ='telefono'>
 									</div>
-										<button type="button" class="btn btn-danger" onClick="location.href='/menucoordinadores/alumnos'">Volver</button>
+									<button type="button" class="btn btn-danger"
+                onClick="location.href='{!! action('AsignaturaController@index') !!}'">Volver</button>
 							</form>
 					</div>
 				</div>

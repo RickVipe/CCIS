@@ -46,7 +46,7 @@
                 <button type="submit" class="btn btn-success">Guardar</button>
                 <button type="reset" class="btn btn-warning">Limpiar</button>
                 <button type="button" class="btn btn-danger"
-                onClick="location.href='/asignaturas'">Volver</button>
+                onClick="location.href='{!! action('AsignaturaController@index') !!}'">Volver</button>
               </form>
             </div>
 
