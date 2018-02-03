@@ -9,6 +9,7 @@ class Coordinador extends Authenticatable
 {
     use Notifiable;
     protected $guard = 'coordinador';
+    public $incrementing = false;
     /**
     *timestamped
     *@var bool

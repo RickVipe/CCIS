@@ -9,6 +9,7 @@ class Alumno extends Authenticatable
 {
     use Notifiable;
     protected $guard = 'alumno';
+    public $incrementing = false;
     /**
     *timestamped
     *@var bool

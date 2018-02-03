@@ -11,7 +11,7 @@ class Matricula extends Model
     *
     * @var boolean*/
     public $timestamps=false;
-
+    public $incrementing = false;
     public function Alumno()
     {
         return $this->belongsTo('App\Alumno','id_alumno');
