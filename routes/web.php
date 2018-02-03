@@ -28,11 +28,11 @@ Route::prefix('menucoordinadores')->group(function(){
 });
 
 Route::prefix('menudocentes')->group(function(){
-  Route::get('perfil','LoginDocenteController@verPerfil');
-  Route::get('miscursos','LoginDocenteController@verCursos');
-  Route::get('cursos','LoginDocenteController@verCursosNotas');
-  Route::get('cursos/notasAlumnos','LoginDocenteController@verAlumnosNotas');
-  Route::resource('docentes', 'LoginDocenteController');
+  Route::get('perfil','DocenteMenuController@verPerfil');
+  Route::get('miscursos','DocenteMenuController@verCursos');
+  Route::get('cursos','DocenteMenuController@verCursosNotas');
+  Route::get('cursos/notasAlumnos','DocenteMenuController@verAlumnosNotas');
+  Route::resource('docentes', 'DocenteMenuController');
 });
 
 Route::prefix('coordinadores')->group(function() {
