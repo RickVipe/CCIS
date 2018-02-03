@@ -48,7 +48,7 @@ class AlumnoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AlumnoFormRequest $request)
     {
         $alumno = new Alumno;
         $alumno->id =$request->get('dni');
@@ -61,7 +61,7 @@ class AlumnoController extends Controller
         $alumno->apoderado =$request->get('apoderado');
         $alumno->telefono =$request->get('telefono');
         $alumno->save();
-        return redirect('/coordinadores/alumnos')->with('mensaje','Se inserto correctamente!');
+        return redirect('/menucoordinadores/alumnos')->with('mensaje','Se inserto correctamente!');
     }
 
     /**
@@ -72,7 +72,8 @@ class AlumnoController extends Controller
      */
     public function show($id)
     {
-        //
+        $alumno = Alumno::findOrFail($id);
+        return view('coordinadores.alumnos.show',compact('alumno'));
     }
 
     /**
@@ -83,7 +84,8 @@ class AlumnoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alumno = Alumno::findOrFail($id);
+        return view('coordinadores.alumnos.edit',compact('alumno'));
     }
 
     /**
@@ -93,9 +95,19 @@ class AlumnoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AlumnoFormRequest $request, $id)
     {
-        //
+        $alumno = Alumno::findOrFail($id);
+        $alumno->id =$request->input('dni');
+        $alumno->nombres =$request->input('nombres');
+        $alumno->apellidos =$request->input('apellidos');
+        $alumno->fecha_nacimiento =$request->input('fecha_nacimiento');
+        $alumno->direccion = $request->input('direccion');
+        $alumno->email =$request->input('email');
+        $alumno->apoderado =$request->input('apoderado');
+        $alumno->telefono =$request->input('telefono');
+        $alumno->save();
+        return redirect('/menucoordinadores/alumnos')->with('mensaje','Se modificó correctamente!');
     }
 
     /**
@@ -106,7 +118,9 @@ class AlumnoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $alumno=Alumno::findOrFail($id);
+        $alumno->delete();
+        return redirect('/menucoordinadores/alumnos')->with('mensaje','El alumno con id: '.$id.', se elimino correctamente!!');
     }
 
     public function info()

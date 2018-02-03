@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
+use App\Http\Requests\DocenteFormRequest;
+use App\Docente;
 class DocenteController extends Controller
 {
     /**
@@ -23,7 +26,8 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        //
+        $docentes = Docente::All();
+        return view('docentes.index',['docentes' => $docentes]);
     }
 
     /**
@@ -33,7 +37,7 @@ class DocenteController extends Controller
      */
     public function create()
     {
-        //
+        return view('docentes.create');
     }
 
     /**
@@ -42,9 +46,18 @@ class DocenteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DocenteFormRequest $request)
     {
-        //
+        $docente = new Docente;
+        $docente->id =$request->get('dni');
+        $docente->nombres =$request->get('nombres');
+        $docente->apellidos =$request->get('apellidos');
+        $docente->especialidad =$request->get('especialidad');
+        $docente->email =$request->get('email');
+        $docente->password = Hash::make($request->get('password'));
+        $docente->telefono =$request->get('telefono');
+        $docente->save();
+        return redirect('/menucoordinadores/docentes')->with('mensaje','Se inserto correctamente!');
     }
 
     /**
@@ -55,7 +68,8 @@ class DocenteController extends Controller
      */
     public function show($id)
     {
-        //
+        $docente = docente::findOrFail($id);
+        return view('docentes.show',compact('docente'));
     }
 
     /**
@@ -66,7 +80,8 @@ class DocenteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $docente = Docente::findOrFail($id);
+        return view('docentes.edit',compact('docente'));
     }
 
     /**
@@ -76,9 +91,17 @@ class DocenteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DocenteFormRequest $request, $id)
     {
-        //
+        $docente = Docente::findOrFail($id);
+        $docente->id =$request->input('dni');
+        $docente->nombres =$request->input('nombres');
+        $docente->apellidos =$request->input('apellidos');
+        $docente->especialidad =$request->input('especialidad');
+        $docente->email =$request->input('email');
+        $docente->telefono =$request->input('telefono');
+        $docente->save();
+        return redirect('/menucoordinadores/docentes')->with('mensaje','Se modificó correctamente!');
     }
 
     /**
@@ -89,7 +112,8 @@ class DocenteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $docente = Docente::findOrFail($id) -> delete();
+        return redirect('/menucoordinadores/docentes')->with('mensaje','El docente con id: '.$id.', se elimino correctamente!!');
     }
 
 }
