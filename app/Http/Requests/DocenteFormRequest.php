@@ -13,7 +13,7 @@ class DocenteFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class DocenteFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'dni'=>'required|min:3',
+            'nombres'=>'required|min:3',
+            'apellidos'=>'required|min:3',
+            'especialidad'=>'required',
+            'email'=>'required',
+            'telefono'=>'required|min:3'
         ];
     }
 }

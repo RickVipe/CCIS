@@ -4,28 +4,28 @@
 @section('content')
 
 <div class="row">
-		<div class="col-lg-12">
-			<h3 class="page-header">Alumnos 
-			<button type="button" class="btn btn-primary" onclick="location.href='alumnos/create '">Nuevo</button></h3>
-		</div>
+    <div class="col-lg-12">
+    	<h3 class="page-header">Docentes 
+    	<button type="button" class="btn btn-primary" onclick="location.href='docentes/create '">Nuevo</button></h3>
+    </div>
 </div>
 <!-- /.row -->
 
 <div class="row">
-		<div class="col-lg-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					
-				</div>
+    <div class="col-lg-12">
+    	<div class="panel panel-primary">
+    		<div class="panel-heading">
+    			
+    		</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="dataTable_wrapper">
-					@if($alumnos-> isEmpty())
+					@if($docentes-> isEmpty())
 						<div class="alert alert-success">
 							<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">x</button>
-							No se tiene ningún alumno <a href="#"
-							class="alert-link">Ingrese Alumnos</a>
+							No se tiene ningún docente <a href="#"
+							class="alert-link">Ingrese docentes</a>
 						</div>
 					@else
 						
@@ -34,39 +34,35 @@
 							<tr>
 								<th>DNI</th>
 								<th>Nombres y Apellidos</th>
-								<th>Fecha de nacimiento</th>
-								<th>Direccion</th>
+								<th>Especialidad</th>
 								<th>Email</th>
-								<th>Apoderado</th>
 								<th>Telefono</th>
 								<th>Operaciones</th>
 							</tr>
 						</thead>
 
 						<tbody>
-						@foreach($alumnos as $alumno)
+						@foreach($docentes as $docente)
 							<tr class="odd gradeA" rol="row">
-								<td> {{ $alumno -> id }} </td>
-								<td> {{ $alumno -> nombres }} {{$alumno -> apellidos }} </td>
-								<td> {{ $alumno -> fecha_nacimiento }} </td>
-								<td> {{ $alumno -> direccion }} </td>
-								<td> {{ $alumno -> email }} </td>
-								<td> {{ $alumno -> apoderado }} </td>
-								<td> {{ $alumno -> telefono }} </td>
+								<td> {{ $docente -> id }} </td>
+								<td> {{ $docente -> nombres }} {{$docente -> apellidos }} </td>
+								<td> {{ $docente -> especialidad }} </td>
+								<td> {{ $docente -> email }} </td>
+								<td> {{ $docente -> telefono }} </td>
 								<td class="center">
 									<ul class="nav nav-pills">
 									<li>
-										<a href="{!! action('AlumnoController@show', $alumno->id ) !!}" title="show">
+										<a href="{!! action('DocenteController@show', $docente->id ) !!}" title="show">
 										<span class="glyphicon glyphicon-search"> </span>
 										</a>
 									</li>
 									<li>
-										<a href="{!! action('AlumnoController@edit', $alumno->id ) !!}" title="edit">
+										<a href="{!! action('DocenteController@edit', $docente->id ) !!}" title="edit">
 										<span class="glyphicon glyphicon-pencil" > </span>
 										</a>
 									</li>
 									<li>
-										<form method="post" action="{!! action('AlumnoController@destroy', $alumno->id) !!}"
+										<form method="post" action="{!! action('DocenteController@destroy', $docente->id) !!}"
 										onclick="return confirm('Se eliminara este registro, Estas seguro?');">
 										{!! csrf_field() !!}
 										{!! method_field('DELETE') !!}
@@ -74,7 +70,7 @@
 										<span class="glyphicon glyphicon-trash"> </span> </button>
 										</div>
 										</form>
-									</li>				
+									</li>	
 									</ul>									
 								</td>
 							</tr>
@@ -85,8 +81,8 @@
 				</div>
 				<!-- /.table-responsive -->
 			</div>
-			</div>
-		</div>
+    	</div>
+    </div>
 
 </div>
 @stop
@@ -100,11 +96,11 @@
 @section('jsope')
 
 <script>
-		$(document).ready(function() {
-				$('#dataTables-example').DataTable({
-								responsive: true
-				});
-		});
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
 </script>
 
 @stop

@@ -52,7 +52,7 @@ class AsignaturaController extends Controller
         $contador=$asignatura->count()+1;
         $asignatura->id=substr($asignatura->nombre,0,1).$contador;
         $asignatura->save();
-        return redirect('/coordinadores/asignaturas')->with('mensaje','Se inserto correctamente!!');
+        return redirect('/menucoordinadores/asignaturas')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -93,7 +93,7 @@ class AsignaturaController extends Controller
         $asignatura->id=$request->get('id');
         $asignatura->nombre=$request->get('nombre');
         $asignatura->save();
-        return redirect('/coordinadores/asignaturas')->with('mensaje','Se inserto correctamente!!');
+        return redirect('/menucoordinadores/asignaturas')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -107,6 +107,6 @@ class AsignaturaController extends Controller
         //
         $asignatura=Asignatura::findOrFail($id);
         $asignatura->delete();
-        return redirect('/coordinadores/asignaturas')->with('mensaje','La Asignatura con id: '.$id.', se elimino correctamente!!');
+        return redirect('/menucoordinadores/asignaturas')->with('mensaje','La Asignatura con id: '.$id.', se elimino correctamente!!');
     }
 }

@@ -13,7 +13,7 @@ class AlumnoFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class AlumnoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'dni'=>'required|min:3',
+            'nombres'=>'required|min:3',
+            'apellidos'=>'required|min:3',
+            'fecha_nacimiento'=>'required',
+            'email' => 'required',
+            'direccion'=>'required|min:3',
+            'apoderado'=>'required|min:3',
+            'telefono'=>'required|min:3'
+
         ];
     }
 }

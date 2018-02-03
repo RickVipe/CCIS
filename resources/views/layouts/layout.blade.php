@@ -37,7 +37,7 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="/"><p class="text_primary">Coordinador </p></a>
+        <a class="navbar-brand" href="/menucoordinadores/coordinadores"><p class="text_primary">Coordinador </p></a>
       </div>
       <!-- /.navbar-header -->
 
@@ -85,13 +85,10 @@
               <!--/input-group -->
             </li>
             <li>
-              <a href="/"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
-            </li>
-            <li>
               <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mantenimientos<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="#">Docentes</a>
+                  <a href="/menucoordinadores/docentes">Docentes</a>
                 </li>
                 <li>
                   <a href="/menucoordinadores/alumnos">Alumnos</a>

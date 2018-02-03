@@ -54,7 +54,7 @@ class GradoController extends Controller
         $grado->id=$grado->nro.'-'.$grado->seccion.'-'.substr($grado->nivel,0,3).'-'.$grado->anio_academico;
         $grado->vacantes=$request->get('vacantes');
         $grado->save();
-        return redirect('/coordinadores/grados')->with('mensaje','Se inserto correctamente!!');
+        return redirect('/menucoordinadores/grados')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -98,7 +98,7 @@ class GradoController extends Controller
         $grado->anio_academico=$request->get('anio_academico');
         $grado->vacantes=$request->get('vacantes');
         $grado->save();
-        return redirect('/coordinadores/grados')->with('mensaje','Se inserto correctamente!!');
+        return redirect('/menucoordinadores/grados')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -112,6 +112,6 @@ class GradoController extends Controller
         //
         $grado=Grado::findOrFail($id);
         $grado->delete();
-        return redirect('/coordinadores/grados')->with('mensaje','El grado con id: '.$id.', se elimino correctamente!!');
+        return redirect('/menucoordinadores/grados')->with('mensaje','El grado con id: '.$id.', se elimino correctamente!!');
     }
 }
