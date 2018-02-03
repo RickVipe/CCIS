@@ -14,6 +14,7 @@ class Docente extends Authenticatable
     *@var bool
     */
     public $timestamps = false;
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

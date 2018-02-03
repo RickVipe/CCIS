@@ -12,4 +12,5 @@ class Salon_Horario extends Model
     *
     * @var boolean*/
     public $timestamps = false;
+    public $incrementing = false;
 }
