@@ -30,15 +30,11 @@ Route::prefix('menucoordinadores')->group(function(){
   Route::get('salon_horario', 'Salon_HorarioController@store');
   Route::get('salon_horario/horario/{id}', 'Salon_HorarioController@nuevo');;
   Route::resource('salon_horario','Salon_HorarioController');
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
   Route::resource('matriculas','MatriculaController');
->>>>>>> 470843ba1ddc9103aab19181e3c138177b8b4603
-=======
+
   Route::resource('matriculas','MatriculaController');
->>>>>>> 470843ba1ddc9103aab19181e3c138177b8b4603
+
 });
 
 

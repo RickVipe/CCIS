@@ -76,7 +76,7 @@
                       <td>{{ $salon_horario->horario }}</td>
                       <td>{{ $salon_horario->tipo }}</td>
                       <td>{{ $salon_horario->capacidad }}</td>
-                    
+
 
                       <td class="center">
                         <ul class="nav nav-pills">
