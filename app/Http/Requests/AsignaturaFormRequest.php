@@ -24,7 +24,7 @@ class AsignaturaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombres' => 'required',
+            'nombre' => 'required',
         ];
     }
 }
