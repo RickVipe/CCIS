@@ -20,6 +20,7 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="dataTable_wrapper">
+					
 					@if($matriculas-> isEmpty())
 						<div class="alert alert-success">
 							<button type="button" class="close" data-dismiss="alert"
@@ -28,7 +29,12 @@
 							class="alert-link">Ingrese matriculas</a>
 						</div>
 					@else
-						
+						@if(session('mensaje'))
+			                <div class="alert alert-success">
+			                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+			                  {{ session('mensaje') }}
+			                </div>
+			              @endif
 					<table class="table table-striped table-bordered table-hove" id="dataTables-example">
 						<thead>
 							<tr>
@@ -44,7 +50,7 @@
 						@foreach($matriculas as $matricula)
 							<tr class="odd gradeA" rol="row">
 								<td> {{ $matricula -> id }} </td>
-								<td> {{ $matricula -> Alumno() -> nombres }} {{$matricula -> Alumno() -> apellidos }} </td>
+								<td> {{ $matricula -> Alumno -> nombres }} {{$matricula -> Alumno -> apellidos }} </td>
 								<td> {{ $matricula -> id_grado }} </td>
 								<td> {{ $matricula -> fecha }} </td>
 								<td class="center">

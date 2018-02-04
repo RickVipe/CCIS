@@ -28,7 +28,7 @@
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             <div class="form-group">
               <label>Alumno</label>
-              <select name="" class="form-control">
+              <select name="id_alumno" class="form-control">
                 <option value="">Seleccione a algún alumno</option>
                 @foreach($alumnos as $alumno)
                   <option value="{{$alumno->id}}">{{$alumno->id}} | {{$alumno -> nombres}} {{$alumno -> apellidos}}</option>
@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
               <label>Grado</label>
-              <select name="" class="form-control">
+              <select name="id_grado" class="form-control">
                 <option value="">Seleccione a algún grado</option>
                 @foreach($grados as $grado)
                   <option value="{{$grado->id}}">{{$grado->id}}</option>

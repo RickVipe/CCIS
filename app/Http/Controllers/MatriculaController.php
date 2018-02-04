@@ -46,20 +46,18 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
-        $matriculas= Matricula::all();
-        $numero=0;
-        if($matricula->count()==0)
-        {
-          $numero=1;
-        }
-        else
-        {
-          $matriculaaux=$matricula->last();
-          $numero=substr($matriculaaux->id,2)+1;
-        }
-
         $matricula = new Matricula();
-        $matricula->id = $numero; 
+        $matricula->id_alumno = $request->get('id_alumno');
+        $matricula->id_grado = $request->get('id_grado');
+        $matricula->fecha = Carbon::now();
+        $matricula->id = 'MT-'.($matricula->id_alumno).($matricula->fecha->year);
+        $auxmatric = Matricula::find($matricula->id);
+        if($auxmatric == null){
+            $matricula->save();
+            return redirect('/menucoordinadores/matriculas')->with('mensaje','Se matriculo correctamente al alumno');
+        }
+        return redirect('/menucoordinadores/matriculas')->with('mensaje','El alumno ya esta matriculado este año');
+        
     }
 
     /**
