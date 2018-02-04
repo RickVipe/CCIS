@@ -29,9 +29,60 @@
                   @else
                     <option value="{{$alumno->id}}">{{$alumno->id}} | {{$alumno -> nombres}} {{$alumno -> apellidos}}</option>
                   @endif
-                  
                 @endforeach
               </select>
+          <table class="table table-striped table-bordered table-hove" id="dataTables-example">
+            <thead>
+              <tr>
+                <th>DNI</th>
+                <th>Nombres y Apellidos</th>
+                <th>Fecha de nacimiento</th>
+                <th>Direccion</th>
+                <th>Email</th>
+                <th>Apoderado</th>
+                <th>Telefono</th>
+                <th>Operaciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+            @foreach($alumnos as $alumno)
+              <tr class="odd gradeA" rol="row">
+                <td> {{ $alumno -> id }} </td>
+                <td> {{ $alumno -> nombres }} {{$alumno -> apellidos }} </td>
+                <td> {{ $alumno -> fecha_nacimiento }} </td>
+                <td> {{ $alumno -> direccion }} </td>
+                <td> {{ $alumno -> email }} </td>
+                <td> {{ $alumno -> apoderado }} </td>
+                <td> {{ $alumno -> telefono }} </td>
+                <td class="center">
+                  <ul class="nav nav-pills">
+                  <li>
+                    <a href="{!! action('AlumnoController@show', $alumno->id ) !!}" title="show">
+                    <span class="glyphicon glyphicon-search"> </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{!! action('AlumnoController@edit', $alumno->id ) !!}" title="edit">
+                    <span class="glyphicon glyphicon-pencil" > </span>
+                    </a>
+                  </li>
+                  <li>
+                    <form method="post" action="{!! action('AlumnoController@destroy', $alumno->id) !!}"
+                    onclick="return confirm('Se eliminara este registro, Estas seguro?');">
+                    {!! csrf_field() !!}
+                    {!! method_field('DELETE') !!}
+                    <div> <button type="submit" class="btn btn-danger btn-xs">
+                    <span class="glyphicon glyphicon-trash"> </span> </button>
+                    </div>
+                    </form>
+                  </li>       
+                  </ul>                 
+                </td>
+              </tr>
+            @endforeach
+            </tbody>
+          </table>
             </div>
             <div class="form-group">
               <label>Grado</label>

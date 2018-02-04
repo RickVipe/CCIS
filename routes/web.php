@@ -27,12 +27,12 @@ Route::prefix('menucoordinadores')->group(function(){
 	Route::resource('grados','GradoController');
 	Route::resource('fecha_ingreso','Fecha_IngresoController');
   Route::resource('cursos','CursoController');
+
   Route::get('salon_horario', 'Salon_HorarioController@store');
-  Route::get('salon_horario/horario/{id}', 'Salon_HorarioController@nuevo');;
+  Route::get('salon_horario/horario/{id}', 'Salon_HorarioController@nuevo');
+
+
   Route::resource('salon_horario','Salon_HorarioController');
-
-  Route::resource('matriculas','MatriculaController');
-
   Route::resource('matriculas','MatriculaController');
 
 });
