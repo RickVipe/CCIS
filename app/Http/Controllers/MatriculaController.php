@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Matricula;
 
 class MatriculaController extends Controller
 {
@@ -11,9 +12,15 @@ class MatriculaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:coordinador');
+    }
+    
     public function index()
     {
-        //
+        $matriculas = Matricula::All();
+        return view('matriculas.index',['matriculas'=> $matriculas]);
     }
 
     /**

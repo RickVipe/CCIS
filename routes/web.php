@@ -27,6 +27,7 @@ Route::prefix('menucoordinadores')->group(function(){
 	Route::resource('fecha_ingreso','Fecha_IngresoController');
   Route::resource('cursos','CursoController');
   Route::resource('salon_horario','Salon_HorarioController');
+  Route::resource('matriculas','MatriculaController');
 });
 
 Route::prefix('menudocentes')->group(function(){
