@@ -95,13 +95,13 @@
                   <a href="{!! action('DocenteMenuController@verPerfil') !!}">Ver mi informacion</a>
                 </li>
                 <li>
-                  <a href="{!! action('DocenteMenuController@verCursos') !!}">Ver mis cursos</a>
+                  <a href="{!! action('DocenteMenuController@recuperarAnios') !!}">Ver mis cursos</a>
                 </li>
                 <li>
-                  <a href="#">Ver mi horario</a>
+                  <a href="{!! action('DocenteMenuController@verHorario') !!}">Ver mi horario</a>
                 </li>
                 <li>
-                  <a href="{!! action('DocenteMenuController@verCursosNotas') !!}">Ingresar notas</a>
+                  <a href="#">Ingresar notas</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
