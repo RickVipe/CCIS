@@ -50,7 +50,7 @@ Route::prefix('menudocentes')->group(function(){
   Route::get('horario','DocenteMenuController@verHorario');
   Route::get('filtrar','DocenteMenuController@recuperarAniosNotas');
   Route::post('filtrar/cursos','DocenteMenuController@recuperarCursosxAnioNotas');
-  Route::post('cursos/alumnos','DocenteMenuController@recuperarAlumnosxCurso');
+  Route::get('alumnos/{id_grado}','DocenteMenuController@recuperarAlumnosxCurso');
   Route::get('cursoss','DocenteMenuController@verCursosActuales');
   Route::get('cursoss/notasAlumnos','DocenteMenuController@verAlumnosNotas');
   Route::resource('docentes', 'DocenteMenuController');

@@ -175,11 +175,11 @@ class DocenteMenuController extends Controller
     public function recuperarAlumnosxCurso($id_grado)
     {
         $id = Auth::user()->id;
-        /*$alumnos = DB::table('matriculas')->join('alumnos','alumnos.id','=','matriculas.id_alumno')
+        $alumnos = DB::table('matriculas')->join('alumnos','alumnos.id','=','matriculas.id_alumno')
                                           ->where('id_grado',$id_grado)
                                           ->select('alumnos.id','alumnos.nombres','alumnos.apellidos')->get();
-        */
-        $alumnos = Matricula::where('id_grado',$id_grado);
+                                          
+        #$alumnos = Matricula::where('id_grado',$id_grado);
         return view('docentesmenu.verAlumnosxCurso',compact('alumnos'));
     }
 
