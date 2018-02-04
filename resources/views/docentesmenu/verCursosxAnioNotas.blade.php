@@ -66,9 +66,11 @@
                 <td class="center">
                   <ul class="nav nav-pills">
                     <li>
-                      <form method="get" action="{!! action('DocenteMenuController@recuperarAlumnosxCurso' , $curso->id_grado) !!}">
+                      <form method="get" action="{!! action('DocenteMenuController@recuperarAlumnosxCurso' , [$curso->id_grado, $curso->idasignatura]) !!}">
                         <div>
-                          <button type="submit" class="btn btn-success">Registrar Notas</button>
+                          <button type="submit" class="btn btn-success" title="Listar Alumnos">
+                            <span class="glyphicon glyphicon-align-left"></span>
+                          </button>
                         </div>
                       </form>
                     </li>

@@ -166,39 +166,22 @@ class DocenteMenuController extends Controller
                                      ->join('asignaturas','asignaturas.id','cursos.id_asignatura')
                                      ->where('id_docente',$id)->where('anio_academico',$anio)
                                      ->select('cursos.id','grados.nro','grados.seccion','grados.nivel',
-                                     'grados.anio_academico','asignaturas.nombre','cursos.id_grado')->get();
+                                     'grados.anio_academico','asignaturas.nombre','cursos.id_grado','asignaturas.id as idasignatura')->get();
         #echo $cursos;
         return view('docentesmenu.verCursosxAnioNotas',compact('cursos','anio'));
 
     }
 
-    public function recuperarAlumnosxCurso($id_grado)
+    public function recuperarAlumnosxCurso($id_grado, $id_asignatura)
     {
         $id = Auth::user()->id;
         $alumnos = DB::table('matriculas')->join('alumnos','alumnos.id','=','matriculas.id_alumno')
                                           ->where('id_grado',$id_grado)
                                           ->select('alumnos.id','alumnos.nombres','alumnos.apellidos')->get();
-                                          
+        $grado = Grado::where('id',$id_grado)->first();
         #$alumnos = Matricula::where('id_grado',$id_grado);
-        return view('docentesmenu.verAlumnosxCurso',compact('alumnos'));
+
+        return view('docentesmenu.verAlumnosxCurso',compact('alumnos','grado','id_asignatura'));
     }
 
-    public function verCursosActuales()
-    {
-        $id = Auth::user()->id;
-        $lastAnio = Grado::max('anio_academico');
-        $cursos = DB::table('cursos')->join('grados','cursos.id_grado','=','grados.id')
-                                     ->join('asignaturas','asignaturas.id','cursos.id_asignatura')
-                                     ->where('id_docente',$id)->where('anio_academico',$lastAnio)
-                                     ->select('cursos.id','grados.nro','grados.seccion','grados.nivel',
-                                     'grados.anio_academico','asignaturas.nombre')->get();
-
-        return view('docentesmenu.verCursosNotas',compact('cursos'));
-    }
-
-    public function verAlumnosNotas($id_grado)
-    {
-        $matriculas = Matricula::where('id_grado',$id_grado)->get();
-        return view('docentesmenu.verAlumnosNotas',compact('matriculas'));
-    }
 }

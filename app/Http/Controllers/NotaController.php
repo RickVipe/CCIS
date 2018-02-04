@@ -4,8 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Curso;
+use App\Grado;
+use App\Asignatura;
+use App\Nota;
+use App\Matricula;
+use App\Alumno;
+
 class NotaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:docente');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +38,16 @@ class NotaController extends Controller
     public function create()
     {
         //
+    }
+
+    public function cargarDatosAlumno($idalumno,$idgrado,$idasignatura)
+    {
+        $id = Auth::user()->id;
+        $alumno = Alumno::where('id',$idalumno)->first(); //solo debe recuperar un alumno
+        $matricula = Matricula::where([['id_alumno',$idalumno],['id_grado',$idgrado]])->first(); //igual
+        $curso = Curso::where([['id_grado',$idgrado],['id_docente',$id],['id_asignatura',$idasignatura]])->first(); //igual
+
+        return view('notasdocente.create',compact('alumno','matricula','curso'));
     }
 
     /**

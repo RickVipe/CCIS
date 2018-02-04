@@ -46,10 +46,10 @@ Route::prefix('menudocentes')->group(function(){
   Route::get('horario','DocenteMenuController@verHorario');
   Route::get('filtrar','DocenteMenuController@recuperarAniosNotas');
   Route::post('filtrar/cursos','DocenteMenuController@recuperarCursosxAnioNotas');
-  Route::get('alumnos/{id_grado}','DocenteMenuController@recuperarAlumnosxCurso');
-  Route::get('cursoss','DocenteMenuController@verCursosActuales');
-  Route::get('cursoss/notasAlumnos','DocenteMenuController@verAlumnosNotas');
+  Route::get('alumnos/{id_grado}/{id_asignatura}','DocenteMenuController@recuperarAlumnosxCurso');
   Route::resource('docentes', 'DocenteMenuController');
+  Route::get('notas/{idalumno}/{idgrado}/{idasignatura}','NotaController@cargarDatosAlumno');
+  Route::resource('notas', 'NotaController');
 });
 
 Route::prefix('coordinadores')->group(function() {
