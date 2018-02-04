@@ -29,8 +29,6 @@ class DocenteMenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function index()
     {
         return view('docentesmenu.index');
@@ -112,7 +110,8 @@ class DocenteMenuController extends Controller
     {
         $id = Auth::user()->id;
         $aniosAcademicos = DB::table('cursos')->join('grados','cursos.id_grado','=','grados.id')
-                                              ->where('id_docente',$id)->distinct()->get(['anio_academico']);
+                                              ->where('id_docente',$id)->distinct()
+                                              ->orderBy('anio_academico','desc')->get(['anio_academico']);
 
         return view('docentesmenu.cargarAnios',compact('aniosAcademicos'));
     }
@@ -122,25 +121,78 @@ class DocenteMenuController extends Controller
         $id = Auth::user()->id;
         $anio = $request->get('anioacademico');
         $cursos = DB::table('cursos')->join('grados','cursos.id_grado','=','grados.id')
-                                     ->join('asignaturas','cursos.id_asignatura','asignaturas.id')
-                                     ->where('id_docente',$id)->where('anio_academico',$anio)->get();
+                                     ->join('asignaturas','asignaturas.id','cursos.id_asignatura')
+                                     ->where('id_docente',$id)->where('anio_academico',$anio)
+                                     ->select('cursos.id','grados.nro','grados.seccion','grados.nivel',
+                                     'grados.anio_academico','asignaturas.nombre')->get();
         #echo $cursos;
-        #$ii = new Curso;
-        #$iii = $ii->where('id_docente',$id)->with('Grado','Asignatura')->where('Grado.anio_academico', $anio)->get();
-        #echo $iii;
         return view('docentesmenu.verCursosxAnio',compact('cursos','anio'));
 
     }
 
     public function verHorario()
     {
-        echo 'hola';
+        $id = Auth::user()->id;
+        $lastAnio = Grado::max('anio_academico');
+        $horarios = DB::table('cursos')->join('salon_horario','salon_horario.id_curso','=','cursos.id')
+                                       ->join('grados','grados.id','=','cursos.id_grado')
+                                       ->join('asignaturas','asignaturas.id','=','cursos.id_asignatura')
+                                       ->where('id_docente',$id)->where('anio_academico',$lastAnio)
+                                       #->orderBy('horario')
+                                       ->select('horario','nro_salon','nombre','tipo','nro','seccion',
+                                       'nivel','anio_academico')->get();
+
+        #public $hoursrange = ['07:00', '09:30', '', '', '', '',];
+        #echo $horarios;
+        return view('docentesmenu.verHorario', compact('horarios','lastAnio'));
+
     }
 
-    public function verCursosNotas()
+    public function recuperarAniosNotas()
     {
         $id = Auth::user()->id;
-        $cursos = Curso::where('id_docente',$id)->get();
+        $aniosAcademicos = DB::table('cursos')->join('grados','cursos.id_grado','=','grados.id')
+                                              ->where('id_docente',$id)->distinct()
+                                              ->orderBy('anio_academico','desc')->get(['anio_academico']);
+
+        return view('docentesmenu.cargarAniosNotas',compact('aniosAcademicos'));
+    }
+
+    public function recuperarCursosxAnioNotas(Request $request)
+    {
+        $id = Auth::user()->id;
+        $anio = $request->get('anioacademico');
+        $cursos = DB::table('cursos')->join('grados','cursos.id_grado','=','grados.id')
+                                     ->join('asignaturas','asignaturas.id','cursos.id_asignatura')
+                                     ->where('id_docente',$id)->where('anio_academico',$anio)
+                                     ->select('cursos.id','grados.nro','grados.seccion','grados.nivel',
+                                     'grados.anio_academico','asignaturas.nombre','cursos.id_grado')->get();
+        #echo $cursos;
+        return view('docentesmenu.verCursosxAnioNotas',compact('cursos','anio'));
+
+    }
+
+    public function recuperarAlumnosxCurso($id_grado)
+    {
+        $id = Auth::user()->id;
+        /*$alumnos = DB::table('matriculas')->join('alumnos','alumnos.id','=','matriculas.id_alumno')
+                                          ->where('id_grado',$id_grado)
+                                          ->select('alumnos.id','alumnos.nombres','alumnos.apellidos')->get();
+        */
+        $alumnos = Matricula::where('id_grado',$id_grado);
+        return view('docentesmenu.verAlumnosxCurso',compact('alumnos'));
+    }
+
+    public function verCursosActuales()
+    {
+        $id = Auth::user()->id;
+        $lastAnio = Grado::max('anio_academico');
+        $cursos = DB::table('cursos')->join('grados','cursos.id_grado','=','grados.id')
+                                     ->join('asignaturas','asignaturas.id','cursos.id_asignatura')
+                                     ->where('id_docente',$id)->where('anio_academico',$lastAnio)
+                                     ->select('cursos.id','grados.nro','grados.seccion','grados.nivel',
+                                     'grados.anio_academico','asignaturas.nombre')->get();
+
         return view('docentesmenu.verCursosNotas',compact('cursos'));
     }
 
