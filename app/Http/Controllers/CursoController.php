@@ -88,6 +88,15 @@ class CursoController extends Controller
     public function show($id)
     {
         //
+        //echo $salon_horarios = Salon_Horario::find($id);
+        /*$salon_horariosaux = Salon_Horario::all();
+        $salon_horarios = $salon_horariosaux->where('id_curso',$id);
+        //echo $salon_horarios = Salon_Horario::where('active', 1)->first();
+        //$salon_horariosaux = Salon_Horario::all();
+        return view('salon_horario.show',compact('salon_horarios'));*/
+        $todos_cursos = Curso::all();
+        $cursos = $todos_cursos->where('id_grado',$id);
+        return view('cursos.show',compact('cursos'));
     }
 
     /**

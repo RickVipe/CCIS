@@ -14,8 +14,8 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h3 class="page-header">Grados
-    <button type="button" class="btn btn-primary" onClick="location.href='grados/create'">Nuevo</button></h3>
+    <h3 class="page-header">Horario
+    <button type="button" class="btn btn-primary" onClick="location.href='salon_horario/create'">Nuevo</button></h3>
   </div>
   <!-- /.row -->
   <div class="row">
@@ -26,11 +26,11 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
           <div class="dataTable_wrapper">
-            @if($grados->isEmpty())
+            @if($salon_horarios->isEmpty())
               <div class="alert alert-success">
                 <button type="button" class="close"
                 data-dismiss="alert" aria-hidden="true">x</button>
-                No se tiene ninguna grado <a href="#" class="alert-link">Ingrese Grados</a>.
+                No se tiene ninguna horario<a href="#" class="alert-link">Ingrese Horario</a>.
               </div>
             @else
               @if(session('mensaje'))
@@ -42,36 +42,35 @@
               <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                      <th>Id Grado</th>
-                      <th>Nro de Grado</th>
-                      <th>Seccion</th>
-                      <th>Nivel</th>
+                      <th>Nro de Salon</th>
+                      <th>Horario</th>
+                      <th>Tipo</th>
+                      <th>Capacidad</th>
                       <th>Año Academico</th>
-                      <th>Vacantes</th>
+                      <th>Curso</th>
                       <th>Operaciones</th>
                     </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($grados as $grado)
+                  @foreach($salon_horarios as $salon_horario)
                     <tr class="odd gradeA" rol="row">
-                      <td>{{ $grado->id }}</td>
-                      <td>{{ $grado->nro }}</td>
-                      <td>{{ $grado->seccion }}</td>
-                      <td>{{ $grado->nivel }}</td>
-                      <td>{{ $grado->anio_academico }}</td>
-                      <td>{{ $grado->vacantes}}</td>
+                      <td>{{ $salon_horario->nro_salon }}</td>
+                      <td>{{ $salon_horario->horario }}</td>
+                      <td>{{ $salon_horario->tipo }}</td>
+                      <td>{{ $salon_horario->capacidad }}</td>
+                      <td>{{ $salon_horario->id_curso }}</td>
 
                       <td class="center">
                         <ul class="nav nav-pills">
                           <li>
-                            <a href= "{!! action('GradoController@edit' , $grado->id) !!}" title="Editar">
+                            <a href= "{!! action('Salon_HorarioController@edit' , $salon_horario->nro_salon , $salon_horario->horario) !!}" title="Editar">
                               <span class="glyphicon glyphicon-pencil"></span>
 
                             </a>
                           </li>
                           <li>
-                            <form method="post" action="{!! action('GradoController@destroy',$grado->id) !!}"
+                            <form method="post" action="{!! action('Salon_HorarioController@destroy',$salon_horario->nro_salon, $salon_horario->horario ) !!}"
                               onclick="return confirm('Se eliminara este registro, ¿Estas Seguro?');">
                               {!! csrf_field() !!}
                               {!! method_field('DELETE') !!}
@@ -80,12 +79,7 @@
                                 </button>
                               </div>
                             </form>
-                          <li>
-                            <a href= "{!! action('CursoController@show' , $grado->id) !!}" title="Horario">
-                              <span class="glyphicon glyphicon-calendar"></span>
 
-                            </a>
-                          </li>
                         </ul>
                       </td>
                     </tr>
