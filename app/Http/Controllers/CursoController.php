@@ -17,6 +17,10 @@ class CursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+        $this->middleware('auth:coordinador');
+     }
     public function index()
     {
         //

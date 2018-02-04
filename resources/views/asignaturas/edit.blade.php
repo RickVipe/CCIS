@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                   <label>Nombre de Asignatura</label>
-                  <input type="text" class="form-control" name="nombres"
+                  <input type="text" class="form-control" name="nombre"
                   value="{!! $asignatura->nombre !!}"
                   style="text-transform:uppercase;"
                   onkeyup="javascript:this.value=this.value.toUpperCase();">
