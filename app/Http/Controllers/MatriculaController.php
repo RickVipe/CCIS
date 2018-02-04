@@ -49,8 +49,9 @@ class MatriculaController extends Controller
         $matricula = new Matricula();
         $matricula->id_alumno = $request->get('id_alumno');
         $matricula->id_grado = $request->get('id_grado');
+        $anio = Grado::find($request->get('id_grado'))->anio_academico;
         $matricula->fecha = Carbon::now();
-        $matricula->id = 'MT-'.($matricula->id_alumno).($matricula->fecha->year);
+        $matricula->id = 'MT-'.($matricula->id_alumno).($anio);
         $auxmatric = Matricula::find($matricula->id);
         if($auxmatric == null){
             $matricula->save();
@@ -68,7 +69,8 @@ class MatriculaController extends Controller
      */
     public function show($id)
     {
-        
+        $matriculas = Matricula::where('id_grado','=',$id)->get();
+        return view('matriculas.matxgrado',['matriculas'=>$matriculas]);
     }
 
     /**
@@ -110,8 +112,7 @@ class MatriculaController extends Controller
      */
     public function destroy($id)
     {
-        $matricula=matricula::findOrFail($id);
-        $matricula->delete();
-        return redirect('/menucoordinadores/matriculas')->with('mensaje','La matricula con id: '.$id.', se elimino correctamente!!');
+        $matricula = matricula::findOrFail($id) -> delete();
+        return redirect('/menucoordinadores/matriculas')->with('mensaje','El matricula con id: '.$id.', se elimino correctamente!!');
     }
 }

@@ -5,8 +5,8 @@
 
 <div class="row">
     <div class="col-lg-12">
-    	<h3 class="page-header">Matriculas 
-    	<button type="button" class="btn btn-primary" onclick="location.href='matriculas/create '">Nuevo</button></h3>
+    	<h3 class="page-header">Matricula por grado
+    	<button type="button" class="btn btn-primary" onclick="location.href='/menucoordinadores/matriculas/create '">Nuevo</button></h3>
     </div>
 </div>
 <!-- /.row -->
@@ -51,7 +51,7 @@
 							<tr class="odd gradeA" rol="row">
 								<td> {{ $matricula -> id }} </td>
 								<td> {{ $matricula -> Alumno -> nombres }} {{$matricula -> Alumno -> apellidos }} </td>
-								<td> <a href="{!! action('MatriculaController@show' , $matricula->id_grado) !!}" title="Alumnos por curso">{{ $matricula -> id_grado }} </a></td>
+								<td> {{ $matricula -> id_grado }} </td>
 								<td> {{ $matricula -> fecha }} </td>
 								<td class="center">
 									<ul class="nav nav-pills">

@@ -34,6 +34,7 @@
                   <option value="{{$alumno->id}}">{{$alumno->id}} | {{$alumno -> nombres}} {{$alumno -> apellidos}}</option>
                 @endforeach
               </select>
+              
             </div>
             <div class="form-group">
               <label>Grado</label>
