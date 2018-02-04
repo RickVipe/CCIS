@@ -10,7 +10,8 @@ class Matricula extends Model
     *
     *
     * @var boolean*/
-    public $timestamps=false;
+    public $timestamps=true;
+    const CREATED_AT = 'fecha';
     public $incrementing = false;
     public function Alumno()
     {

@@ -86,9 +86,6 @@
               <!--/input-group -->
             </li>
             <li>
-              <a href="/"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
-            </li>
-            <li>
               <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mantenimientos<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                 <li>
@@ -101,7 +98,7 @@
                   <a href="{!! action('DocenteMenuController@verHorario') !!}">Ver mi horario</a>
                 </li>
                 <li>
-                  <a href="#">Ingresar notas</a>
+                  <a href="{!! action('DocenteMenuController@recuperarAniosNotas') !!}">Ingresar notas</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

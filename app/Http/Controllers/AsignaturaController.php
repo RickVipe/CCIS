@@ -61,7 +61,7 @@ class AsignaturaController extends Controller
         //echo $cursoaux;
         $asignatura=new Asignatura;
         //$curso->id=$request->get('id_grado').'-'.$request->get('id_asignatura').'-'.$request->get('id_docente');
-        $asignatura->id="M-".$numero;
+        $asignatura->id="A-".$numero;
 
         $asignatura->nombre=$request->get('nombre');
 

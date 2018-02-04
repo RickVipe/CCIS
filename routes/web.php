@@ -30,7 +30,11 @@ Route::prefix('menucoordinadores')->group(function(){
   Route::get('salon_horario', 'Salon_HorarioController@store');
   Route::get('salon_horario/horario/{id}', 'Salon_HorarioController@nuevo');;
   Route::resource('salon_horario','Salon_HorarioController');
+<<<<<<< HEAD
 
+=======
+  Route::resource('matriculas','MatriculaController');
+>>>>>>> 470843ba1ddc9103aab19181e3c138177b8b4603
 });
 
 
@@ -40,8 +44,11 @@ Route::prefix('menudocentes')->group(function(){
   Route::get('miscursos','DocenteMenuController@recuperarAnios');
   Route::post('miscursos/lista','DocenteMenuController@recuperarCursosxAnio');
   Route::get('horario','DocenteMenuController@verHorario');
-  Route::get('cursos','DocenteMenuController@verCursosNotas');
-  Route::get('cursos/notasAlumnos','DocenteMenuController@verAlumnosNotas');
+  Route::get('filtrar','DocenteMenuController@recuperarAniosNotas');
+  Route::post('filtrar/cursos','DocenteMenuController@recuperarCursosxAnioNotas');
+  Route::post('cursos/alumnos','DocenteMenuController@recuperarAlumnosxCurso');
+  Route::get('cursoss','DocenteMenuController@verCursosActuales');
+  Route::get('cursoss/notasAlumnos','DocenteMenuController@verAlumnosNotas');
   Route::resource('docentes', 'DocenteMenuController');
 });
 
