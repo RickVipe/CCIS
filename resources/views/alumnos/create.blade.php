@@ -68,7 +68,7 @@
 
             <button type="submit" class="btn btn-success">Guardar</button>
             <button type="reset" class="btn btn-warning">Limpiar</button>
-            <button type="button" class="btn btn-danger" onclick="location.href='/menucoordinadores/alumnos'">Volver</button>
+            <button type="button" class="btn btn-danger" onClick="location.href='{!! action('AlumnoController@index') !!}'">Volver</button>
             </form>
           </div>
         </div>

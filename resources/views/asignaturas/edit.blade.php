@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                   <label>Nombre de Asignatura</label>
-                  <input type="text" class="form-control" name="nombres"
+                  <input type="text" class="form-control" name="nombre"
                   value="{!! $asignatura->nombre !!}"
                   style="text-transform:uppercase;"
                   onkeyup="javascript:this.value=this.value.toUpperCase();">
@@ -46,7 +46,7 @@
                 <button type="submit" class="btn btn-success">Guardar</button>
                 <button type="reset" class="btn btn-warning">Limpiar</button>
                 <button type="button" class="btn btn-danger"
-                onClick="location.href='/asignaturas'">Volver</button>
+                onClick="location.href='{!! action('AsignaturaController@index') !!}'">Volver</button>
               </form>
             </div>
 

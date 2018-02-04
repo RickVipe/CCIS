@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests;
+use App\Curso;
+use App\Grado;
+use App\Asignatura;
+use App\Docente;
+
 class CursoController extends Controller
 {
     /**
@@ -11,9 +17,16 @@ class CursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+        $this->middleware('auth:coordinador');
+     }
     public function index()
     {
         //
+        $cursos=Curso::all();
+
+        return view('cursos.index',['cursos'=>$cursos]);
     }
 
     /**
@@ -24,6 +37,12 @@ class CursoController extends Controller
     public function create()
     {
         //
+        $grados=Grado::all();
+        $asignaturas=Asignatura::all();
+        $docentes=Docente::all();
+
+
+        return view('cursos.create',['grados'=>$grados,'asignaturas'=>$asignaturas,'docentes'=>$docentes]);
     }
 
     /**
@@ -35,6 +54,29 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         //
+        $cursos= Curso::all();
+        $numero=0;
+        //echo $cursos->count();
+        if($cursos->count()==0)
+        {
+          $numero=1;
+        }
+        else
+        {
+          $cursoaux=$cursos->last();
+          $numero=substr($cursoaux->id,2)+1;
+        }
+        //$cursoaux=$cursos->last();
+        //echo $cursoaux;
+        $curso=new Curso;
+        //$curso->id=$request->get('id_grado').'-'.$request->get('id_asignatura').'-'.$request->get('id_docente');
+        $curso->id="C-".$numero;
+        $curso->id_grado=$request->get('id_grado');
+        $curso->id_asignatura=$request->get('id_asignatura');
+        $curso->id_docente=$request->get('id_docente');
+
+        $curso->save();
+        return redirect('/menucoordinadores/cursos')->with('mensaje','Se inserto correctamente!!');
     }
 
     /**
@@ -57,6 +99,11 @@ class CursoController extends Controller
     public function edit($id)
     {
         //
+        $grados=Grado::all();
+        $asignaturas=Asignatura::all();
+        $docentes=Docente::all();
+        $curso=Curso::findOrFail($id);
+        return view('cursos.edit',compact('curso'),['grados'=>$grados,'asignaturas'=>$asignaturas,'docentes'=>$docentes]);
     }
 
     /**
@@ -69,6 +116,12 @@ class CursoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $curso = Curso::find($id);
+        $curso->id_grado=$request->get('id_grado');
+        $curso->id_asignatura=$request->get('id_asignatura');
+        $curso->id_docente=$request->get('id_docente');
+        $curso->save();
+        return redirect('/menucoordinadores/cursos')->with('mensaje','Se actualizo correctamente!!');
     }
 
     /**
@@ -80,5 +133,8 @@ class CursoController extends Controller
     public function destroy($id)
     {
         //
+        $curso=Curso::findOrFail($id);
+        $curso->delete();
+        return redirect('/menucoordinadores/cursos')->with('mensaje','El curso con id: '.$id.', se elimino correctamente!!');
     }
 }

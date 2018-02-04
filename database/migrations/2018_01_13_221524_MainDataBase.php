@@ -21,7 +21,7 @@ class MainDataBase extends Migration
             $table -> string('nombres', 45);
             $table -> string('apellidos', 45);
             $table -> date('fecha_nacimiento');
-            $table -> string('direccion', 45);
+            $table -> string('direccion', 100);
             $table -> string('email', 191)->unique();
             $table -> string('password', 191);
             $table -> string('apoderado', 100);

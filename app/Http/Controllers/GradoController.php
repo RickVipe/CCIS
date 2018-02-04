@@ -92,10 +92,10 @@ class GradoController extends Controller
     {
         //
         $grado = Grado::find($id);
-        $grado->nro=$request->get('nro');
-        $grado->seccion=$request->get('seccion');
-        $grado->nivel=$request->get('nivel');
-        $grado->anio_academico=$request->get('anio_academico');
+        //$grado->nro=$request->get('nro');
+        //$grado->seccion=$request->get('seccion');
+        //$grado->nivel=$request->get('nivel');
+        //$grado->anio_academico=$request->get('anio_academico');
         $grado->vacantes=$request->get('vacantes');
         $grado->save();
         return redirect('/menucoordinadores/grados')->with('mensaje','Se inserto correctamente!!');

@@ -46,11 +46,25 @@ class AsignaturaController extends Controller
     public function store(AsignaturaFormRequest $request)
     {
         //
+        $asignaturas= Asignatura::all();
+        $numero=0;
+        if($asignaturas->count()==0)
+        {
+          $numero=1;
+        }
+        else
+        {
+          $asignaturaaux=$asignaturas->last();
+          $numero=substr($asignaturaaux->id,2)+1;
+        }
+        //$cursoaux=$cursos->last();
+        //echo $cursoaux;
         $asignatura=new Asignatura;
+        //$curso->id=$request->get('id_grado').'-'.$request->get('id_asignatura').'-'.$request->get('id_docente');
+        $asignatura->id="M-".$numero;
+
         $asignatura->nombre=$request->get('nombre');
-        //lo siguiente esta mal
-        $contador=$asignatura->count()+1;
-        $asignatura->id=substr($asignatura->nombre,0,1).$contador;
+
         $asignatura->save();
         return redirect('/menucoordinadores/asignaturas')->with('mensaje','Se inserto correctamente!!');
     }
@@ -90,7 +104,7 @@ class AsignaturaController extends Controller
     {
         //
         $asignatura = Asignatura::find($id);
-        $asignatura->nombre=$request->input('nombres');
+        $asignatura->nombre=$request->get('nombre');
         $asignatura->save();
         return redirect('/menucoordinadores/asignaturas')->with('mensaje','Se inserto correctamente!!');
     }

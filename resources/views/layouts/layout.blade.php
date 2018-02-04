@@ -101,7 +101,7 @@
                   <a href="/menucoordinadores/asignaturas">Administrar Asignaturas</a>
                 </li>
                 <li>
-                  <a href="#">Administrar cursos</a>
+                  <a href="/menucoordinadores/cursos">Administrar Cursos</a>
                 </li>
                 <li>
                   <a href="#">Registrar Matricula</a>

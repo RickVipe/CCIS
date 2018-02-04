@@ -92,11 +92,11 @@ class Fecha_IngresoController extends Controller
     {
         //
         $fecha_ingreso = Fecha_Ingreso::find($id);
-        $fecha_ingreso->anio_academico=$request->get('anio_academico');
-        $fecha_ingreso->trimestre=$request->get('trimestre');
+        //$fecha_ingreso->anio_academico=$request->get('anio_academico');
+        //$fecha_ingreso->trimestre=$request->get('trimestre');
         $fecha_ingreso->fecha_inicio=$request->get('fecha_inicio');
         $fecha_ingreso->fecha_fin=$request->get('fecha_fin');
-        $fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
+        //$fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
         $fecha_ingreso->save();
         return redirect('/menucoordinadores/fecha_ingreso')->with('mensaje','Se inserto correctamente!!');
     }
