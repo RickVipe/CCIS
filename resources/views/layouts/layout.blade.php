@@ -104,7 +104,7 @@
                   <a href="/menucoordinadores/cursos">Administrar Cursos</a>
                 </li>
                 <li>
-                  <a href="#">Registrar Matricula</a>
+                  <a href="/menucoordinadores/matriculas">Registrar Matricula</a>
                 </li>
                 <li>
                   <a href="/menucoordinadores/fecha_ingreso">Establecer fechas de ingreso de notas</a>
