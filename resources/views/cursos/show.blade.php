@@ -17,7 +17,7 @@
   <!-- /.row -->
   <div class="row">
     <div class="col-lg-12">
-      
+
       <div class="form-group">
         <label>Grado</label>
         <input type="text" class="form-control" value="{{ $cursos->first()->Grado->nro }} {{ $cursos->first()->Grado->seccion }} {{ $cursos->first()->Grado->nivel }} {{ $cursos->first()->Grado->anio_academico }} " disabled="">

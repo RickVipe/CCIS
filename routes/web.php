@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::prefix('menucoordinadores')->group(function(){
 	Route::resource('alumnos', 'AlumnoController');
 	Route::resource('coordinadores', 'CoordinadorController');
@@ -26,8 +27,13 @@ Route::prefix('menucoordinadores')->group(function(){
 	Route::resource('grados','GradoController');
 	Route::resource('fecha_ingreso','Fecha_IngresoController');
   Route::resource('cursos','CursoController');
+  Route::get('salon_horario', 'Salon_HorarioController@store');
+  Route::get('salon_horario/horario/{id}', 'Salon_HorarioController@nuevo');;
   Route::resource('salon_horario','Salon_HorarioController');
+
 });
+
+
 
 Route::prefix('menudocentes')->group(function(){
   Route::get('perfil','DocenteMenuController@verPerfil');

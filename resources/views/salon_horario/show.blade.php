@@ -23,8 +23,15 @@
       <input type="text" class="form-control" value=" {{ $curso->first()->Asignatura->nombre }}"  disabled="">
     </div>
     <h3 class="page-header">Horario
-    <button type="button" class="btn btn-primary" onClick="location.href='create'">Nuevo</button></h3>
+
+    <a href= "{!! action('Salon_HorarioController@nuevo',$curso->first()->id) !!}" title="Editar">
+      <span class="glyphicon glyphicon-pencil"></span>
+
+    </a></h3>
+
+
   </div>
+
   <!-- /.row -->
   <div class="row">
     <div class="col-lg-12">
@@ -41,7 +48,7 @@
               <div class="alert alert-success">
                 <button type="button" class="close"
                 data-dismiss="alert" aria-hidden="true">x</button>
-                No se tiene ninguna horario <a href="#" class="alert-link">Ingrese Horario</a>.
+                No se tiene ninguna horario <a href="#" class="alert-link">Ingrese Horario</a>
               </div>
             @else
               @if(session('mensaje'))
@@ -69,7 +76,7 @@
                       <td>{{ $salon_horario->horario }}</td>
                       <td>{{ $salon_horario->tipo }}</td>
                       <td>{{ $salon_horario->capacidad }}</td>
-                      <td>{{ $salon_horario->id_curso }}</td>
+                    
 
                       <td class="center">
                         <ul class="nav nav-pills">

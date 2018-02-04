@@ -21,7 +21,7 @@ class Salon_HorarioController extends Controller
      {
         $this->middleware('auth:coordinador');
      }
-    public function index($id)
+    public function index()
     {
         //
        //$salon_horarios = Salon_Horario::where('id','=',$id);
@@ -33,10 +33,17 @@ class Salon_HorarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
+        //echo $id;
         //$curso=Curso::all()->where('id',$id);
-        return view('salon_horario.create');
+        //return view('salon_horario.create');
+    }
+    public function nuevo($id)
+    {
+        //echo $id;
+        $curso=Curso::all()->where('id',$id);
+        return view('salon_horario.create',['curso'=>$curso]);
     }
 
     /**
@@ -50,11 +57,12 @@ class Salon_HorarioController extends Controller
         //
         $salon_horario=new Salon_Horario;
         //$curso->id=$request->get('id_grado').'-'.$request->get('id_asignatura').'-'.$request->get('id_docente');
-        $salon_horario->nro_Salon=$request->get('nro_salon');
-        $salon_horario->horario=$request->get('horario');
+        $salon_horario->nro_salon=$request->get('nro_salon');
+        $salon_horario->horario=$request->get('dia').'-'.$request->get('hora_inicial').'-'.$request->get('hora_final');
         $salon_horario->tipo=$request->get('tipo');
         $salon_horario->capacidad=$request->get('capacidad');
         $salon_horario->id_curso=$request->get('id_curso');
+        //$salon_horario->id_curso="C-1";
 
 
         $salon_horario->save();
@@ -74,6 +82,8 @@ class Salon_HorarioController extends Controller
         $salon_horariosaux = Salon_Horario::all();
         $salon_horarios = $salon_horariosaux->where('id_curso',$id);
         $curso=Curso::all()->where('id',$id);
+
+        //echo $curso;
         //echo $salon_horarios = Salon_Horario::where('active', 1)->first();
         //$salon_horariosaux = Salon_Horario::all();
         return view('salon_horario.show',compact('salon_horarios'),['curso'=>$curso]);
@@ -90,6 +100,7 @@ class Salon_HorarioController extends Controller
     public function edit($id)
     {
         //
+        echo $id;
     }
 
     /**

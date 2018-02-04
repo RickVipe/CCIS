@@ -27,12 +27,12 @@
 
                 <div class="form-group">
                   <label>Id Curso</label>
-                  <input type="text" class="form-control" name="id_curso" value="" disabled="">
+                  <input type="text" class="form-control" name="id_curso" value="{{ $curso->first()->id }}" disabled="">
                 </div>
 
                 <div class="form-group">
                   <label>Curso</label>
-                  <input type="text" class="form-control" value="" disabled="">
+                  <input type="text" class="form-control" value="{{ $curso->first()->Grado->nro }} {{ $curso->first()->Grado->seccion }} {{ $curso->first()->Grado->nivel }} {{ $curso->first()->Grado->anio_academico }}" disabled="">
                 </div>
 
 
