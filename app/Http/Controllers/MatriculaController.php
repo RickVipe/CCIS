@@ -68,7 +68,7 @@ class MatriculaController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -79,7 +79,10 @@ class MatriculaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alumnos = Alumno::All();
+        $grados = Grado::All();
+        $matricula = Matricula::findOrFail($id);
+        return view('matriculas.edit',['matricula'=>$matricula, 'alumnos'=> $alumnos,'grados'=>$grados]);
     }
 
     /**
@@ -91,7 +94,12 @@ class MatriculaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $matricula = Matricula::findOrFail($id);
+        $matricula->id_alumno = $request->input('id_alumno');
+        $matricula->id_grado = $request->input('id_grado');
+        $matricula->save();
+        return redirect('/menucoordinadores/matriculas')->with('mensaje','Se modificaron correctamente los datos');
+        
     }
 
     /**
@@ -102,6 +110,8 @@ class MatriculaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $matricula=matricula::findOrFail($id);
+        $matricula->delete();
+        return redirect('/menucoordinadores/matriculas')->with('mensaje','La matricula con id: '.$id.', se elimino correctamente!!');
     }
 }
