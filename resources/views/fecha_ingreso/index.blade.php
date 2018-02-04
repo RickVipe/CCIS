@@ -61,7 +61,7 @@
                       <td>{{ $fecha_ingreso->fecha_fin }}</td>
                       <td class="center">
                         <ul class="nav nav-pills">
-                          
+
                           <li>
                             <a href= "{!! action('Fecha_IngresoController@edit' , $fecha_ingreso->id) !!}" title="Editar">
                               <span class="glyphicon glyphicon-pencil"></span>

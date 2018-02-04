@@ -13,24 +13,31 @@
 @section('content')
 
 <div class="row">
-  <div class="col-lg-12">
-    <h3 class="page-header">Grados
-    <button type="button" class="btn btn-primary" onClick="location.href='grados/create'">Nuevo</button></h3>
-  </div>
+
   <!-- /.row -->
   <div class="row">
     <div class="col-lg-12">
+      
+      <div class="form-group">
+        <label>Grado</label>
+        <input type="text" class="form-control" value="{{ $cursos->first()->Grado->nro }} {{ $cursos->first()->Grado->seccion }} {{ $cursos->first()->Grado->nivel }} {{ $cursos->first()->Grado->anio_academico }} " disabled="">
+      </div>
       <div class="panel panel-primary">
+
         <div class="panel-heading">
         </div>
+
+
         <!-- /.panel-heading -->
         <div class="panel-body">
+
+
           <div class="dataTable_wrapper">
-            @if($grados->isEmpty())
+            @if($cursos->isEmpty())
               <div class="alert alert-success">
                 <button type="button" class="close"
                 data-dismiss="alert" aria-hidden="true">x</button>
-                No se tiene ninguna grado <a href="#" class="alert-link">Ingrese Grados</a>.
+                No se tiene ninguna curso <a href="#" class="alert-link">Ingrese Horario</a>.
               </div>
             @else
               @if(session('mensaje'))
@@ -42,46 +49,24 @@
               <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                      <th>Id Grado</th>
-                      <th>Nro de Grado</th>
-                      <th>Seccion</th>
-                      <th>Nivel</th>
-                      <th>Año Academico</th>
-                      <th>Vacantes</th>
+                      <th>Curso</th>
+                      <th>Asignatura</th>
+                      <th>Docente</th>
                       <th>Operaciones</th>
                     </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($grados as $grado)
+                  @foreach($cursos as $curso)
                     <tr class="odd gradeA" rol="row">
-                      <td>{{ $grado->id }}</td>
-                      <td>{{ $grado->nro }}</td>
-                      <td>{{ $grado->seccion }}</td>
-                      <td>{{ $grado->nivel }}</td>
-                      <td>{{ $grado->anio_academico }}</td>
-                      <td>{{ $grado->vacantes}}</td>
+                      <td>{{ $curso->id }}</td>
 
+                      <td>{{ $curso->Asignatura->nombre }}</td>
+                      <td>{{ $curso->Docente->nombres }} {{ $curso->Docente->apellidos}} </td>
                       <td class="center">
                         <ul class="nav nav-pills">
                           <li>
-                            <a href= "{!! action('GradoController@edit' , $grado->id) !!}" title="Editar">
-                              <span class="glyphicon glyphicon-pencil"></span>
-
-                            </a>
-                          </li>
-                          <li>
-                            <form method="post" action="{!! action('GradoController@destroy',$grado->id) !!}"
-                              onclick="return confirm('Se eliminara este registro, ¿Estas Seguro?');">
-                              {!! csrf_field() !!}
-                              {!! method_field('DELETE') !!}
-                              <div>
-                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                              </div>
-                            </form>
-                          <li>
-                            <a href= "{!! action('CursoController@show' , $grado->id) !!}" title="Horario">
+                            <a href= "{!! action('Salon_HorarioController@show' , $curso->id) !!}" title="Horario">
                               <span class="glyphicon glyphicon-calendar"></span>
 
                             </a>
@@ -89,6 +74,8 @@
                         </ul>
                       </td>
                     </tr>
+
+
                   @endforeach
 
                   </body>

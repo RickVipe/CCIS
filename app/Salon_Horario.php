@@ -13,4 +13,8 @@ class Salon_Horario extends Model
     * @var boolean*/
     public $timestamps = false;
     public $incrementing = false;
+    public function Curso()
+    {
+        return $this->belongsTo('App\Curso','id_curso','id');
+    }
 }

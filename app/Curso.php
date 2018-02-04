@@ -27,4 +27,8 @@ class Curso extends Model
     {
         return $this->belongsTo('App\Docente','id_docente');
     }
+    public function Salon_Horario()
+    {
+        return $this->hasMany('App\Salon_Horario','id_curso');
+    }
 }
