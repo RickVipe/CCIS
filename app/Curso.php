@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curso extends Model
 {
+    protected $table = 'cursos';
     /**
     *
     *
@@ -21,5 +22,9 @@ class Curso extends Model
     public function Asignatura()
     {
         return $this->belongsTo('App\Asignatura','id_asignatura');
+    }
+    public function Docente()
+    {
+        return $this->belongsTo('App\Docente','id_docente');
     }
 }
