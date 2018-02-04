@@ -52,9 +52,9 @@
 
                   @foreach($alumnos as $alumno)
                     <tr class="odd gradeA" rol="row">
-                      <td>{{ $alumno->Alumno->id }}</td>
-                      <td>{{ $alumno->Alumno->apellidos }}</td>
-                      <td>{{ $curso->Alumno->nombres }}</td>
+                      <td>{{ $alumno->id }}</td>
+                      <td>{{ $alumno->apellidos }}</td>
+                      <td>{{ $alumno->nombres }}</td>
 
                       <td class="center">
                         <ul class="nav nav-pills">
