@@ -31,7 +31,9 @@ Route::prefix('menucoordinadores')->group(function(){
 
 Route::prefix('menudocentes')->group(function(){
   Route::get('perfil','DocenteMenuController@verPerfil');
-  Route::get('miscursos','DocenteMenuController@verCursos');
+  Route::get('miscursos','DocenteMenuController@recuperarAnios');
+  Route::post('miscursos/lista','DocenteMenuController@recuperarCursosxAnio');
+  Route::get('horario','DocenteMenuController@verHorario');
   Route::get('cursos','DocenteMenuController@verCursosNotas');
   Route::get('cursos/notasAlumnos','DocenteMenuController@verAlumnosNotas');
   Route::resource('docentes', 'DocenteMenuController');
