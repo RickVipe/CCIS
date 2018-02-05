@@ -59,6 +59,7 @@ class Salon_HorarioController extends Controller
         $hora_final=$request->get('hora_final');
         $numero_salon=$request->get('nro_salon');
         $dia=$request->get('dia');
+        $id=$request->get('id_curso');
         //echo $hora_inicial;
         //echo $hora_final;
         //seleccionar los el numero de salon en la Salon_Horario
@@ -69,14 +70,15 @@ class Salon_HorarioController extends Controller
         //@foreach($puos as $puo)
 
 
-        /*
+
         foreach($salon_horarios as $salon)
         {
-          echo $salon;
-          $salon=explode('-', $salon->horario, 3);
-          $diaaux=(string) $salon[0];
-          $inicioaux= $salon[1];
-          $finalaux= $salon[2];
+          //echo $salon;
+          $salonaux=explode('-', $salon->horario, 3);
+          $diaaux= $salonaux[0];
+          $inicialaux= $salonaux[1];
+          $finalaux= $salonaux[2];
+          //echo $salon->nro_salon;
           $numerosalonaux=$salon->nro_salon;
           //echo (string)$request->get('nro_salon');
           if($diaaux==$dia and (int)$numerosalonaux==$numero_salon)
@@ -95,7 +97,7 @@ class Salon_HorarioController extends Controller
 
           }
 
-        }*/
+        }
         if($exito and $hora_final>$hora_inicial)
         {
 
@@ -119,24 +121,24 @@ class Salon_HorarioController extends Controller
             $salon_horario->capacidad=$request->input('capacidad',40);
           }*/
 
-          $id=$request->get('id_curso');
+          //$id=$request->get('id_curso');
           $salon_horario->id_curso=$request->get('id_curso');
           //$salon_horario->id_curso="C-1";
 
 
           $salon_horario->save();
           //return redirect('/menucoordinadores/salon_horario/{id}')->with('mensaje','Se inserto correctamente!!');
-          return redirect()->action('Salon_HorarioController@show', $id);
+          return redirect()->action('Salon_HorarioController@show', $id)->with('mensaje','Se inserto correctamente!!');
           //return back();*/
         }
-        /*else
+        else
         {
-          if( $hora_final>$hora_inicial)
+          if( $hora_final<=$hora_inicial)
           {
-            echo 'La hora final debe ser mayor al inicial';
+            return redirect()->action('Salon_HorarioController@show', $id)->with('mensaje','la hora final debe ser mayor a la inicial!!');
           }
-          else echo 'hay cruce de horario';
-        }*/
+          else return redirect()->action('Salon_HorarioController@show', $id)->with('mensaje','hay cruce de horarios, no es posible registrar el horario!!');
+        }
     }
 
     /**
