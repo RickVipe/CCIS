@@ -10,7 +10,7 @@ use App\Alumno;
 use App\Matricula;
 use App\Grado;
 use App\Curso;
-use Dompdf\DOMPDF;
+use Dompdf\Dompdf;
 
 class ReporteController extends Controller
 {
@@ -65,7 +65,7 @@ class ReporteController extends Controller
 
             //return($view);
 
-            $dompdf = new DOMPDF();
+            $dompdf = new Dompdf();
             $dompdf->load_html($view);
             $dompdf->set_base_path('./public/css/pdf.css');
             $dompdf->render();
