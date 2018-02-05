@@ -37,12 +37,18 @@ Route::prefix('menucoordinadores')->group(function(){
   Route::post('/reportes/listado','ReporteController@listado');
   Route::resource('reportes','ReporteController');
 
+  Route::post('/listadocentes/listado','ListaDocenteController@listado');
+  Route::resource('listadocentes','ListaDocenteController');
+
   Route::post('constancias/listado','ConstanciaController@listado');
   Route::post('constancias/descargar','ConstanciaController@descargar');
   Route::resource('constancias','ConstanciaController');
 
 });
 
+Route::prefix('menualumnos')->group(function(){
+  Route::get('/inicio', 'AlumnoMenuController@index')->name('menualumnos.index');
+});
 
 
 Route::prefix('menudocentes')->group(function(){
@@ -60,9 +66,6 @@ Route::prefix('menudocentes')->group(function(){
   Route::resource('docentes', 'DocenteMenuController'); //123/
 });
 
-Route::prefix('menualumnos')->group(function(){
-  Route::get('alumnos', 'AlumnoMenuController@index')->name('menualumnos.index');
-});
 
 Route::prefix('coordinadores')->group(function() {
   Route::get('/login', 'Auth\CoordinadorLoginController@showLoginForm')->name('coordinador.login');
