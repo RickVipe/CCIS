@@ -45,6 +45,9 @@ Route::prefix('menucoordinadores')->group(function(){
 
 });
 
+Route::prefix('menualumnos')->group(function(){
+  Route::get('/inicio', 'AlumnoMenuController@index')->name('menualumnos.index');
+});
 
 
 Route::prefix('menudocentes')->group(function(){
@@ -62,9 +65,6 @@ Route::prefix('menudocentes')->group(function(){
   #Route::resource('docentes', 'DocenteMenuController'); //123/
 });
 
-Route::prefix('menualumnos')->group(function(){
-  Route::get('alumnos', 'AlumnoMenuController@index')->name('menualumnos.index');
-});
 
 Route::prefix('coordinadores')->group(function() {
   Route::get('/login', 'Auth\CoordinadorLoginController@showLoginForm')->name('coordinador.login');

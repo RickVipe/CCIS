@@ -20,7 +20,7 @@ class AlumnoMenuController extends Controller
 
     public function index()
     {
-        echo 'hola pendeejjjoooo';
+        return view('alumnosmenu.index');
     }
 
     /**
