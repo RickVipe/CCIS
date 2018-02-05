@@ -28,7 +28,8 @@ class DocenteLoginController extends Controller
       // Attempt to log the user in
       if (Auth::guard('docente')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
         // if successful, then redirect to their intended location
-        return redirect()->intended(route('docentes.index'));
+        return redirect()->intended(route('menudocentes.index'));
+        #return redirect()->intended(route('docentes.index')); //123/
       }
 
       // if unsuccessful, then redirect back to the login with the form data

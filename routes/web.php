@@ -20,8 +20,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::prefix('menucoordinadores')->group(function(){
-	Route::resource('alumnos', 'AlumnoController');
+
 	Route::resource('coordinadores', 'CoordinadorController');
+  Route::resource('alumnos', 'AlumnoController');
 	Route::resource('docentes', 'DocenteController');
 	Route::resource('asignaturas','AsignaturaController');
 	Route::resource('grados','GradoController');
@@ -57,7 +58,12 @@ Route::prefix('menudocentes')->group(function(){
   Route::get('periodo/cursos/{idgrado}/{idasignatura}/{idalumno}','NotaController@cargarDatosAlumno');
   Route::post('notas/{id_matricula}/{id_curso}/{id_alumno}','NotaController@registrarNota');
   Route::resource('notas', 'NotaController');
-  Route::resource('docentes', 'DocenteMenuController');
+  Route::get('docentes', 'DocenteMenuController@index')->name('menudocentes.index');
+  #Route::resource('docentes', 'DocenteMenuController'); //123/
+});
+
+Route::prefix('menualumnos')->group(function(){
+  Route::get('alumnos', 'AlumnoMenuController@index')->name('menualumnos.index');
 });
 
 Route::prefix('coordinadores')->group(function() {

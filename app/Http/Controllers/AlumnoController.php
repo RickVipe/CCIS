@@ -29,7 +29,7 @@ class AlumnoController extends Controller
     {
 
       $alumnos = Alumno::all();
-        return view('alumnos.index',['alumnos' => $alumnos]); 
+        return view('alumnos.index',['alumnos' => $alumnos]);
     }
 
     /**
@@ -123,11 +123,4 @@ class AlumnoController extends Controller
         return redirect('/menucoordinadores/alumnos')->with('mensaje','El alumno con id: '.$id.', se elimino correctamente!!');
     }
 
-    public function info()
-    {
-        //$alumno = Alumno::findOrFail($id);
-        return view('alumnos.info');
-    }
-
-    
 }
