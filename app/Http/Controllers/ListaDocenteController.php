@@ -12,7 +12,7 @@ use App\Grado;
 use App\Curso;
 use Dompdf\DOMPDF;
 
-class ReporteController extends Controller
+class ListaDocenteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,28 +28,32 @@ class ReporteController extends Controller
         #$fecha_ingresos=Fecha_Ingreso::all();
         //return view('fecha_ingreso.index');
         $grados=Grado::All();
-        $alumnos=null;
+        $docentes=null;
         $grado_actual=null;
-        return view('reportes.index')->with('alumnos', $alumnos)->with('grados',$grados)->with('grado_actual',$grado_actual);
+        return view('listadocentes.index')->with('docentes', $docentes)->with('grados',$grados)->with('grado_actual',$grado_actual);
     }
 
     public function listado(Request $id_grado){
+
       $id=$id_grado->get('grado');
       $grado_actual=$id;
-      $alumnos=null;
+      $docentes=null;
       if ($id=='*') {
-        $alumnos=Grado::join('matriculas','grados.id','=','matriculas.id_grado')
-        ->join('alumnos','alumnos.id','=','id_alumno')->get();
+        $docentes=Grado::join('cursos','grados.id','=','cursos.id_grado')
+        ->join('docentes','docentes.id','=','cursos.id_docente')
+        ->get();
       }else {
-        $alumnos=Grado::join('matriculas','grados.id','=','matriculas.id_grado')
-        ->join('alumnos','alumnos.id','=','id_alumno')->where('grados.id','=',"$id")->get();
+        $docentes=Grado::join('cusos','grados.id','=','cursos.id_grado')
+        ->join('docentes','docentes.id','=','cursos.id_docente')
+        ->where('grados.id','=',"$id")
+        ->get();
       }
 
       switch($id_grado->submit_button) {
 
           case 'listar':
             $grados=Grado::All();
-            return view('reportes.index')->with('alumnos',$alumnos)->with('grados',$grados)->with('grado_actual',$grado_actual);
+            return view('listadocentes.index')->with('docentes',$docentes)->with('grados',$grados)->with('grado_actual',$grado_actual);
           break;
 
           case 'pdf':
@@ -61,7 +65,7 @@ class ReporteController extends Controller
 
             $fecha = date('d-m-y');
             $titulo = "Lista de Alumnos ";
-            $view =  \View::make('reportes.invoice', compact('alumnos', 'fecha', 'titulo','grado'))->render();
+            $view =  \View::make('listadocentes.invoice', compact('docentes', 'fecha', 'titulo','grado'))->render();
 
             //return($view);
 
@@ -72,8 +76,67 @@ class ReporteController extends Controller
             return $dompdf->stream('invoice');
             break;
       }
+
     }
 
+    public function constancias(){
+      $grados=Grado::All();
+      $docentes=null;
+      $grado_actual=null;
+      return view('listadocentes.constancias')->with('docentes', $docentes)->with('grados',$grados)->with('grado_actual',$grado_actual);
+
+
+      $id=$id_grado->get('grado');
+      $grado_actual=$id;
+      $docentes=null;
+      if ($id=='*') {
+        $docentes=Grado::join('matriculas','grados.id','=','matriculas.id_grado')
+        ->join('docentes','docentes.id','=','id_docente')->get();
+      }else {
+        $docentes=Grado::join('matriculas','grados.id','=','matriculas.id_grado')
+        ->join('docentes','docentes.id','=','id_docente')->where('grados.id','=',"$id")->get();
+      }
+      echo("ASDasdASD");
+      switch($id_grado->submit_button) {
+
+          case 'listar':
+            $grados=Grado::All();
+            return view('listadocentes.constancias')->with('docentes',$docentes)->with('grados',$grados)->with('grado_actual',$grado_actual);
+          break;
+
+          case 'pdf':
+            $nombre_grado='';
+            $grado=null;
+            if($id!='*'){
+              $grado=Grado::where('grados.id','=',"$id")->select('nro','seccion','nivel','anio_academico')->get();
+            }
+
+            $fecha = date('d-m-y');
+            $titulo = "Lista de Alumnos ";
+            $view =  \View::make('listadocentes.invoice2', compact('docentes', 'fecha', 'titulo','grado'))->render();
+
+            //return($view);
+
+            $dompdf = new DOMPDF();
+            $dompdf->load_html($view);
+            $dompdf->set_base_path('./public/css/pdf.css');
+            $dompdf->render();
+            return $dompdf->stream('invoice');
+            break;
+      }
+
+    }
+
+   public function getData()
+   {
+       $data =  [
+           'quantity'      => '1' ,
+           'description'   => 'some ramdom text',
+           'price'   => '500',
+           'total'     => '500'
+       ];
+       return $data;
+   }
     /**
      * Show the form for creating a new resource.
      *
