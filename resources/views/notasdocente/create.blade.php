@@ -48,13 +48,13 @@
 
                 <div class="form-group">
                   <label>Nota</label>
-                  <input type="numeric" class="form-control" name="nota">
+                  <input type="number" class="form-control" name="nota">
                 </div>
 
                 <div class="form-group">
                   <label>Observaciones</label>
                   <input type="text" class="form-control" name="observaciones" style="text-transform:uppercase;"
-                  onkeyup="javascript:this.value=this.value.toUpperCase();">
+                  onkeyup="javascript:this.value=this.value.toUpperCase();" value="sin obserbacion">
                 </div>
 
                 <button type="submit" class="btn btn-success">Guardar</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\NotaFormRequest;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -51,28 +52,40 @@ class NotaController extends Controller
         return view('notasdocente.create',compact('alumno','matricula','curso'));
     }
 
-    public function registrarNota(Request $request, $idmatricula, $idcurso)
+    public function registrarNota(NotaFormRequest $request, $idmatricula, $idcurso)
     {
         date_default_timezone_set('America/Lima');
-        $fecha = date('Y-m-d');
-        
-        $
-        if()
-        $nota = new Nota;
-        $nota->id = 'NT-'.$idmatricula.$idcurso;
-        $nota->id_matricula = $idmatricula;
-        $nota->id_curso = $idcurso;
-        $nota->nota = $request->get('nota');
-        $nota->trimestre = $request->get('trimestre');
-        $nota->observacion = $request->get('observaciones');
+        $fechaactual = date('Y-m-d');
+        $curso = Curso::where('id',$idcurso)->first();
+        $grado = Grado::where('id',$curso->id_grado)->first();
+        $trimestre = $request->get('trimestre');
+        $fecha_ingreso = Fecha_Ingreso::where([['anio_academico',$grado->anio_academico],
+                                               ['trimestre',$trimestre]])->first();
 
-        $nota->fecha_ing = date('Ymd'); //H:i:s
-
-        $nota->save();
-
-        echo 'se registro';
-
-
+        if($fecha_ingreso != null)
+        {
+            $fechainicio = $fecha_ingreso->fecha_inicio;
+            $fechafin = $fecha_ingreso->fecha_fin;
+            if(strtotime($fechainicio)<=strtotime($fechaactual) && strtotime($fechaactual)<=strtotime($fechafin))
+            {
+                $nota = new Nota;
+                $nota->id = 'NT-'.$idmatricula.$idcurso;
+                $nota->id_matricula = $idmatricula;
+                $nota->id_curso = $idcurso;
+                $nota->nota = $request->get('nota');
+                $nota->trimestre = $trimestre;
+                $nota->observacion = $request->get('observaciones');  
+                $nota->fecha_ing = $fechaactual; //date('Ymd'); //H:i:s
+                $nota->save();
+                echo 'se registro';
+            }
+            else {
+                echo 'ya paso la fecha de ingresos';
+            }
+        }
+        else {
+            echo 'no esta autorizado el ingreso de notas';
+        }
         #return view('docentesmenu.verAlumnosxCurso',compact('alumnos','grado','id_asignatura'));
     }
 
