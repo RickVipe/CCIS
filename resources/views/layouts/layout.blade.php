@@ -116,6 +116,9 @@
                             <a href="/menucoordinadores/reportes">Lista de Alumnos</a>
                         </li>
                         <li>
+                            <a href="/menucoordinadores/listadocentes">Lista de Docentes</a>
+                        </li>
+                        <li>
                             <a href="/menucoordinadores/constancias">Constancia de Notas</a>
                         </li>
                     </ul>
