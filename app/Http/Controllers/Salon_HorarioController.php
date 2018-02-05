@@ -55,18 +55,88 @@ class Salon_HorarioController extends Controller
     public function store(Request $request)
     {
         //
-        $salon_horario=new Salon_Horario;
-        //$curso->id=$request->get('id_grado').'-'.$request->get('id_asignatura').'-'.$request->get('id_docente');
-        $salon_horario->nro_salon=$request->get('nro_salon');
-        $salon_horario->horario=$request->get('dia').'-'.$request->get('hora_inicial').'-'.$request->get('hora_final');
-        $salon_horario->tipo=$request->get('tipo');
-        $salon_horario->capacidad=$request->get('capacidad');
-        $salon_horario->id_curso=$request->get('id_curso');
-        //$salon_horario->id_curso="C-1";
+        $hora_inicial=$request->get('hora_inicial');
+        $hora_final=$request->get('hora_final');
+        $numero_salon=$request->get('nro_salon');
+        $dia=$request->get('dia');
+        //echo $hora_inicial;
+        //echo $hora_final;
+        //seleccionar los el numero de salon en la Salon_Horario
+        //$salon_horarios = Salon_Horario::where('nro_salon', $request->get('nro_salon') );
+        $salon_horarios = Salon_Horario::all();
+        $exito=True;
+        //echo $salon_horarios->first();
+        //@foreach($puos as $puo)
 
 
-        $salon_horario->save();
-        return redirect('/menucoordinadores/salon_horario')->with('mensaje','Se inserto correctamente!!');
+        /*
+        foreach($salon_horarios as $salon)
+        {
+          echo $salon;
+          $salon=explode('-', $salon->horario, 3);
+          $diaaux=(string) $salon[0];
+          $inicioaux= $salon[1];
+          $finalaux= $salon[2];
+          $numerosalonaux=$salon->nro_salon;
+          //echo (string)$request->get('nro_salon');
+          if($diaaux==$dia and (int)$numerosalonaux==$numero_salon)
+          {
+            //verificar si las horas se cruzan
+            if(($inicialaux<=$hora_inicial and $finalaux>$hora_inicial) or ($hora_inicial<=$inicialaux and $hora_final>$inicialaux))
+            {
+              $exito=False;
+              break;
+            }
+            if(($finalaux>=$hora_final and $inicialaux<$hora_final) or ($hora_final>=$finalaux and $hora_inicial<$finalaux))
+            {
+              $exito=False;
+              break;
+            }
+
+          }
+
+        }*/
+        if($exito and $hora_final>$hora_inicial)
+        {
+
+          $salon_horario=new Salon_Horario;
+          //$curso->id=$request->get('id_grado').'-'.$request->get('id_asignatura').'-'.$request->get('id_docente');
+
+
+          $salon_horario->nro_salon=$request->get('nro_salon');
+          $salon_horario->horario=$request->get('dia').'-'.$request->get('hora_inicial').'-'.$request->get('hora_final');
+          $salon_horario->tipo=$request->get('tipo');
+          //$salon_horario->capacidad=$request->get('capacidad');
+
+          if($request->get('capacidad')=="")
+          {
+              $salon_horario->capacidad="40";
+          }
+          else{
+            $salon_horario->capacidad=$request->get('capacidad');
+          }
+          /*if ($request->has("id_curso")){
+            $salon_horario->capacidad=$request->input('capacidad',40);
+          }*/
+
+          $id=$request->get('id_curso');
+          $salon_horario->id_curso=$request->get('id_curso');
+          //$salon_horario->id_curso="C-1";
+
+
+          $salon_horario->save();
+          //return redirect('/menucoordinadores/salon_horario/{id}')->with('mensaje','Se inserto correctamente!!');
+          return redirect()->action('Salon_HorarioController@show', $id);
+          //return back();*/
+        }
+        /*else
+        {
+          if( $hora_final>$hora_inicial)
+          {
+            echo 'La hora final debe ser mayor al inicial';
+          }
+          else echo 'hay cruce de horario';
+        }*/
     }
 
     /**
@@ -100,7 +170,16 @@ class Salon_HorarioController extends Controller
     public function edit($id)
     {
         //
-        echo $id;
+
+        $parametros=explode('_', $id, 3);
+        $nro=(string) $parametros[0];
+        $horario=(string) $parametros[1];
+        $id_curso=(string) $parametros[2];
+
+        $salon_horario = Salon_Horario::where('nro_salon', $nro )->where('horario', $horario)->first();
+
+        $curso=Curso::all()->where('id',$id_curso);
+        return view('salon_horario.edit',['curso'=>$curso,'salon_horario'=>$salon_horario,'id'=>$id]);
     }
 
     /**
@@ -113,6 +192,36 @@ class Salon_HorarioController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $parametros=explode('_', $id, 3);
+        echo $nro=(string) $parametros[0];
+        echo $horario=(string) $parametros[1];
+        echo $curso=(string) $parametros[2];
+
+        $salon_horario = Salon_Horario::where('nro_salon', $nro )->where('horario', $horario)->first();
+
+
+
+        //$curso->id=$request->get('id_grado').'-'.$request->get('id_asignatura').'-'.$request->get('id_docente');
+        //$salon_horario->nro_salon=$request->get('nro_salon');
+        //$salon_horario->horario=$request->get('dia').'-'.$request->get('hora_inicial').'-'.$request->get('hora_final');
+        $salon_horario->tipo=$request->get('tipo');
+        //$salon_horario->capacidad=$request->get('capacidad');
+
+        if($request->get('capacidad')=="")
+        {
+            $salon_horario->capacidad="40";
+        }
+        else{
+          $salon_horario->capacidad=$request->get('capacidad');
+        }
+        $id=$request->get('id_curso');
+        $salon_horario->save();
+
+        echo $salon_horario;
+
+
+        //return redirect('/menucoordinadores/salon_horario/{id}')->with('mensaje','Se inserto correctamente!!');
+        return redirect()->action('Salon_HorarioController@show', $curso);
     }
 
     /**
@@ -124,5 +233,17 @@ class Salon_HorarioController extends Controller
     public function destroy($id)
     {
         //
+
+        $parametros=explode('_', $id, 3);
+        $nro=(string) $parametros[0];
+        $horario=(string) $parametros[1];
+        $curso=(string) $parametros[2];
+
+
+
+        $salon_horario = Salon_Horario::where('nro_salon', $nro )->where('horario', $horario)->delete();
+
+        return redirect()->action('Salon_HorarioController@show', $curso);
+        //return back()->with('mensaje','El horario con nro de salon: '.$nro.', y el horario: '.$horario.' se elimino correctamente!!');
     }
 }

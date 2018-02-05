@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Salon_Horario extends Model
 {
     protected $table = 'salon_horario';
+
+    protected $primaryKey = array('nro_salon','horario');
     /**
     *
     *

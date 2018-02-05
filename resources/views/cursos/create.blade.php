@@ -70,7 +70,7 @@
 
                 <button type="submit" class="btn btn-success">Guardar</button>
                 <button type="reset" class="btn btn-warning">Limpiar</button>
-                <button type="button" class="btn btn-danger" onClick="location.href='/cursos'">Volver</button>
+                <button type="button" class="btn btn-danger" onClick="location.href='/menucoordinadores/cursos'">Volver</button>
               </form>
             </div>
 
