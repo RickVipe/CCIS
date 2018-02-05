@@ -12,6 +12,7 @@ use App\Asignatura;
 use App\Nota;
 use App\Matricula;
 use App\Alumno;
+use App\Fecha_Ingreso;
 
 class NotaController extends Controller
 {
@@ -40,7 +41,7 @@ class NotaController extends Controller
         //
     }
 
-    public function cargarDatosAlumno($idalumno,$idgrado,$idasignatura)
+    public function cargarDatosAlumno($idalumno, $idgrado, $idasignatura)
     {
         $id = Auth::user()->id;
         $alumno = Alumno::where('id',$idalumno)->first(); //solo debe recuperar un alumno
@@ -48,6 +49,31 @@ class NotaController extends Controller
         $curso = Curso::where([['id_grado',$idgrado],['id_docente',$id],['id_asignatura',$idasignatura]])->first(); //igual
 
         return view('notasdocente.create',compact('alumno','matricula','curso'));
+    }
+
+    public function registrarNota(Request $request, $idmatricula, $idcurso)
+    {
+        date_default_timezone_set('America/Lima');
+        $fecha = date('Y-m-d');
+        
+        $
+        if()
+        $nota = new Nota;
+        $nota->id = 'NT-'.$idmatricula.$idcurso;
+        $nota->id_matricula = $idmatricula;
+        $nota->id_curso = $idcurso;
+        $nota->nota = $request->get('nota');
+        $nota->trimestre = $request->get('trimestre');
+        $nota->observacion = $request->get('observaciones');
+
+        $nota->fecha_ing = date('Ymd'); //H:i:s
+
+        $nota->save();
+
+        echo 'se registro';
+
+
+        #return view('docentesmenu.verAlumnosxCurso',compact('alumnos','grado','id_asignatura'));
     }
 
     /**

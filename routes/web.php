@@ -49,6 +49,7 @@ Route::prefix('menudocentes')->group(function(){
   Route::get('alumnos/{id_grado}/{id_asignatura}','DocenteMenuController@recuperarAlumnosxCurso');
   Route::resource('docentes', 'DocenteMenuController');
   Route::get('notas/{idalumno}/{idgrado}/{idasignatura}','NotaController@cargarDatosAlumno');
+  Route::post('notas/{id_matricula}/{id_curso}','NotaController@registrarNota');
   Route::resource('notas', 'NotaController');
 });
 

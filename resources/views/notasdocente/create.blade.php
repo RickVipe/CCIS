@@ -17,7 +17,7 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-6">
-              <form role="form" method="post" action="#" autocomplete="off">
+              <form role="form" method="post" action="{!! action('NotaController@registrarNota',[$matricula->id, $curso->id]) !!}" autocomplete="off">
                 @foreach($errors->all() as $error)
                   <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button> {{ $error }}
@@ -39,10 +39,11 @@
                 <div class="form-group">
                   <label>Trimestre</label><br>
                   <select name="trimestre" class="form-control">
+                    <option value="">SELECCIONE EL TRIMESTRE</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
-                  </select> <br>
+                  </select>
                 </div>
 
                 <div class="form-group">
@@ -51,14 +52,14 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Observaciones</label><br>
+                  <label>Observaciones</label>
                   <input type="text" class="form-control" name="observaciones" style="text-transform:uppercase;"
                   onkeyup="javascript:this.value=this.value.toUpperCase();">
                 </div>
 
                 <button type="submit" class="btn btn-success">Guardar</button>
-                <button type="reset" class="btn btn-warning">Limpiar</button>
-                <button type="button" class="btn btn-danger" onClick="location.href='/grados'">Volver</button>
+                <button type="reset" class="btn btn-primary">Limpiar</button>
+                <button type="button" class="btn btn-danger" onClick="">Volver</button>
               </form>
             </div>
 
