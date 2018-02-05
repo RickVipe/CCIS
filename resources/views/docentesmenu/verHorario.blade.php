@@ -47,7 +47,7 @@
                       <th>Curso</th>
                       <th>Tipo</th>
                       <th>Grado</th>
-                      <th>Operaciones</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -58,26 +58,7 @@
                       <td>{{ $horario->nombre }}</td>
                       <td>{{ $horario->tipo }}</td>
                       <td>{{ $horario->nro }} {{ $horario->seccion }} {{ $horario->nivel }} {{ $horario->anio_academico }}</td>
-                      <td class="center">
-                        <ul class="nav nav-pills">
-                          <li>
-                            <a href= "#" title="Editar">
-                              <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-                          </li>
-                          <li>
-                            <form method="post" action="#"
-                              onclick="return confirm('Se eliminara este registro, ¿Estas Seguro?');">
-                              {!! csrf_field() !!}
-                              {!! method_field('DELETE') !!}
-                              <div>
-                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                              </div>
-                            </form>
-                          </li>
-                        </ul>
-                      </td>
+                      
                     </tr>
                   @endforeach
                 </body>

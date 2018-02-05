@@ -51,7 +51,7 @@
                   <th>IdCurso</th>
                   <th>Grado</th>
                   <th>Asignatura</th>
-                  <th>Operaciones</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -63,30 +63,7 @@
                 <td>{{ $curso->nro }} {{ $curso->seccion }} {{ $curso->nivel }} {{ $curso->anio_academico }}</td>
                 <td>{{ $curso->nombre }}</td>
 
-                <td class="center">
-                  <ul class="nav nav-pills">
-                    <li>
-                      <a href="#" title="Ver">
-                        <span class="glyphicon glyphicon-search"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" title="Editar">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <form method="post" action="#"
-                        onclick="return confirm('Se eliminara este registro, ¿estas seguro?');">
-                        {!! csrf_field() !!}
-                        {!! method_field('DELETE') !!}
-                        <div>
-                          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
-                        </div>
-                      </form>
-                    </li>
-                  </ul>
-                </td>
+                
               </tr>
 
               @endforeach
