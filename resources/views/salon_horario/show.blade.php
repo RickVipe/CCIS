@@ -76,18 +76,20 @@
                       <td>{{ $salon_horario->horario }}</td>
                       <td>{{ $salon_horario->tipo }}</td>
                       <td>{{ $salon_horario->capacidad }}</td>
-
+                      <?php
+                        $id=$salon_horario->nro_salon.'_'.$salon_horario->horario.'_'.$curso->first()->id;
+                      ?>
 
                       <td class="center">
                         <ul class="nav nav-pills">
-                          <li>
-                            <a href= "{!! action('Salon_HorarioController@edit' , $salon_horario->nro_salon , $salon_horario->horario) !!}" title="Editar">
+                          <!--<li>
+                            <a href= "{!! action('Salon_HorarioController@edit' , $id) !!}" title="Editar">
                               <span class="glyphicon glyphicon-pencil"></span>
 
                             </a>
-                          </li>
+                          </li>-->
                           <li>
-                            <form method="post" action="{!! action('Salon_HorarioController@destroy',$salon_horario->nro_salon, $salon_horario->horario ) !!}"
+                            <form method="post" action="{!! action('Salon_HorarioController@destroy',$id ) !!}"
                               onclick="return confirm('Se eliminara este registro, ¿Estas Seguro?');">
                               {!! csrf_field() !!}
                               {!! method_field('DELETE') !!}
