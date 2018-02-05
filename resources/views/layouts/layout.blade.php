@@ -109,6 +109,18 @@
                 <li>
                   <a href="/menucoordinadores/fecha_ingreso">Establecer fechas de ingreso de notas</a>
                 </li>
+                <li>
+                  <a href="#">Reportes <span class="fa arrow"></span></a>
+                    <ul class="nav nav-third-level">
+                        <li>
+                            <a href="/menucoordinadores/reportes">Lista de Alumnos</a>
+                        </li>
+                        <li>
+                            <a href="/menucoordinadores/constancias">Constancia de Notas</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-third-level -->
+                </li>
               </ul>
               <!-- /.nav-second-level -->
             </li>

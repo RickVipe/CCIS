@@ -35,6 +35,13 @@ Route::prefix('menucoordinadores')->group(function(){
   Route::resource('salon_horario','Salon_HorarioController');
   Route::resource('matriculas','MatriculaController');
 
+  Route::post('/reportes/listado','ReporteController@listado');
+  Route::resource('reportes','ReporteController');
+
+  Route::post('constancias/listado','ConstanciaController@listado');
+  Route::post('constancias/descargar','ConstanciaController@descargar');
+  Route::resource('constancias','ConstanciaController');
+
 });
 
 
