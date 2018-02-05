@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Curso;
@@ -125,9 +124,8 @@ class DocenteMenuController extends Controller
                                      ->where('id_docente',$id)->where('anio_academico',$anio)
                                      ->select('cursos.id','grados.nro','grados.seccion','grados.nivel',
                                      'grados.anio_academico','asignaturas.nombre')->get();
-        #echo $cursos;
-        return view('docentesmenu.verCursosxAnio',compact('cursos','anio'));
 
+        return view('docentesmenu.verCursosxAnio',compact('cursos','anio'));
     }
 
     public function verHorario()
@@ -137,15 +135,11 @@ class DocenteMenuController extends Controller
         $horarios = DB::table('cursos')->join('salon_horario','salon_horario.id_curso','=','cursos.id')
                                        ->join('grados','grados.id','=','cursos.id_grado')
                                        ->join('asignaturas','asignaturas.id','=','cursos.id_asignatura')
-                                       ->where('id_docente',$id)->where('anio_academico',$lastAnio)
-                                       #->orderBy('horario')
+                                       ->where('id_docente',$id)->where('anio_academico',$lastAnio) #->orderBy('horario')
                                        ->select('horario','nro_salon','nombre','tipo','nro','seccion',
                                        'nivel','anio_academico')->get();
 
-        #public $hoursrange = ['07:00', '09:30', '', '', '', '',];
-        #echo $horarios;
         return view('docentesmenu.verHorario', compact('horarios','lastAnio'));
-
     }
 
     public function recuperarAniosNotas()
@@ -167,9 +161,8 @@ class DocenteMenuController extends Controller
                                      ->where('id_docente',$id)->where('anio_academico',$anio)
                                      ->select('cursos.id','grados.nro','grados.seccion','grados.nivel',
                                      'grados.anio_academico','asignaturas.nombre','cursos.id_grado','asignaturas.id as idasignatura')->get();
-        #echo $cursos;
-        return view('docentesmenu.verCursosxAnioNotas',compact('cursos','anio'));
 
+        return view('docentesmenu.verCursosxAnioNotas',compact('cursos','anio'));
     }
 
     public function recuperarAlumnosxCurso($id_grado, $id_asignatura)
@@ -179,7 +172,7 @@ class DocenteMenuController extends Controller
                                           ->where('id_grado',$id_grado)
                                           ->select('alumnos.id','alumnos.nombres','alumnos.apellidos')->get();
         $grado = Grado::where('id',$id_grado)->first();
-        #$alumnos = Matricula::where('id_grado',$id_grado);
+        $curso = Curso::where([['id_grado',$id_grado],['id_asignatura',$id_asignatura],['id_docente',$id]])->first();
 
         return view('docentesmenu.verAlumnosxCurso',compact('alumnos','grado','id_asignatura'));
     }

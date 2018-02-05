@@ -44,11 +44,11 @@ Route::prefix('menudocentes')->group(function(){
   Route::get('miscursos','DocenteMenuController@recuperarAnios');
   Route::post('miscursos/lista','DocenteMenuController@recuperarCursosxAnio');
   Route::get('horario','DocenteMenuController@verHorario');
-  Route::get('filtro','DocenteMenuController@recuperarAniosNotas');
-  Route::post('cursos','DocenteMenuController@recuperarCursosxAnioNotas');
-  Route::get('alumnos/{id_grado}/{id_asignatura}','DocenteMenuController@recuperarAlumnosxCurso');
-  Route::get('notas/{idalumno}/{idgrado}/{idasignatura}','NotaController@cargarDatosAlumno');
-  Route::post('notas/{id_matricula}/{id_curso}','NotaController@registrarNota');
+  Route::get('periodo','DocenteMenuController@recuperarAniosNotas');
+  Route::post('periodo/cursos','DocenteMenuController@recuperarCursosxAnioNotas');
+  Route::get('periodo/cursos/{id_grado}/{id_asignatura}','DocenteMenuController@recuperarAlumnosxCurso');
+  Route::get('periodo/cursos/{idgrado}/{idasignatura}/{idalumno}','NotaController@cargarDatosAlumno');
+  Route::post('notas/{id_matricula}/{id_curso}/{id_alumno}','NotaController@registrarNota');
   Route::resource('notas', 'NotaController');
   Route::resource('docentes', 'DocenteMenuController');
 });

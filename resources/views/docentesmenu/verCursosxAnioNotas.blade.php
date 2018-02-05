@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h3 class="page-header"> Lista de Cursos @if($anio != '') - Per&iacute;odo escolar {!! $anio !!} @endif</h3>
+    <h3 class="page-header"> Lista de Cursos @if($anio != '') - Per&iacute;odo academico {!! $anio !!} @endif</h3>
   </div>
 </div>
 
@@ -29,7 +29,7 @@
           @if($cursos->isEmpty())
             <div class="alert alert-success">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-              No ha seleccionado ningun per&iacute;odo <a href="/menudocentes/filtro" class="alert-link">Seleccionar Per&iacute;odo</a>.
+              No ha seleccionado ningun per&iacute;odo <a href="/menudocentes/periodo" class="alert-link">Seleccionar Per&iacute;odo</a>.
             </div>
           @else
 
@@ -78,7 +78,7 @@
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-danger" onclick="location.href='/menudocentes/filtro'">Volver</button><br><br>
+    <button type="button" class="btn btn-danger" onclick="location.href='/menudocentes/periodo'">Volver</button><br><br>
   </div>
 </div>
 @stop

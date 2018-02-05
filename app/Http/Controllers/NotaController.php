@@ -42,17 +42,27 @@ class NotaController extends Controller
         //
     }
 
-    public function cargarDatosAlumno($idalumno, $idgrado, $idasignatura)
+    public function cargarDatosAlumno($idgrado, $idasignatura, $idalumno)
     {
         $id = Auth::user()->id;
         $alumno = Alumno::where('id',$idalumno)->first(); //solo debe recuperar un alumno
         $matricula = Matricula::where([['id_alumno',$idalumno],['id_grado',$idgrado]])->first(); //igual
         $curso = Curso::where([['id_grado',$idgrado],['id_docente',$id],['id_asignatura',$idasignatura]])->first(); //igual
+        //
+        $grado = Grado::where('id',$idgrado)->first();
+        $asignatura = Asignatura::where('id',$curso->id_asignatura)->first();
+        //
+        $nota1 = Nota::where([['id_matricula',$matricula->id],['id_curso',$curso->id],['trimestre','1']])->select('nota')->first();
+        $nota2 = Nota::where([['id_matricula',$matricula->id],['id_curso',$curso->id],['trimestre','2']])->select('nota')->first();
+        $nota3 = Nota::where([['id_matricula',$matricula->id],['id_curso',$curso->id],['trimestre','3']])->select('nota')->first();
 
-        return view('notasdocente.create',compact('alumno','matricula','curso'));
+        $n1 = ($nota1!=null)?$nota1->nota : 0;
+        $n2 = ($nota2!=null)?$nota2->nota : 0;
+        $n3 = ($nota3!=null)?$nota3->nota : 0;
+        return view('notasdocente.create',compact('alumno','matricula','curso','grado','asignatura','n1','n2','n3'));
     }
 
-    public function registrarNota(NotaFormRequest $request, $idmatricula, $idcurso)
+    public function registrarNota(NotaFormRequest $request, $idmatricula, $idcurso, $id_alumno)
     {
         date_default_timezone_set('America/Lima');
         $fechaactual = date('Y-m-d');
@@ -68,23 +78,34 @@ class NotaController extends Controller
             $fechafin = $fecha_ingreso->fecha_fin;
             if(strtotime($fechainicio)<=strtotime($fechaactual) && strtotime($fechaactual)<=strtotime($fechafin))
             {
-                $nota = new Nota;
-                $nota->id = 'NT-'.$idmatricula.$idcurso;
-                $nota->id_matricula = $idmatricula;
-                $nota->id_curso = $idcurso;
-                $nota->nota = $request->get('nota');
-                $nota->trimestre = $trimestre;
-                $nota->observacion = $request->get('observaciones');  
-                $nota->fecha_ing = $fechaactual; //date('Ymd'); //H:i:s
-                $nota->save();
-                echo 'se registro';
+                $registro = Nota::where([['id_matricula',$idmatricula], ['id_curso',$idcurso],['trimestre',$trimestre]])->first();
+                if($registro == null)
+                {
+                    $nota = new Nota;
+                    $nota->id = 'NT-'.$idmatricula.$idcurso.$trimestre;
+                    $nota->id_matricula = $idmatricula;
+                    $nota->id_curso = $idcurso;
+                    $nota->nota = $request->get('nota');
+                    $nota->trimestre = $trimestre;
+                    $nota->observacion = $request->get('observaciones');
+                    $nota->fecha_ing = $fechaactual; //date('Ymd'); //H:i:s
+                    $nota->save();
+                    return redirect("menudocentes/periodo/cursos/$curso->id_grado/$curso->id_asignatura/$id_alumno")->with('mensaje','Se inserto correctamente!!');
+                }
+                else
+                {
+                    $registro->nota=$request->get('nota');
+                    $registro->observacion=$request->get('observaciones');
+                    $registro->save();
+                    return redirect("menudocentes/periodo/cursos/$curso->id_grado/$curso->id_asignatura/$id_alumno")->with('mensaje','Se actualizo correctamente!!');
+                }
             }
             else {
-                echo 'ya paso la fecha de ingresos';
+                return redirect("menudocentes/periodo/cursos/$curso->id_grado/$curso->id_asignatura/$id_alumno")->with('mensaje','No es posible registrar la nota!!');
             }
         }
         else {
-            echo 'no esta autorizado el ingreso de notas';
+            return redirect("menudocentes/periodo/cursos/$curso->id_grado/$curso->id_asignatura/$id_alumno")->with('mensaje','No es posible registrar la nota!!');
         }
         #return view('docentesmenu.verAlumnosxCurso',compact('alumnos','grado','id_asignatura'));
     }

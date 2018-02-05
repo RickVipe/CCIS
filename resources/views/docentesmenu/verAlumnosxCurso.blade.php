@@ -46,10 +46,6 @@
                       <th>Id Alumno</th>
                       <th>Apellidos</th>
                       <th>Nombres</th>
-                      <th>Nota1</th>
-                      <th>Nota2</th>
-                      <th>Nota3</th>
-                      <th>Estado</th>
                       <th>Operaciones</th>
                     </tr>
                   </thead>
@@ -60,22 +56,24 @@
                       <td>{{ $alumno->id }}</td>
                       <td>{{ $alumno->apellidos }}</td>
                       <td>{{ $alumno->nombres }}</td>
-                      <td>{{ $alumno->nombres }}</td>
-                      <td>{{ $alumno->nombres }}</td>
-                      <td>{{ $id_asignatura }}</td>
-                      <td>{{ $alumno->nombres }}</td>
+
                       <td class="center">
                         <ul class="nav nav-pills">
 
-                          <li>
+                          <!--<li>
                             <a href= "{!! action('NotaController@cargarDatosAlumno',[$alumno->id, $grado->id, $id_asignatura]) !!}" >
                               <span class="glyphicon glyphicon-pencil"></span> Registrar notas
                             </a>
-                          </li>
+
+                          </li>-->
                           <li>
-                            <a href= "#" title="Editar">
-                              <span class="glyphicon glyphicon-ok"></span>
-                            </a>
+                            <form method="get" action="{!! action('NotaController@cargarDatosAlumno',[ $grado->id, $id_asignatura, $alumno->id]) !!}">
+                              <div>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                  <span class="glyphicon glyphicon-pencil"></span> Registrar notas
+                                </button>
+                              </div>
+                            </form>
                           </li>
                         </ul>
                       </td>
@@ -89,8 +87,8 @@
             <!-- /.table-responsive -->
           </div>
         </div>
-        <button type="button" class="btn btn-danger"
-        onclick="#'">Volver</button><br><br>
+        <!--<button type="button" class="btn btn-danger"
+        onclick="#'">Volver</button><br><br>-->
       </div>
     </div>
 
