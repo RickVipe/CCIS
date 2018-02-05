@@ -9,15 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AlumnoTest extends TestCase
 {
-  /**
-   * A basic test example.
-   *
-   * @return void
-   */
-  public function testExample()
-  {
-      $this->assertTrue(true);
-  }
+  
 
   /**
    *
@@ -26,8 +18,17 @@ class AlumnoTest extends TestCase
 
   public function testIndexStudent()
   {
-      $this->visit('/alumnos')
-         ->see('ALUMNO Login')
-         ->dontSee('Something went wrong!');
+
+    //Given a user
+    $user = \App\Coordinador::all()->last();
+    $user -> password = 'secret';
+    //When he login
+    $this -> actingAs($user)
+          -> withSession(['foo' => 'bar'])
+          -> get('/menucoordinadores/alumnos')
+          -> assertSee('alumnos');
+
+
   }
 }
+//
