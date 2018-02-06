@@ -10,7 +10,7 @@ use App\Alumno;
 use App\Matricula;
 use App\Grado;
 use App\Curso;
-use Dompdf\DOMPDF;
+use Dompdf\Dompdf;
 
 class ConstanciaController extends Controller
 {
@@ -69,7 +69,7 @@ class ConstanciaController extends Controller
       array_push($lista_notas,$notas);
       $view =  \View::make('constancias.invoice')->with('lista_alumnos',$lista_alumnos)->with('lista_fechas',$lista_fechas)->with('lista_notas',$lista_notas)->render();
       //return($view);
-      $dompdf = new DOMPDF();
+      $dompdf = new Dompdf();
       $dompdf->load_html($view);
       $dompdf->set_base_path('./public/css/style.css');
       $dompdf->render();
@@ -148,7 +148,7 @@ class ConstanciaController extends Controller
 
             $view =  \View::make('constancias.invoice')->with('lista_alumnos',$lista_alumnos)->with('lista_fechas',$lista_fechas)->with('lista_notas',$lista_notas)->render();
             //return($view);
-            $dompdf = new DOMPDF();
+            $dompdf = new Dompdf();
             $dompdf->load_html($view);
             $dompdf->set_base_path('./public/css/style.css');
             $dompdf->render();
