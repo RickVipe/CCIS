@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Mis Datos Prro que emocion :v!!!</div>
+                <div class="panel-heading">MI INFORMACION</div>
 
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>

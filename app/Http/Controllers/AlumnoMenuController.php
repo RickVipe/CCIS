@@ -155,4 +155,7 @@ class AlumnoMenuController extends Controller
 
         return view('alumnosmenu.teachers', compact('teachers','last_year'));
     }
+    public function my_classmates(){
+        
+    }
 }
