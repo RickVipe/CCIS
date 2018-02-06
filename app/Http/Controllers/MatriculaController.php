@@ -57,7 +57,7 @@ class MatriculaController extends Controller
             $matricula->save();
             return redirect('/menucoordinadores/matriculas')->with('mensaje','Se matriculo correctamente al alumno');
         }
-        return redirect('/menucoordinadores/matriculas')->with('mensaje','El alumno ya esta matriculado este año');
+        return redirect('/menucoordinadores/matriculas')->with('error','El alumno ya esta matriculado este año');
         
     }
 
