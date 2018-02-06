@@ -90,19 +90,16 @@
               <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mantenimientos<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="#">Ver mi Info</a>
+                  <a href="{!! action('AlumnoMenuController@info') !!}"> Ver mi Info </a>
                 </li>
                 <li>
-                  <a href="#">Ver Cursos</a>
+                  <a href="{!! action('AlumnoMenuController@fill_years') !!}"> Ver Cursos </a>
                 </li>
                 <li>
-                  <a href="#">Ver horarios</a>
+                  <a href="{!! action('AlumnoMenuController@schedule') !!}">Ver horarios</a>
                 </li>
                 <li>
-                  <a href="#">Ver mis docentes</a>
-                </li>
-                <li>
-                  <a href="#">Mis compañeros</a>
+                  <a href="{!! action('AlumnoMenuController@my_teachers') !!}">Ver mis docentes</a>
                 </li>
                 <li>
                   <a href="#">Mis notas</a>

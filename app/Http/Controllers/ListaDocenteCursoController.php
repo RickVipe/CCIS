@@ -7,12 +7,13 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
 use App\Alumno;
+use App\Docente;
 use App\Matricula;
 use App\Grado;
 use App\Curso;
 use Dompdf\Dompdf;
 
-class ListaDocenteController extends Controller
+class ListaDocenteCursoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,7 +31,7 @@ class ListaDocenteController extends Controller
         $grados=Grado::All();
         $docentes=null;
         $grado_actual=null;
-        return view('listadocentes.index')->with('docentes', $docentes)->with('grados',$grados)->with('grado_actual',$grado_actual);
+        return view('listadocentescurso.index')->with('docentes', $docentes)->with('grados',$grados)->with('grado_actual',$grado_actual);
     }
 
     public function listado(Request $id_grado){
@@ -38,22 +39,29 @@ class ListaDocenteController extends Controller
       $id=$id_grado->get('grado');
       $grado_actual=$id;
       $docentes=null;
-      if ($id=='*') {
-        $docentes=Grado::join('cursos','grados.id','=','cursos.id_grado')
-        ->join('docentes','docentes.id','=','cursos.id_docente')
-        ->get();
-      }else {
-        $docentes=Grado::join('cusos','grados.id','=','cursos.id_grado')
-        ->join('docentes','docentes.id','=','cursos.id_docente')
+      if ($id!='*') {
+        $docentes=Docente::join('cursos','docentes.id','=','cursos.id_docente')
+        ->join('asignaturas','asignaturas.id','=','cursos.id_asignatura')
+        ->join('grados','grados.id','=','cursos.id_grado')
+        ->select('docentes.nombres','docentes.apellidos','docentes.id','asignaturas.nombre','docentes.email')
+        ->groupBy('docentes.id','docentes.apellidos','docentes.nombres','asignaturas.nombre','docentes.email')
         ->where('grados.id','=',"$id")
         ->get();
+      }else {
+        $docentes=Docente::join('cursos','docentes.id','=','cursos.id_docente')
+        ->join('asignaturas','asignaturas.id','=','cursos.id_asignatura')
+        ->join('grados','grados.id','=','cursos.id_grado')
+        ->select('docentes.nombres','docentes.apellidos','docentes.id','asignaturas.nombre','docentes.email')
+        ->groupBy('docentes.id','docentes.apellidos','docentes.nombres','asignaturas.nombre','docentes.email')
+        ->get();
       }
+
 
       switch($id_grado->submit_button) {
 
           case 'listar':
             $grados=Grado::All();
-            return view('listadocentes.index')->with('docentes',$docentes)->with('grados',$grados)->with('grado_actual',$grado_actual);
+            return view('listadocentescurso.index')->with('docentes',$docentes)->with('grados',$grados)->with('grado_actual',$grado_actual);
           break;
 
           case 'pdf':
@@ -64,8 +72,8 @@ class ListaDocenteController extends Controller
             }
 
             $fecha = date('d-m-y');
-            $titulo = "Lista de Alumnos ";
-            $view =  \View::make('listadocentes.invoice', compact('docentes', 'fecha', 'titulo','grado'))->render();
+            $titulo = "Lista de Docentes ";
+            $view =  \View::make('listadocentescurso.invoice', compact('docentes', 'fecha', 'titulo','grado'))->render();
 
             //return($view);
 
@@ -91,7 +99,10 @@ class ListaDocenteController extends Controller
       $docentes=null;
       if ($id=='*') {
         $docentes=Grado::join('matriculas','grados.id','=','matriculas.id_grado')
-        ->join('docentes','docentes.id','=','id_docente')->get();
+        ->join('docentes','docntes.id','=','id_docente')
+        ->select('docentes.nombres','docentes.apellidos')
+        ->groupBy('docentes.id')
+        ->get();
       }else {
         $docentes=Grado::join('matriculas','grados.id','=','matriculas.id_grado')
         ->join('docentes','docentes.id','=','id_docente')->where('grados.id','=',"$id")->get();

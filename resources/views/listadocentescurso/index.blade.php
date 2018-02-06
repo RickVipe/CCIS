@@ -21,12 +21,12 @@
 			<div class="panel-body">
 
         <div class="">
-            <form role="form" class="form" action="/menucoordinadores/listadocentes/listado" method="post">
+            <form role="form" class="form" action="/menucoordinadores/listadocentescurso/listado" method="post">
               <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
               <label>Grado</label>
               <label >
-                <select class="form-control" id="grado" name="grado">
-                  <option value="*" selected>Todos los grados</option>
+                <select class="form-control" id="grado" name="grado" required>
+                  <option value="*" selected>Todos los Docentes</option>
                   @foreach($grados as $grado)
                     @if($grado_actual==$grado->id)
                       <option value="{{$grado->id}}" selected>{{$grado->nro}}-{{$grado->seccion}} {{$grado->nivel}}</option>
@@ -36,7 +36,7 @@
                   @endforeach
                 </select>
               </label>
-              <button type="submit" class="btn btn-success" value = 'listar' name='submit_button'>Ver Lista de Docentes</button>
+              <button type="submit" class="btn btn-success" value = 'listar' name='submit_button'>Ver Lista</button>
               <button type="submit" class="btn btn-primary" value = 'pdf' name='submit_button'>Descargar PDF</button>
             </form>
 
@@ -48,7 +48,8 @@
             <thead>
               <tr>
                 <th width='70'>Nro</th>
-                <th>Nombres</th>
+                <th>Docente</th>
+                <th>Asignatura</th>
               </tr>
             </thead>
             <tbody>
@@ -59,6 +60,7 @@
                   <tr class="odd gradeA" rol="row">
                     <td>{{$i}}</td>
                     <td>{{$docente->apellidos}} {{$docente->nombres}}</td>
+                    <td>{{$docente->nombre}}</td>
                   </tr>
                   @endforeach
               @endif

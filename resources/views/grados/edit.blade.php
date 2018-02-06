@@ -29,7 +29,7 @@
 
                 <div class="form-group">
                   <label>Nro de Grado</label>
-                  <select name="nro" class="form-control" disabled>
+                  <select name="nro" class="form-control" readonly ="">
                     <option value="1" @if($grado->nro=="1") selected @endif >1</option>
                     <option value="2" @if($grado->nro=="2") selected @endif >2</option>
                     <option value="3" @if($grado->nro=="3") selected @endif >3</option>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                   <label>Seccion</label>
-                  <select name="seccion" class="form-control" disabled>
+                  <select name="seccion" class="form-control" readonly ="">
 
                     <option value="A" @if($grado->seccion=="A") selected @endif >A</option>
                     <option value="B" @if($grado->seccion=="B") selected @endif >B</option>
@@ -52,7 +52,8 @@
                 </div>
                 <div class="form-group">
                   <label>Nivel</label>
-                  <select name="nivel" class="form-control" disabled>
+                  <select name="nivel" class="form-control" readonly ="">
+                    <option value="Inicial"  @if($grado->nivel=="Inicial") selected @endif>Inicial</option>
                     <option value="Primaria" @if($grado->nivel=="Primaria") selected @endif >Primaria</option>
                     <option value="Secundaria" @if($grado->nivel=="Secundaria") selected @endif >Secundaria</option>
 
@@ -60,17 +61,15 @@
                 </div>
                 <div class="form-group">
                   <label>Año Academico</label>
-                  <input type="numeric" class="form-control" name="anio_academico" disabled
+                  <input type="number" class="form-control" name="anio_academico" readonly =""
                   value="{!! $grado->anio_academico !!}"
-                  style="text-transform:uppercase;"
-                  onkeyup="javascript:this.value=this.value.toUpperCase();">
+                  >
                 </div>
                 <div class="form-group">
                   <label>Nro de Vacantes</label>
-                  <input type="numeric" class="form-control" name="vacantes"
+                  <input type="number" class="form-control" name="vacantes"
                   value="{!! $grado->vacantes !!}"
-                  style="text-transform:uppercase;"
-                  onkeyup="javascript:this.value=this.value.toUpperCase();">
+                  >
                 </div>
 
 

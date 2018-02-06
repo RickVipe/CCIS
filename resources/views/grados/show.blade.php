@@ -1,4 +1,4 @@
-@extends('layouts.layoutD')
+@extends('layouts.layout')
 
 @section('estilos')
 
@@ -14,24 +14,46 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h3 class="page-header">Lista de Alumnos - {!! $grado->nro !!}{!! $grado->seccion !!} {!! $grado->nivel !!}
-      {!! $grado->anio_academico !!}
+    <div class="form-group">
+      <label>Grado</label>
+      <input type="text" class="form-control" value=" {{ $grado->nro }}" disabled="">
+    </div>
+    <div class="form-group">
+      <label>Seccion</label>
+      <input type="text" class="form-control" value=" {{ $grado->seccion }}"  disabled="">
+    </div>
+    <div class="form-group">
+      <label>Nivel</label>
+      <input type="text" class="form-control" value=" {{ $grado->nivel }}" disabled="">
+    </div>
+    <div class="form-group">
+      <label>Año Academico</label>
+      <input type="text" class="form-control" value=" {{ $grado->anio_academico }}"  disabled="">
+    </div>
+    <h3 class="page-header">Horario
+
     </h3>
+
+
   </div>
+
   <!-- /.row -->
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-primary">
         <div class="panel-heading">
         </div>
+
+
         <!-- /.panel-heading -->
         <div class="panel-body">
+
           <div class="dataTable_wrapper">
-            @if($alumnos->isEmpty())
+            @if(sizeof($tabla)==0)
               <div class="alert alert-success">
                 <button type="button" class="close"
                 data-dismiss="alert" aria-hidden="true">x</button>
-                No se tiene ninguna alumno.
+                No se tiene el horario de ningun curso  <a href="#" class="alert-link"</a>
               </div>
             @else
               @if(session('mensaje'))
@@ -43,40 +65,31 @@
               <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                      <th>Id Alumno</th>
-                      <th>Apellidos</th>
-                      <th>Nombres</th>
-                      <th>Operaciones</th>
+                      <th>Hora</th>
+                      <th>Lunes</th>
+                      <th>Martes</th>
+                      <th>Miercoles</th>
+                      <th>Jueves</th>
+                      <th>Viernes</th>
+                      <th>Sabado</th>
                     </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($alumnos as $alumno)
+                  @foreach($tabla as $fila)
                     <tr class="odd gradeA" rol="row">
-                      <td>{{ $alumno->id }}</td>
-                      <td>{{ $alumno->apellidos }}</td>
-                      <td>{{ $alumno->nombres }}</td>
+                      <td>{{ $fila[0] }}</td>
+                      <td>{{ $fila[1] }}</td>
+                      <td>{{ $fila[2] }}</td>
+                      <td>{{ $fila[3] }}</td>
+                      <td>{{ $fila[4] }}</td>
+                      <td>{{ $fila[5] }}</td>
+                      <td>{{ $fila[6] }}</td>
+                      <?php
+                        //$id=$salon_horario->nro_salon.'_'.$salon_horario->horario.'_'.$curso->first()->id;
+                      ?>
 
-                      <td class="center">
-                        <ul class="nav nav-pills">
 
-                          <!--<li>
-                            <a href= "{!! action('NotaController@cargarDatosAlumno',[$alumno->id, $grado->id, $id_asignatura]) !!}" >
-                              <span class="glyphicon glyphicon-pencil"></span> Registrar notas
-                            </a>
-
-                          </li>-->
-                          <li>
-                            <form method="get" action="{!! action('NotaController@cargarDatosAlumno',[ $grado->id, $id_asignatura, $alumno->id]) !!}">
-                              <div>
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                  <span class="glyphicon glyphicon-pencil"></span> Registrar notas
-                                </button>
-                              </div>
-                            </form>
-                          </li>
-                        </ul>
-                      </td>
                     </tr>
                   @endforeach
 
@@ -87,8 +100,7 @@
             <!-- /.table-responsive -->
           </div>
         </div>
-        <button type="button" class="btn btn-danger"
-        onclick="location.href='/menudocentes/periodo'">Volver</button><br><br>
+        <button type="button" class="btn btn-danger" onClick="location.href='/menucoordinadores/grados'">Volver</button>
       </div>
     </div>
 
@@ -106,12 +118,6 @@
 @section('jsope')
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
+
 
 @stop

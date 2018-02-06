@@ -7,7 +7,7 @@ use App\Matricula;
 use App\Alumno;
 use App\Grado;
 use Carbon\Carbon;
-
+use App\Http\Requests\MatriculaFormRequest;
 class MatriculaController extends Controller
 {
     /**
@@ -44,18 +44,28 @@ class MatriculaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MatriculaFormRequest $request)
     {
         $matricula = new Matricula();
         $matricula->id_alumno = $request->get('id_alumno');
         $matricula->id_grado = $request->get('id_grado');
-        $anio = Grado::find($request->get('id_grado'))->anio_academico;
+        $grado = Grado::find($request->get('id_grado'));
+        $anio = $grado->anio_academico;
+        //Numero de vacantes sacado del grado
+        $vacante_por_grado =$grado->vacantes;
+        //Numero de vacantes sacado de la matricula
+        $nro_matriculas_por_grado = Matricula::where('id_grado','=',$matricula->id_grado)->count();
+
         $matricula->fecha = Carbon::now();
         $matricula->id = 'MT-'.($matricula->id_alumno).($anio);
         $auxmatric = Matricula::find($matricula->id);
         if($auxmatric == null){
-            $matricula->save();
-            return redirect('/menucoordinadores/matriculas')->with('mensaje','Se matriculo correctamente al alumno');
+            if($nro_matriculas_por_grado < $vacante_por_grado)
+            {
+                $matricula->save();
+                return redirect('/menucoordinadores/matriculas')->with('mensaje','Se matriculo correctamente al alumno');
+            }
+            return redirect('/menucoordinadores/matriculas')->with('error','El grado ya no tiene mas vacantes');
         }
         return redirect('/menucoordinadores/matriculas')->with('error','El alumno ya esta matriculado este año');
         
@@ -81,10 +91,10 @@ class MatriculaController extends Controller
      */
     public function edit($id)
     {
-        $alumnos = Alumno::All();
         $grados = Grado::All();
         $matricula = Matricula::findOrFail($id);
-        return view('matriculas.edit',['matricula'=>$matricula, 'alumnos'=> $alumnos,'grados'=>$grados]);
+        $elpro = Alumno::findOrFail($matricula->id_alumno);
+        return view('matriculas.edit',['matricula'=>$matricula, 'grados'=>$grados,'elpro'=>$elpro]);
     }
 
     /**
@@ -94,7 +104,7 @@ class MatriculaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MatriculaFormRequest $request, $id)
     {
         $matricula = Matricula::findOrFail($id);
         $matricula->id_alumno = $request->input('id_alumno');

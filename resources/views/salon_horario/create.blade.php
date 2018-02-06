@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group">
                   <label>Capacidad</label>
-                  <input type="numeric" class="form-control" name="capacidad" >
+                  <input type="number" class="form-control" name="capacidad" >
                 </div>
 
 

@@ -86,6 +86,12 @@
 
                             </a>
                           </li>
+                          <li>
+                            <a href= "{!! action('GradoController@show' , $grado->id) !!}" title="Horario">
+                              <span class="glyphicon glyphicon-tasks"></span>
+
+                            </a>
+                          </li>
                         </ul>
                       </td>
                     </tr>
