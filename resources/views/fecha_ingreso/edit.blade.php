@@ -29,7 +29,7 @@
 
                 <div class="form-group">
                   <label>Año Academico</label>
-                  <input type="number" class="form-control" name="anio_academico" disabled
+                  <input type="number" class="form-control" name="anio_academico" readonly=""
                   value="{!! $fecha_ingreso->anio_academico !!}"
                   style="text-transform:uppercase;"
                   onkeyup="javascript:this.value=this.value.toUpperCase();">
@@ -37,7 +37,7 @@
 
                 <div class="form-group">
                   <label>Trimestre</label>
-                  <select name="trimestre" class="form-control" disabled>
+                  <select name="trimestre" class="form-control" readonly="">
                     <option value="1" @if($fecha_ingreso->trimestre=="1") selected @endif >1</option>
                     <option value="2" @if($fecha_ingreso->trimestre=="2") selected @endif >2</option>
                     <option value="3" @if($fecha_ingreso->trimestre=="3") selected @endif >3</option>
@@ -48,16 +48,12 @@
                 <div class="form-group">
                   <label>Fecha Inicial</label>
                   <input type="date" class="form-control" name="fecha_inicio"
-                  value="{!! $fecha_ingreso->fecha_inicio !!}"
-                  style="text-transform:uppercase;"
-                  onkeyup="javascript:this.value=this.value.toUpperCase();">
+                  value="{!! $fecha_ingreso->fecha_inicio !!}">
                 </div>
                 <div class="form-group">
                   <label>Fecha Final</label>
                   <input type="date" class="form-control" name="fecha_fin"
-                  value="{!! $fecha_ingreso->fecha_fin !!}"
-                  style="text-transform:uppercase;"
-                  onkeyup="javascript:this.value=this.value.toUpperCase();">
+                  value="{!! $fecha_ingreso->fecha_fin !!}">
                 </div>
 
 
