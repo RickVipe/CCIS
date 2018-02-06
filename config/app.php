@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         //domPDF
         Barryvdh\DomPDF\ServiceProvider::class,
+        fzaninotto\faker\ServiceProvider::class,
     ],
 
     /*
