@@ -52,7 +52,7 @@ class GradoController extends Controller
     public function store(GradoFormRequest $request)
     {
         //
-        if($request->get('nro')!="6" and $request->get('nivel')!="Secundaria")
+        if(($request->get('nro')!="6" and $request->get('nivel')!="Secundaria") or (($request->get('nro')=="4" or $request->get('nro')=="5") and $request->get('nivel')=="Inicial"))
         {
           $grado=new Grado;
           $grado->nro=$request->get('nro');
@@ -65,7 +65,7 @@ class GradoController extends Controller
           return redirect('/menucoordinadores/grados')->with('mensaje','Se inserto correctamente!!');
         }
         else {
-          return redirect('/menucoordinadores/grados')->with('mensaje','No se puede insertar 6to de secundaria !!');
+          return redirect('/menucoordinadores/grados')->with('mensaje','El grado que desea insertar no es valido !!');
         }
     }
 

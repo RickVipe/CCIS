@@ -50,6 +50,7 @@
                 <div class="form-group">
                   <label>Nivel</label><br>
                   <select name="nivel" class="form-control">
+                    <option value="Inicial">Inicial</option>
                     <option value="Primaria">Primaria</option>
                     <option value="Secundaria">Secundaria</option>
 

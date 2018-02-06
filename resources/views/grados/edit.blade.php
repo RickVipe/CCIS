@@ -53,6 +53,7 @@
                 <div class="form-group">
                   <label>Nivel</label>
                   <select name="nivel" class="form-control" readonly ="">
+                    <option value="Inicial"  @if($grado->nivel=="Inicial") selected @endif>Inicial</option>
                     <option value="Primaria" @if($grado->nivel=="Primaria") selected @endif >Primaria</option>
                     <option value="Secundaria" @if($grado->nivel=="Secundaria") selected @endif >Secundaria</option>
 
