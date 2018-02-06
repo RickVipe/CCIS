@@ -99,6 +99,9 @@ class DocenteController extends Controller
         $docente->apellidos =$request->input('apellidos');
         $docente->especialidad =$request->input('especialidad');
         $docente->email =$request->input('email');
+        if ($request->input('password')!== null) {
+            $docente->password = Hash::make($request->get('password'));
+        }
         $docente->telefono =$request->input('telefono');
         $docente->save();
         return redirect('/menucoordinadores/docentes')->with('mensaje','Se modificó correctamente!');

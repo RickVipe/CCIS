@@ -22,7 +22,7 @@ class AlumnoLoginController extends Controller
   // Validate the form data
     $this->validate($request, [
       'email'   => 'required|email',
-      'password' => 'required|min:6'
+      'password' => 'required|min:3'
     ]);
 
     // Attempt to log the user in

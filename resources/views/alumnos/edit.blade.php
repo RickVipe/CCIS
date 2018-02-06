@@ -64,6 +64,10 @@
 										<input type="text" value=" {{$alumno -> apoderado}} " class="form-control"  name ='apoderado' style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
 									</div>
 									<div class="form-group">
+										<label>Contraseña</label>
+										<input type="password"  class="form-control"  name ='password'">
+									</div>
+									<div class="form-group">
 										<label>Telefono</label>
 										<input type="tel" value=" {{$alumno -> telefono}} " class="form-control"  name ='telefono' style="text-transform:uppercase;">
 									</div>

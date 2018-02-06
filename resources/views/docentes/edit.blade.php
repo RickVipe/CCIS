@@ -52,6 +52,10 @@
 										<input type="email" value=" {{$docente -> email}} " class="form-control" name ='email' style="text-transform:lowercase;" onkeyup="javascript:this.value=this.value.toLowerCase();">
 									</div>
 									<div class="form-group">
+										<label>Contraseña</label>
+										<input type="password"  class="form-control"  name ='password'">
+									</div>
+									<div class="form-group">
 										<label>Telefono</label>
 										<input type="tel" value=" {{$docente -> telefono}} " class="form-control" name ='telefono' style="text-transform:uppercase;">
 									</div>
