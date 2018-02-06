@@ -102,9 +102,6 @@
                   <a href="{!! action('AlumnoMenuController@my_teachers') !!}">Ver mis docentes</a>
                 </li>
                 <li>
-                  <a href="#">Mis compañeros</a>
-                </li>
-                <li>
                   <a href="#">Mis notas</a>
                 </li>
               </ul>

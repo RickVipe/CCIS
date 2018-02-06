@@ -92,9 +92,6 @@
                   <a href="/menucoordinadores/alumnos">Alumnos</a>
                 </li>
                 <li>
-                  <a href="#">Coordinadores</a>
-                </li>
-                <li>
                   <a href="/menucoordinadores/grados">Administrar Grados</a>
                 </li>
                 <li>
