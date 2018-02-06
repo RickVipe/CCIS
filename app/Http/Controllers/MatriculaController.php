@@ -57,7 +57,7 @@ class MatriculaController extends Controller
         $nro_matriculas_por_grado = Matricula::where('id_grado','=',$matricula->id_grado)->count();
 
         $matricula->fecha = Carbon::now();
-        $matricula->id = 'MT-'.($matricula->id_alumno).($anio);
+        $matricula->id = ($matricula->id_alumno).($anio);
         $auxmatric = Matricula::find($matricula->id);
         if($auxmatric == null){
             if($nro_matriculas_por_grado < $vacante_por_grado)
