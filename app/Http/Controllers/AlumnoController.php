@@ -104,6 +104,9 @@ class AlumnoController extends Controller
         $alumno->fecha_nacimiento =$request->input('fecha_nacimiento');
         $alumno->direccion = $request->input('direccion');
         $alumno->email =$request->input('email');
+        if($request->input('password') !== null){
+            $alumno->password = Hash::make($request->input('password'));
+        }
         $alumno->apoderado =$request->input('apoderado');
         $alumno->telefono =$request->input('telefono');
         $alumno->save();

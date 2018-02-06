@@ -116,7 +116,7 @@
 
       table th,
       table td {
-        text-align: center;
+        text-align: right;
       }
 
       table th {
@@ -133,7 +133,7 @@
       }
 
       table td {
-        padding: 5px;
+        padding: 2px !important;
         text-align: right;
       }
 
@@ -195,7 +195,7 @@
       <thead>
         <tr>
           <th class="no" width="20">NRO</th>
-          <th>Asignatura</th>
+          <th class="desc">Asignatura</th>
           <th class="desc">Docente</th>
           <th>Correo</th>
         </tr>
@@ -206,7 +206,7 @@
         <?php $i=$i+1;?>
           <tr style="padding:5px">
             <td class="no">{{ $i }}</td>
-            <td class="total">{{$docente['nombre']}}</td>
+            <td class="desc">{{$docente['nombre']}}</td>
             <td class="desc">{{ $docente['apellidos'] }} {{ $docente['nombres'] }}</td>
             <td class="total">{{$docente['email']}}</td>
           </tr>

@@ -92,9 +92,6 @@
                   <a href="/menucoordinadores/alumnos">Alumnos</a>
                 </li>
                 <li>
-                  <a href="#">Coordinadores</a>
-                </li>
-                <li>
                   <a href="/menucoordinadores/grados">Administrar Grados</a>
                 </li>
                 <li>
@@ -116,10 +113,7 @@
                             <a href="/menucoordinadores/reportes">Lista de Alumnos</a>
                         </li>
                         <li>
-                            <a href="/menucoordinadores/listadocentes">Lista de Docentes</a>
-                        </li>
-                        <li>
-                            <a href="/menucoordinadores/listadocentescurso">Lista de Docentes por Curso</a>
+                            <a href="/menucoordinadores/listadocentescurso">Lista de Docentes</a>
                         </li>
                         <li>
                             <a href="/menucoordinadores/constancias">Constancia de Notas</a>

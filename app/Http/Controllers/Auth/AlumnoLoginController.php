@@ -22,13 +22,13 @@ class AlumnoLoginController extends Controller
   // Validate the form data
     $this->validate($request, [
       'email'   => 'required|email',
-      'password' => 'required|min:6'
+      'password' => 'required|min:3'
     ]);
 
     // Attempt to log the user in
     if (Auth::guard('alumno')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
       // if successful, then redirect to their intended location
-      return redirect()->intended(route('alumnos.index'));
+      return redirect()->intended(route('menualumnos.index'));
       #return redirect()->intended(route('alumnos.index')); //222/
     }
 

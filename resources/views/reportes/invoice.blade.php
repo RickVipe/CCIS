@@ -172,26 +172,26 @@
   </head>
 
   <body>
-    <div class="container">
-          <div>
-              <h1><label for="">Colegio Inmaculada Concepcion</label></h1>
-          </div>
-            <div>
-              <h2><label for="">{{$titulo}}</label></h2>
-            </div>
-            <div id="project">
-              @if($grado!=null)
-                @foreach($grado as $g)
-                  <div><span>Grado:</span>{{$g->nro}}{{$g->seccion}} {{$g->nivel}}</div>
-                  <div><span>Periodo Academico:</span>{{$g->anio_academico}}</div>
-                  <div><span>Fecha del reporte:</span>{{ $fecha }}</div>
-                @endforeach
-              @else
-                  <div><span>Lista de alumnos general</span></div>
-              @endif
-            </div>
-
-
+    <header class="clearfix">
+      <div>
+          <h1><label for="">Colegio Inmaculada Concepcion</label></h1>
+      </div>
+        <div>
+          <h2><label for="">{{$titulo}}</label></h2>
+        </div>
+        <div id="project">
+          @if($grado!=null)
+            @foreach($grado as $g)
+              <div><span>Grado:</span>{{$g->nro}}{{$g->seccion}} {{$g->nivel}}</div>
+              <div><span>Periodo Academico:</span>{{$g->anio_academico}}</div>
+              <div><span>Fecha del reporte:</span>{{ $fecha }}</div>
+            @endforeach
+          @else
+              <div><span>Lista de alumnos general</span></div>
+          @endif
+        </div>
+      </header>
+      <main>
       <table border="0" cellspacing="0" cellpadding="0" style=" padding-right: 2cm" class="table table-bordered">
         <thead>
           <tr>
@@ -212,6 +212,6 @@
           @endforeach
         </tbody>
       </table>
-      </div>
+    </main>
   </body>
 </html>

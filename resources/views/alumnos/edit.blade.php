@@ -32,15 +32,15 @@
 										{{ method_field('PUT') }}
 							<div class="form-group">
 										<label>DNI</label>
-										<input type="text" value=" {{$alumno -> id}} " class="form-control" name ='dni'>
+										<input type="text" value="{{$alumno->id}}" class="form-control" name ='dni'>
 									</div>
 									<div class="form-group">
 										<label>Nombres</label>
-										<input type="text" value=" {{$alumno -> nombres}} " class="form-control" name ='nombres' style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+										<input type="text" value="{{$alumno -> nombres}}" class="form-control" name ='nombres' style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
 									</div>
 									<div class="form-group">
 										<label>Apellidos</label>
-										<input type="text" value=" {{$alumno -> apellidos}} " class="form-control" name ='apellidos' style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+										<input type="text" value="{{$alumno -> apellidos}}" class="form-control" name ='apellidos' style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
 									</div>
 
 									<div class="form-group">
@@ -52,20 +52,24 @@
 									</div>
 									<div class="form-group">
 										<label>Direccion</label>
-										<input type="text" value=" {{$alumno -> direccion}} " class="form-control"  name ='direccion' style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+										<input type="text" value="{{$alumno -> direccion}}" class="form-control"  name ='direccion' style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
 									</div>
 									
 									<div class="form-group">
 										<label>Email</label>
-										<input type="email" value=" {{$alumno -> email}} " class="form-control"  name ='email' style="text-transform:lowercase;" onkeyup="javascript:this.value=this.value.toLowerCase();">
+										<input type="email" value="{{$alumno -> email}}" class="form-control"  name ='email' style="text-transform:lowercase;" onkeyup="javascript:this.value=this.value.toLowerCase();">
 									</div>
 									<div class="form-group">
 										<label>Apoderado</label>
-										<input type="text" value=" {{$alumno -> apoderado}} " class="form-control"  name ='apoderado' style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+										<input type="text" value="{{$alumno -> apoderado}}" class="form-control"  name ='apoderado' style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+									</div>
+									<div class="form-group">
+										<label>Contraseña</label>
+										<input type="password"  class="form-control"  name ='password'">
 									</div>
 									<div class="form-group">
 										<label>Telefono</label>
-										<input type="tel" value=" {{$alumno -> telefono}} " class="form-control"  name ='telefono' style="text-transform:uppercase;">
+										<input type="tel" value="{{$alumno -> telefono}}" class="form-control"  name ='telefono' style="text-transform:uppercase;">
 									</div>
 										<button type="submit" class="btn btn-success">Guardar</button>
 										<button type="reset" class="btn btn-warning">Limpiar</button>

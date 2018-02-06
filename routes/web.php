@@ -40,9 +40,6 @@ Route::prefix('menucoordinadores')->group(function(){
   Route::post('/listadocentescurso/listado','ListaDocenteCursoController@listado');
   Route::resource('listadocentescurso','ListaDocenteCursoController');
 
-  Route::post('/listadocentes/listado','ListaDocenteController@listado');
-  Route::resource('listadocentes','ListaDocenteController');
-
   Route::post('constancias/listado','ConstanciaController@listado');
   Route::post('constancias/descargar','ConstanciaController@descargar');
   Route::resource('constancias','ConstanciaController');

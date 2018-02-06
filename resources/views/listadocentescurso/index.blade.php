@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-    	<h3 class="page-header">Lista de Docentes por Curso</h3>
+    	<h3 class="page-header">Lista de Docentes</h3>
     </div>
 </div>
 <!-- /.row -->
@@ -26,7 +26,7 @@
               <label>Grado</label>
               <label >
                 <select class="form-control" id="grado" name="grado" required>
-                  <option value="" selected>Escoja un grado</option>
+                  <option value="*" selected>Todos los Docentes</option>
                   @foreach($grados as $grado)
                     @if($grado_actual==$grado->id)
                       <option value="{{$grado->id}}" selected>{{$grado->nro}}-{{$grado->seccion}} {{$grado->nivel}}</option>
