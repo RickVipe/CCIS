@@ -22,7 +22,7 @@
 							{{ method_field('PUT') }}
 							<div class="form-group">
               <label>Alumno</label>
-              <input type="text" class="form-control" name='id_alumno' value='{{$elpro->id}}'>
+              <input type="text" class="form-control" name='id_alumno' value='{{$elpro->id}}' readonly="">
 
             </div>
             <div class="form-group">

@@ -75,7 +75,7 @@
               <select name="id_grado" class="form-control">
                 <option value="">Seleccione a algún grado</option>
                 @foreach($grados as $grado)
-                  <option value="{{$grado->id}}">{{$grado->id}}</option>
+                  <option value="{{$grado->id}}">{{$grado->id}} (nro vacantes totales:{{$grado->vacantes}})</option>
                 @endforeach
               </select>
             </div>
