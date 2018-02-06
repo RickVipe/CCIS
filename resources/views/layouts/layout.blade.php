@@ -119,8 +119,12 @@
                             <a href="/menucoordinadores/listadocentes">Lista de Docentes</a>
                         </li>
                         <li>
+                            <a href="/menucoordinadores/listadocentescurso">Lista de Docentes por Curso</a>
+                        </li>
+                        <li>
                             <a href="/menucoordinadores/constancias">Constancia de Notas</a>
                         </li>
+
                     </ul>
                     <!-- /.nav-third-level -->
                 </li>

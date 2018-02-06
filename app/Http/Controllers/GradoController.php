@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\GradoFormRequest;
 use App\Grado;
+use App\Salon_Horario;
+use App\Asignatura;
+use App\Docente;
+
+use DB;
 
 class GradoController extends Controller
 {
@@ -73,6 +78,25 @@ class GradoController extends Controller
     public function show($id)
     {
         //
+        $grado=Grado::findOrFail($id);
+        $horarios = DB::table('cursos')
+            ->join('asignaturas', 'cursos.id_asignatura', '=', 'asignaturas.id')
+            ->join('salon_horario', 'cursos.id', '=', 'salon_horario.id_curso')
+            ->join('docentes', 'cursos.id_docente', '=', 'docentes.id')
+            ->where('cursos.id_grado',$id)
+            ->select('salon_horario.horario as horario','asignaturas.nombre as asignatura', 'docentes.nombres as nombre','docentes.apellidos as apellido')
+            ->get();
+
+        foreach($horarios as $horarioaux)
+        {
+          $diahora=explode('-', $horarioaux->horario, 3);
+          $diaaux= $salonaux[0];
+          $inicialaux= $salonaux[1];
+          $finalaux= $salonaux[2];
+        }
+        //echo $horarios;
+
+        return view('grados.show',compact('grado'),['horarios'=>$horarios]);
     }
 
     /**

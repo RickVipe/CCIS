@@ -13,7 +13,7 @@ class MatriculaFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class MatriculaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id_alumno' => 'required|min:1',
+            'id_grado' => 'required|min:1'
         ];
     }
 }
