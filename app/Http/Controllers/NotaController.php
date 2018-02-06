@@ -82,7 +82,7 @@ class NotaController extends Controller
                 if($registro == null)
                 {
                     $nota = new Nota;
-                    $nota->id = 'NT-'.$idmatricula.$idcurso.$trimestre;
+                    $nota->id = $idmatricula.$idcurso.$trimestre;
                     $nota->id_matricula = $idmatricula;
                     $nota->id_curso = $idcurso;
                     $nota->nota = $request->get('nota');

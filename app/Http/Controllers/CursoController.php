@@ -72,7 +72,8 @@ class CursoController extends Controller
         //echo $cursoaux;
         $curso=new Curso;
         //$curso->id=$request->get('id_grado').'-'.$request->get('id_asignatura').'-'.$request->get('id_docente');
-        $curso->id="C-".$numero;
+        #$curso->id="C-".$numero;
+        $curso->id=$numero;
         $curso->id_grado=$request->get('id_grado');
         $curso->id_asignatura=$request->get('id_asignatura');
         $curso->id_docente=$request->get('id_docente');
