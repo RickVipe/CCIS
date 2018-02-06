@@ -47,14 +47,20 @@ class Fecha_IngresoController extends Controller
     public function store(Fecha_IngresoFormRequest $request)
     {
         //
-        $fecha_ingreso=new Fecha_Ingreso;
-        $fecha_ingreso->anio_academico=$request->get('anio_academico');
-        $fecha_ingreso->trimestre=$request->get('trimestre');
-        $fecha_ingreso->fecha_inicio=$request->get('fecha_inicio');
-        $fecha_ingreso->fecha_fin=$request->get('fecha_fin');
-        $fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
-        $fecha_ingreso->save();
-        return redirect('/menucoordinadores/fecha_ingreso')->with('mensaje','Se inserto correctamente!!');
+        if($request->get('fecha_fin')>=$request->get('fecha_inicio'))
+        {
+          $fecha_ingreso=new Fecha_Ingreso;
+          $fecha_ingreso->anio_academico=$request->get('anio_academico');
+          $fecha_ingreso->trimestre=$request->get('trimestre');
+          $fecha_ingreso->fecha_inicio=$request->get('fecha_inicio');
+          $fecha_ingreso->fecha_fin=$request->get('fecha_fin');
+          $fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
+          $fecha_ingreso->save();
+          return redirect('/menucoordinadores/fecha_ingreso')->with('mensaje','Se inserto correctamente!!');
+      }
+      else {
+        return redirect('/menucoordinadores/fecha_ingreso')->with('mensaje','Las fechas son incorrectas!!');
+      }
     }
 
     /**
@@ -91,14 +97,20 @@ class Fecha_IngresoController extends Controller
     public function update(Fecha_IngresoFormRequest $request, $id)
     {
         //
-        $fecha_ingreso = Fecha_Ingreso::find($id);
-        //$fecha_ingreso->anio_academico=$request->get('anio_academico');
-        //$fecha_ingreso->trimestre=$request->get('trimestre');
-        $fecha_ingreso->fecha_inicio=$request->get('fecha_inicio');
-        $fecha_ingreso->fecha_fin=$request->get('fecha_fin');
-        //$fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
-        $fecha_ingreso->save();
-        return redirect('/menucoordinadores/fecha_ingreso')->with('mensaje','Se actualizo correctamente!!');
+        if($request->get('fecha_fin')>=$request->get('fecha_inicio'))
+        {
+          $fecha_ingreso = Fecha_Ingreso::find($id);
+          //$fecha_ingreso->anio_academico=$request->get('anio_academico');
+          //$fecha_ingreso->trimestre=$request->get('trimestre');
+          $fecha_ingreso->fecha_inicio=$request->get('fecha_inicio');
+          $fecha_ingreso->fecha_fin=$request->get('fecha_fin');
+          //$fecha_ingreso->id=$fecha_ingreso->anio_academico.'-'.$fecha_ingreso->trimestre;
+          $fecha_ingreso->save();
+          return redirect('/menucoordinadores/fecha_ingreso')->with('mensaje','Se actualizo correctamente!!');
+        }
+        else {
+          return redirect('/menucoordinadores/fecha_ingreso')->with('mensaje','Las fechas son incorrectas!!');
+        }
     }
 
     /**
