@@ -23,8 +23,11 @@ class Fecha_IngresoFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+      return [
+          'anio_academico'=>'required|integer',
+          'trimestre'=>'required|between:1,3',
+          'fecha_inicio'=>'required',
+          'fecha_fin'=>'required',
+      ];
     }
 }

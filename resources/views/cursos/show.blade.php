@@ -67,7 +67,7 @@
                         <ul class="nav nav-pills">
                           <li>
                             <a href= "{!! action('Salon_HorarioController@show' , $curso->id) !!}" title="Horario">
-                              <span class="glyphicon glyphicon-calendar"></span>
+                              <span class="glyphicon glyphicon-tasks"></span>
 
                             </a>
                           </li>
