@@ -33,7 +33,7 @@
                     <option value="{!! $anio->anio_academico !!}">periodo {!! $anio->anio_academico !!}</option>
                     @endforeach
                   </select>
-                </div>            
+                </div>
 
                 <button type="submit" class="btn btn-success">Cargar Cursos</button>
                 <button type="button" class="btn btn-danger" onClick="location.href='/menudocentes/docentes'">Volver</button>

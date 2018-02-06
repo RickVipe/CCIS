@@ -87,8 +87,8 @@
             <!-- /.table-responsive -->
           </div>
         </div>
-        <!--<button type="button" class="btn btn-danger"
-        onclick="#'">Volver</button><br><br>-->
+        <button type="button" class="btn btn-danger"
+        onclick="location.href='/menudocentes/periodo'">Volver</button><br><br>
       </div>
     </div>
 
