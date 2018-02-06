@@ -52,21 +52,32 @@ class GradoController extends Controller
     public function store(GradoFormRequest $request)
     {
         //
-        if(($request->get('nro')!="6" and $request->get('nivel')!="Secundaria") or (($request->get('nro')=="4" or $request->get('nro')=="5") and $request->get('nivel')=="Inicial"))
+        if($request->get('nro')=="6" and $request->get('nivel')=="Secundaria")
         {
-          $grado=new Grado;
-          $grado->nro=$request->get('nro');
-          $grado->seccion=$request->get('seccion');
-          $grado->nivel=$request->get('nivel');
-          $grado->anio_academico=$request->get('anio_academico');
-          $grado->id=$grado->nro.'-'.$grado->seccion.'-'.substr($grado->nivel,0,3).'-'.$grado->anio_academico;
-          $grado->vacantes=$request->get('vacantes');
-          $grado->save();
-          return redirect('/menucoordinadores/grados')->with('mensaje','Se inserto correctamente!!');
-        }
-        else {
           return redirect('/menucoordinadores/grados')->with('mensaje','El grado que desea insertar no es valido !!');
         }
+        else
+        {
+          if(($request->get('nivel')=="Inicial") and ($request->get('nro')=="1" or $request->get('nro')=="2" or $request->get('nro')=="3" or $request->get('nro')=="6"))
+          {
+            return redirect('/menucoordinadores/grados')->with('mensaje','El grado que desea insertar no es valido !!');
+          }
+          else
+          {
+
+            $grado=new Grado;
+            $grado->nro=$request->get('nro');
+            $grado->seccion=$request->get('seccion');
+            $grado->nivel=$request->get('nivel');
+            $grado->anio_academico=$request->get('anio_academico');
+            $grado->id=$grado->nro.'-'.$grado->seccion.'-'.substr($grado->nivel,0,3).'-'.$grado->anio_academico;
+            $grado->vacantes=$request->get('vacantes');
+            $grado->save();
+            return redirect('/menucoordinadores/grados')->with('mensaje','Se inserto correctamente!!');
+          }
+
+        }
+        
     }
 
     /**
