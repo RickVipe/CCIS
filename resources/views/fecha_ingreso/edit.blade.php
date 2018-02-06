@@ -29,7 +29,7 @@
 
                 <div class="form-group">
                   <label>Año Academico</label>
-                  <input type="numeric" class="form-control" name="anio_academico" disabled
+                  <input type="number" class="form-control" name="anio_academico" disabled
                   value="{!! $fecha_ingreso->anio_academico !!}"
                   style="text-transform:uppercase;"
                   onkeyup="javascript:this.value=this.value.toUpperCase();">
