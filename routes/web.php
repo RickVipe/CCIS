@@ -46,13 +46,16 @@ Route::prefix('menucoordinadores')->group(function(){
   Route::post('constancias/listado','ConstanciaController@listado');
   Route::post('constancias/descargar','ConstanciaController@descargar');
   Route::resource('constancias','ConstanciaController');
-
 });
 
 Route::prefix('menualumnos')->group(function(){
   Route::get('/inicio', 'AlumnoMenuController@index')->name('menualumnos.index');
+  Route::get('/perfil', 'AlumnoMenuController@info')->name('alumnosmenu.info');
+  Route::get('/miscursos','AlumnoMenuController@fill_years');
+  Route::post('/miscursos/lista','AlumnoMenuController@get_courses_by_year');
+  Route::get('/horario','AlumnoMenuController@schedule');
+  Route::get('/mis_docentes','AlumnoMenuController@my_teachers');
 });
-
 
 Route::prefix('menudocentes')->group(function(){
   Route::get('perfil','DocenteMenuController@verPerfil');

@@ -5,35 +5,17 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Mis Datos Prro que emocion :v!!!</div>
+                <div class="panel-heading">Alumno Dashboard</div>
 
-                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                    <thead>
-                          <tr>
-                              <th>DNI</th>
-                              <th>Nombres y Apellidos</th>
-                              <th>Fecha de Nacimiento</th>
-                              <th>Direccion</th>
-                              <th>Email</th>
-                              <th>Apoderado</th>
-                              <th>Telefono-Apoderado</th>
-                          </tr>
-                    </thead>
-                    <tbody>
+                <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-
-                      <tr class="odd gradeA" rol="row">
-                          <td>{{ auth::user()->id }}</td>
-                          <td>{{ auth::user()->nombres }} {{ auth::user()->apellidos }}</td>
-                          <td>{{ auth::user()->fecha_nacimiento }}</td>
-                          <td>{{ auth::user()->direccion }}</td>
-                          <td>{{ auth::user()->email }}</td>
-                          <td>{{ auth::user()->apoderado }}</td>
-                          <td>{{ auth::user()->telefono }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                    You are logged in as <strong color='RED'> {{ auth::user()->nombres }} {{ auth::user()->apellidos }} </strong>!
+                </div>
             </div>
         </div>
     </div>
