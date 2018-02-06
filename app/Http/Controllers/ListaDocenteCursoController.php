@@ -39,7 +39,7 @@ class ListaDocenteCursoController extends Controller
       $id=$id_grado->get('grado');
       $grado_actual=$id;
       $docentes=null;
-      if ($id!='') {
+      if ($id!='*') {
         $docentes=Docente::join('cursos','docentes.id','=','cursos.id_docente')
         ->join('asignaturas','asignaturas.id','=','cursos.id_asignatura')
         ->join('grados','grados.id','=','cursos.id_grado')
@@ -47,7 +47,15 @@ class ListaDocenteCursoController extends Controller
         ->groupBy('docentes.id','docentes.apellidos','docentes.nombres','asignaturas.nombre','docentes.email')
         ->where('grados.id','=',"$id")
         ->get();
+      }else {
+        $docentes=Docente::join('cursos','docentes.id','=','cursos.id_docente')
+        ->join('asignaturas','asignaturas.id','=','cursos.id_asignatura')
+        ->join('grados','grados.id','=','cursos.id_grado')
+        ->select('docentes.nombres','docentes.apellidos','docentes.id','asignaturas.nombre','docentes.email')
+        ->groupBy('docentes.id','docentes.apellidos','docentes.nombres','asignaturas.nombre','docentes.email')
+        ->get();
       }
+
 
       switch($id_grado->submit_button) {
 
