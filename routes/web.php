@@ -37,6 +37,9 @@ Route::prefix('menucoordinadores')->group(function(){
   Route::post('/reportes/listado','ReporteController@listado');
   Route::resource('reportes','ReporteController');
 
+  Route::post('/listadocentescurso/listado','ListaDocenteCursoController@listado');
+  Route::resource('listadocentescurso','ListaDocenteCursoController');
+
   Route::post('/listadocentes/listado','ListaDocenteController@listado');
   Route::resource('listadocentes','ListaDocenteController');
 

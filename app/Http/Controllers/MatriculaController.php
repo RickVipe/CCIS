@@ -7,7 +7,7 @@ use App\Matricula;
 use App\Alumno;
 use App\Grado;
 use Carbon\Carbon;
-
+use App\Http\Requests\MatriculaFormRequest;
 class MatriculaController extends Controller
 {
     /**
@@ -44,7 +44,7 @@ class MatriculaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MatriculaFormRequest $request)
     {
         $matricula = new Matricula();
         $matricula->id_alumno = $request->get('id_alumno');
@@ -81,10 +81,10 @@ class MatriculaController extends Controller
      */
     public function edit($id)
     {
-        $alumnos = Alumno::All();
         $grados = Grado::All();
         $matricula = Matricula::findOrFail($id);
-        return view('matriculas.edit',['matricula'=>$matricula, 'alumnos'=> $alumnos,'grados'=>$grados]);
+        $elpro = Alumno::findOrFail($matricula->id_alumno);
+        return view('matriculas.edit',['matricula'=>$matricula, 'grados'=>$grados,'elpro'=>$elpro]);
     }
 
     /**
@@ -94,7 +94,7 @@ class MatriculaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MatriculaFormRequest $request, $id)
     {
         $matricula = Matricula::findOrFail($id);
         $matricula->id_alumno = $request->input('id_alumno');

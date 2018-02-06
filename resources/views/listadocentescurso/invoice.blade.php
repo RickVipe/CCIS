@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Constancia</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <title>Example 2</title>
+    <!-- Styles -->
     <style>
       .clearfix:after {
         content: "";
         display: table;
         clear: both;
       }
-
+      .center {
+          margin: auto;
+          width: 60%;
+      }
       a {
         color: #5D6975;
         text-decoration: underline;
@@ -49,9 +54,8 @@
         font-size: 2.4em;
         line-height: 1.4em;
         font-weight: normal;
-        text-align: center;
+        text-align: center !important;
         margin: 0 0 20px 0;
-        background: url(dimension.png);
       }
       h2 {
         color: #5D6975;
@@ -59,6 +63,13 @@
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
+        margin: 0 0 20px 0;
+      }
+      h3{
+        color: #5D6975;
+        font-size: 1.2em;
+        line-height: 1.4em;
+        font-weight: normal;
       }
 
       #project {
@@ -68,7 +79,7 @@
       #project span {
         color: #5D6975;
         text-align: left;
-        width: 70px;
+        width: 130px;
         margin-right: 10px;
         display: inline-block;
         font-size: 1.2em;
@@ -122,7 +133,7 @@
       }
 
       table td {
-        padding: 20px;
+        padding: 5px;
         text-align: right;
       }
 
@@ -156,82 +167,55 @@
         padding: 8px 0;
         text-align: center;
       }
-  </style>
+
+    </style>
 
   </head>
 
-
-@foreach($lista_alumnos as $alumno)
   <body>
     <header class="clearfix">
       <div>
           <h1><label for="">Colegio Inmaculada Concepcion</label></h1>
-          <h2><label for="">Constancia de Notas</label></h2>
+          <h2><label for="">{{$titulo}}</label></h2>
       </div>
       <div id="project">
-        <div><span>Grado:</span><span>{{$alumno->nro}}{{$alumno->seccion}} {{$alumno->nivel}}</span></div>
-        <div><span>Alumno:</span><span>{{$alumno->apellidos}} {{$alumno->nombres}}</span></div>
-        <div><span>DNI:</span><span>{{$alumno->id}}</span></div>
-        <div><span>Direccion:</span><span>{{$alumno->direccion}}</span></div>
-        <div><span>Correo:</span><span>{{$alumno->email}}</span></div>
-        <div><span>Fecha:</span><span>{{$lista_fechas[0]}}</span></div>
+        @if($grado!=null)
+          @foreach($grado as $g)
+            <div><span>Grado:</span>{{$g->nro}}{{$g->seccion}} {{$g->nivel}}</div>
+            <div><span>Periodo Academico:</span>{{$g->anio_academico}}</div>
+            <div><span>Fecha del reporte:</span>{{ $fecha }}</div>
+          @endforeach
+        @else
+            <div><span>Lista de docentes general</span></div>
+        @endif
       </div>
     </header>
-    <main>
-      <table style=" padding-right: 2cm">
-        <thead>
-          <tr>
-            <th class="service">Nro</th>
-            <th class="desc">Curso</th>
-            <th>Trimestre 1</th>
-            <th>Trimestre 2</th>
-            <th>Trimestre 3</th>
-            <th>Promedio</th>
-            <th>Estado</th>
+  <main>
+    <table border="0" cellspacing="0" cellpadding="0" style=" padding-right: 2cm" class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="no" width="20">NRO</th>
+          <th>Asignatura</th>
+          <th class="desc">Docente</th>
+          <th>Correo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php $i=0;?>
+        @foreach($docentes as $docente)
+        <?php $i=$i+1;?>
+          <tr style="padding:5px">
+            <td class="no">{{ $i }}</td>
+            <td class="total">{{$docente['nombre']}}</td>
+            <td class="desc">{{ $docente['apellidos'] }} {{ $docente['nombres'] }}</td>
+            <td class="total">{{$docente['email']}}</td>
           </tr>
-        </thead>
-        <tbody>
-
-          @foreach($lista_notas as $notas)
-            <?php $i=0; ?>
-            @foreach($notas as $nota)
-              @if($nota->id==$alumno->id)
-                <?php $i=$i+1; ?>
-                <tr>
-                  <td class="service">{{$i}}</td>
-                  <td class="desc">{{$nota->nombre}}</td>
-                  @if($nota->trimestre=1)
-                    <td class="unit">@if($nota->trimestre1!=""){{$nota->trimestre1}}@else{{'0'}}@endif</td>
-                    <td class="qty">@if($nota->trimestre2!=""){{$nota->trimestre2}}@else{{'0'}}@endif</td>
-                    <td class="qty">@if($nota->trimestre3!=""){{$nota->trimestre3}}@else{{'0'}}@endif</td>
-                    <?php
-                      $nota1=0;$nota2=0;$nota3=0;
-                      if ($nota->trimestre1!=null) {$nota1=$nota->trimestre1;}
-                      if ($nota->trimestre2!=null) {$nota2=$nota->trimestre2;}
-                      if ($nota->trimestre3!=null) {$nota3=$nota->trimestre3;}
-                      $promedio=round(($nota1+$nota2+$nota3)/3,2)
-                    ?>
-                    <td class="total">{{$promedio}}</td>
-                    @if($promedio>=11)
-                      <td class="total">Aprobado</td>
-                    @else
-                      <td class="total">Desaprobado</td>
-                    @endif
-                  @endif
-                </tr>
-              @endif
-            @endforeach
-          @endforeach
-
-        </tbody>
-      </table>
-    </main>
-    <footer>
-      Centro Educativo Inmaculada Concepcion
-    </footer>
+        @endforeach
+      </tbody>
+    </table>
+  </main>
+  <footer>
+    Centro Educativo Inmaculada Concepcion
+  </footer>
   </body>
- @endforeach
-
-
-
 </html>
