@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
+use App\Http\Requests\CursoFormRequest;
 use App\Curso;
 use App\Grado;
 use App\Asignatura;
@@ -51,7 +53,7 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CursoFormRequest $request)
     {
         //
         $cursos= Curso::all();
@@ -122,7 +124,7 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CursoFormRequest $request, $id)
     {
         //
         $curso = Curso::find($id);

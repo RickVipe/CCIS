@@ -81,8 +81,8 @@
                               </div>
                             </form>
                           <li>
-                            <a href= "{!! action('CursoController@show' , $grado->id) !!}" title="Horario">
-                              <span class="glyphicon glyphicon-calendar"></span>
+                            <a href= "{!! action('CursoController@show' , $grado->id) !!}" title="Cursos">
+                              <span class="glyphicon glyphicon-book"></span>
 
                             </a>
                           </li>

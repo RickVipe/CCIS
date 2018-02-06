@@ -25,7 +25,7 @@
     <h3 class="page-header">Horario
 
     <a href= "{!! action('Salon_HorarioController@nuevo',$curso->first()->id) !!}" title="Editar">
-      <span class="glyphicon glyphicon-pencil"></span>
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
 
     </a></h3>
 
