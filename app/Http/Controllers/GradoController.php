@@ -84,19 +84,57 @@ class GradoController extends Controller
             ->join('salon_horario', 'cursos.id', '=', 'salon_horario.id_curso')
             ->join('docentes', 'cursos.id_docente', '=', 'docentes.id')
             ->where('cursos.id_grado',$id)
-            ->select('salon_horario.horario as horario','asignaturas.nombre as asignatura', 'docentes.nombres as nombre','docentes.apellidos as apellido')
+            ->select('salon_horario.horario as horario','asignaturas.nombre as asignatura','salon_horario.nro_salon as nro_salon','docentes.nombres as nombre','docentes.apellidos as apellido')
             ->get();
-
+        $dias= array('Lunes' => 1,'Martes' => 2,'Miercoles' => 3,'Jueves' => 4,'Viernes' => 5,'Sabado' => 6 );
+        $horas=array();
+        $tabla=array();
+        $intervalos=array();
         foreach($horarios as $horarioaux)
         {
           $diahora=explode('-', $horarioaux->horario, 3);
-          $diaaux= $salonaux[0];
-          $inicialaux= $salonaux[1];
-          $finalaux= $salonaux[2];
+          $dia= $diahora[0];
+          $inicial= $diahora[1];
+          $final= $diahora[2];
+          if (!in_array($inicial, $intervalos)) {
+              $intervalos[]=$inicial;
+          }
+          if (!in_array($final, $intervalos)) {
+              $intervalos[]=$final;
+          }
         }
-        //echo $horarios;
+        sort($intervalos);
+        for ($x=0;$x<count($intervalos); $x++)
+        {
+          if($x<count($intervalos)-1)
+          {
+            $tabla[$x]=array("","","","","","","");
+            $tabla[$x][0]=$intervalos[$x].'-'.$intervalos[$x+1];
+          }
+          $horas[$intervalos[$x]]=$x;
 
-        return view('grados.show',compact('grado'),['horarios'=>$horarios]);
+        }
+        //var_dump($horas);
+        //var_dump($tabla);
+        //var_dump($intervalos);
+        //var_dump($tabla);
+        foreach($horarios as $horarioaux)
+        {
+          $diahora=explode('-', $horarioaux->horario, 3);
+          $dia= $diahora[0];
+          $inicial= $diahora[1];
+          $final= $diahora[2];
+          //echo '\n';
+          //echo  $dia.' '.$inicial.' '.$final;
+          for ($x=$horas[$inicial];$x<$horas[$final]; $x++)
+          {
+            //echo '\n';
+            //echo  $horarioaux->asignatura.' '.$horarioaux->nro_salon;
+            $tabla[$x][$dias[$dia]]=$tabla[$x][$dias[$dia]].' '.$horarioaux->asignatura." (".$horarioaux->nro_salon.")";
+          }
+        }
+        //var_dump($tabla);
+        return view('grados.show',['grado'=>$grado,'tabla'=>$tabla]);
     }
 
     /**

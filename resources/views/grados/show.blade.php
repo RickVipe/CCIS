@@ -49,7 +49,7 @@
         <div class="panel-body">
 
           <div class="dataTable_wrapper">
-            @if($horarios->isEmpty())
+            @if(sizeof($tabla)==0)
               <div class="alert alert-success">
                 <button type="button" class="close"
                 data-dismiss="alert" aria-hidden="true">x</button>
@@ -76,12 +76,15 @@
                   </thead>
                   <tbody>
 
-                  @foreach($horarios as $horarioaux)
+                  @foreach($tabla as $fila)
                     <tr class="odd gradeA" rol="row">
-                      <td>{{ $horarioaux->horario }}</td>
-                      <td>{{ $horarioaux->asignatura }}</td>
-                      <td>{{ $horarioaux->nombre }}</td>
-                      <td>{{ $horarioaux->apellido }}</td>
+                      <td>{{ $fila[0] }}</td>
+                      <td>{{ $fila[1] }}</td>
+                      <td>{{ $fila[2] }}</td>
+                      <td>{{ $fila[3] }}</td>
+                      <td>{{ $fila[4] }}</td>
+                      <td>{{ $fila[5] }}</td>
+                      <td>{{ $fila[6] }}</td>
                       <?php
                         //$id=$salon_horario->nro_salon.'_'.$salon_horario->horario.'_'.$curso->first()->id;
                       ?>
@@ -115,6 +118,6 @@
 @section('jsope')
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    
+
 
 @stop
