@@ -16,18 +16,23 @@
   <div class="col-lg-12">
     <div class="form-group">
       <label>Grado</label>
-      <input type="text" class="form-control" value=" {{ $curso->first()->Grado->nro }} {{ $curso->first()->Grado->seccion }} {{ $curso->first()->Grado->nivel }} {{ $curso->first()->Grado->anio_academico }}" disabled="">
+      <input type="text" class="form-control" value=" {{ $grado->nro }}" disabled="">
     </div>
     <div class="form-group">
       <label>Curso</label>
-      <input type="text" class="form-control" value=" {{ $curso->first()->Asignatura->nombre }}"  disabled="">
+      <input type="text" class="form-control" value=" {{ $grado->seccion }}"  disabled="">
+    </div>
+    <div class="form-group">
+      <label>Grado</label>
+      <input type="text" class="form-control" value=" {{ $grado->nivel }}" disabled="">
+    </div>
+    <div class="form-group">
+      <label>Curso</label>
+      <input type="text" class="form-control" value=" {{ $grado->anio_academico }}"  disabled="">
     </div>
     <h3 class="page-header">Horario
 
-    <a href= "{!! action('Salon_HorarioController@nuevo',$curso->first()->id) !!}" title="Editar">
-      <span class="glyphicon glyphicon-menu-hamburger"></span>
-
-    </a></h3>
+    </h3>
 
 
   </div>
@@ -44,11 +49,11 @@
         <div class="panel-body">
 
           <div class="dataTable_wrapper">
-            @if($salon_horarios->isEmpty())
+            @if($horarios->isEmpty())
               <div class="alert alert-success">
                 <button type="button" class="close"
                 data-dismiss="alert" aria-hidden="true">x</button>
-                No se tiene ninguna horario <a href="#" class="alert-link">Ingrese Horario</a>
+                No se tiene el horario de ningun curso  <a href="#" class="alert-link"</a>
               </div>
             @else
               @if(session('mensaje'))
@@ -60,47 +65,28 @@
               <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                      <th>Nro de Salon</th>
-                      <th>Horario</th>
-                      <th>Tipo</th>
-                      <th>Capacidad</th>
-
-                      <th>Operaciones</th>
+                      <th>Hora</th>
+                      <th>Lunes</th>
+                      <th>Martes</th>
+                      <th>Miercoles</th>
+                      <th>Jueves</th>
+                      <th>Viernes</th>
+                      <th>Sabado</th>
                     </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($salon_horarios as $salon_horario)
+                  @foreach($horarios as $horarioaux)
                     <tr class="odd gradeA" rol="row">
-                      <td>{{ $salon_horario->nro_salon }}</td>
-                      <td>{{ $salon_horario->horario }}</td>
-                      <td>{{ $salon_horario->tipo }}</td>
-                      <td>{{ $salon_horario->capacidad }}</td>
+                      <td>{{ $horarioaux->horario }}</td>
+                      <td>{{ $horarioaux->asignatura }}</td>
+                      <td>{{ $horarioaux->nombre }}</td>
+                      <td>{{ $horarioaux->apellido }}</td>
                       <?php
-                        $id=$salon_horario->nro_salon.'_'.$salon_horario->horario.'_'.$curso->first()->id;
+                        //$id=$salon_horario->nro_salon.'_'.$salon_horario->horario.'_'.$curso->first()->id;
                       ?>
 
-                      <td class="center">
-                        <ul class="nav nav-pills">
-                          <!--<li>
-                            <a href= "{!! action('Salon_HorarioController@edit' , $id) !!}" title="Editar">
-                              <span class="glyphicon glyphicon-pencil"></span>
 
-                            </a>
-                          </li>-->
-                          <li>
-                            <form method="post" action="{!! action('Salon_HorarioController@destroy',$id ) !!}"
-                              onclick="return confirm('Se eliminara este registro, ¿Estas Seguro?');">
-                              {!! csrf_field() !!}
-                              {!! method_field('DELETE') !!}
-                              <div>
-                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                              </div>
-                            </form>
-
-                        </ul>
-                      </td>
                     </tr>
                   @endforeach
 
@@ -111,7 +97,7 @@
             <!-- /.table-responsive -->
           </div>
         </div>
-        <button type="button" class="btn btn-danger" onClick="location.href='/menucoordinadores/cursos/{!! $curso->first()->Grado->id !!}'">Volver</button>
+        <button type="button" class="btn btn-danger" onClick="location.href='/menucoordinadores/grados'">Volver</button>
       </div>
     </div>
 
@@ -129,12 +115,6 @@
 @section('jsope')
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
+    
 
 @stop
