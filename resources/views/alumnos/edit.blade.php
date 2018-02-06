@@ -45,7 +45,10 @@
 
 									<div class="form-group">
 										<label>Fecha de nacimiento</label>
-										<input type="date" value=" {{$alumno -> fecha_nacimiento}} " class="form-control"  name ='fecha_nacimiento' style="text-transform:lowercase;" onkeyup="javascript:this.value=this.value.toLowerCase();">
+										<input type="date" class="form-control" name ='fecha_nacimiento' 
+										value='{!!$alumno -> fecha_nacimiento!!}' 
+										style="text-transform:lowercase;"
+										onkeyup="javascript:this.value=this.value.toLowerCase();">
 									</div>
 									<div class="form-group">
 										<label>Direccion</label>
