@@ -111,6 +111,7 @@
             <!-- /.table-responsive -->
           </div>
         </div>
+        <button type="button" class="btn btn-danger" onClick="location.href='/menucoordinadores/cursos/{!! $curso->first()->Grado->id !!}'">Volver</button>
       </div>
     </div>
 

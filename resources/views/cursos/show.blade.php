@@ -21,7 +21,8 @@
       <div class="form-group">
         <label>Grado</label>
         <input type="text" class="form-control" value="{{ $cursos->first()->Grado->nro }} {{ $cursos->first()->Grado->seccion }} {{ $cursos->first()->Grado->nivel }} {{ $cursos->first()->Grado->anio_academico }} " disabled="">
-      </div>
+
+    </div>
       <div class="panel panel-primary">
 
         <div class="panel-heading">
@@ -83,8 +84,11 @@
               @endif
             </div>
             <!-- /.table-responsive -->
+
           </div>
+
         </div>
+        <button type="button" class="btn btn-danger" onClick="location.href='/menucoordinadores/grados'">Volver</button>
       </div>
     </div>
 
