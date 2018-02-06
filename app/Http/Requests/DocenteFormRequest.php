@@ -27,7 +27,7 @@ class DocenteFormRequest extends FormRequest
             'dni'=>'required|min:3',
             'nombres'=>'required|min:3',
             'apellidos'=>'required|min:3',
-            'especialidad'=>'required',
+            'especialidad'=>'required|max:10',
             'email'=>'required',
             'telefono'=>'required|min:3'
         ];
