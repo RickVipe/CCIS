@@ -44,14 +44,17 @@
                   <tr>
                       <th>Alumno</th>
                       <th>Grado</th>
+                      <th>Notas</th>
 
                   </tr>
                 </thead>
                 <tbody>
                   @foreach($marks as $mark)
                     <tr class="odd gradeA" rol="row">
-                      <td></td>
-                      
+                      <td>$mark->nombres</td>
+                      <td>{{ $mark->nro }} {{ $mark->seccion }} {{ $mark->nivel }}</td>
+                      <td>{{ $mark->nota }}</td>
+
                     </tr>
                   @endforeach
                 </body>
