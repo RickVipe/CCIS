@@ -19,15 +19,15 @@
       <input type="text" class="form-control" value=" {{ $grado->nro }}" disabled="">
     </div>
     <div class="form-group">
-      <label>Curso</label>
+      <label>Seccion</label>
       <input type="text" class="form-control" value=" {{ $grado->seccion }}"  disabled="">
     </div>
     <div class="form-group">
-      <label>Grado</label>
+      <label>Nivel</label>
       <input type="text" class="form-control" value=" {{ $grado->nivel }}" disabled="">
     </div>
     <div class="form-group">
-      <label>Curso</label>
+      <label>Año Academico</label>
       <input type="text" class="form-control" value=" {{ $grado->anio_academico }}"  disabled="">
     </div>
     <h3 class="page-header">Horario
