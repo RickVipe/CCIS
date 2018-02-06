@@ -42,7 +42,7 @@
               <table class="table table-striped table-bordered table-hover " id="dataTables-example">
                 <thead>
                   <tr>
-                      <th>Alumno</th>
+                      <th>Curso</th>
                       <th>Grado</th>
                       <th>Notas</th>
 
@@ -51,7 +51,7 @@
                 <tbody>
                   @foreach($marks as $mark)
                     <tr class="odd gradeA" rol="row">
-                      <td>$mark->nombres</td>
+                      <td></td>
                       <td>{{ $mark->nro }} {{ $mark->seccion }} {{ $mark->nivel }}</td>
                       <td>{{ $mark->nota }}</td>
 

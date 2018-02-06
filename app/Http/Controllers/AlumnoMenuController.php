@@ -188,11 +188,11 @@ class AlumnoMenuController extends Controller
         //echo $id;
         $marks = DB::table('matriculas')->join('grados','grados.id','=','matriculas.id_grado')
                                        ->join('notas','notas.id_matricula','matriculas.id')
-                                       //->join('notas','notas.id_curso','cursos.id')
-                                       //->join('asignaturas','asignaturas.id','cursos.id_asignatura')
+                                       ->join('cursos','cursos.id_grado','grados.id')
+                                       ->join('asignaturas','asignaturas.id','cursos.id_asignatura')
                                        ->where('id_alumno',$id)->where('anio_academico',$last_year) #->orderBy('horario')
                                        ->select('*')->get();
-        //echo $marks;
-        return view('alumnosmenu.marks', compact('marks', 'last_year'));
+        echo $marks;
+        //return view('alumnosmenu.marks', compact('marks', 'last_year'));
     }
 }
