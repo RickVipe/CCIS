@@ -66,7 +66,8 @@ class CursoController extends Controller
         else
         {
           $cursoaux=$cursos->last();
-          $numero=substr($cursoaux->id,2)+1;
+          //$numero=substr($cursoaux->id,2)+1;
+          $numero=int($cursoaux->id)+1;
         }
         //$cursoaux=$cursos->last();
         //echo $cursoaux;

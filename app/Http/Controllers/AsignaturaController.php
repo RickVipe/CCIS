@@ -56,6 +56,7 @@ class AsignaturaController extends Controller
         {
           $asignaturaaux=$asignaturas->last();
           $numero=substr($asignaturaaux->id,2)+1;
+          //$numero=int($asignaturaaux->id)+1;
         }
         //$cursoaux=$cursos->last();
         //echo $cursoaux;
