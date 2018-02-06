@@ -106,7 +106,7 @@ class AsignaturaController extends Controller
         $asignatura = Asignatura::find($id);
         $asignatura->nombre=$request->get('nombre');
         $asignatura->save();
-        return redirect('/menucoordinadores/asignaturas')->with('mensaje','Se inserto correctamente!!');
+        return redirect('/menucoordinadores/asignaturas')->with('mensaje','Se actualizo correctamente!!');
     }
 
     /**

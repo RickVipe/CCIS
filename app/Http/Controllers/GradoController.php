@@ -47,15 +47,21 @@ class GradoController extends Controller
     public function store(GradoFormRequest $request)
     {
         //
-        $grado=new Grado;
-        $grado->nro=$request->get('nro');
-        $grado->seccion=$request->get('seccion');
-        $grado->nivel=$request->get('nivel');
-        $grado->anio_academico=$request->get('anio_academico');
-        $grado->id=$grado->nro.'-'.$grado->seccion.'-'.substr($grado->nivel,0,3).'-'.$grado->anio_academico;
-        $grado->vacantes=$request->get('vacantes');
-        $grado->save();
-        return redirect('/menucoordinadores/grados')->with('mensaje','Se inserto correctamente!!');
+        if($request->get('nro')!="6" and $request->get('nivel')!="Secundaria")
+        {
+          $grado=new Grado;
+          $grado->nro=$request->get('nro');
+          $grado->seccion=$request->get('seccion');
+          $grado->nivel=$request->get('nivel');
+          $grado->anio_academico=$request->get('anio_academico');
+          $grado->id=$grado->nro.'-'.$grado->seccion.'-'.substr($grado->nivel,0,3).'-'.$grado->anio_academico;
+          $grado->vacantes=$request->get('vacantes');
+          $grado->save();
+          return redirect('/menucoordinadores/grados')->with('mensaje','Se inserto correctamente!!');
+        }
+        else {
+          return redirect('/menucoordinadores/grados')->with('mensaje','No se puede insertar 6to de secundaria !!');
+        }
     }
 
     /**
@@ -99,7 +105,7 @@ class GradoController extends Controller
         //$grado->anio_academico=$request->get('anio_academico');
         $grado->vacantes=$request->get('vacantes');
         $grado->save();
-        return redirect('/menucoordinadores/grados')->with('mensaje','Se inserto correctamente!!');
+        return redirect('/menucoordinadores/grados')->with('mensaje','Se actualizo correctamente!!');
     }
 
     /**
