@@ -51,9 +51,7 @@
             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
           </a>
           <ul class="dropdown-menu dropdown-user">
-            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cambiar Contraseña</a>
-            </i>
-            <li class="divider"></li>
+
             <li>
               <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -86,7 +84,7 @@
               <!--/input-group -->
             </li>
             <li>
-              <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mantenimientos<span class="fa arrow"></span></a>
+              <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mi Portal<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                 <li>
                   <a href="{!! action('DocenteMenuController@verPerfil') !!}">Ver mi informacion</a>

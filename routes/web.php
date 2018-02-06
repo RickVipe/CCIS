@@ -28,6 +28,8 @@ Route::prefix('menucoordinadores')->group(function(){
 	Route::resource('fecha_ingreso','Fecha_IngresoController');
   Route::resource('cursos','CursoController');
 
+    Route::get('/listado','CoordinadorController@index2');
+
   Route::get('salon_horario', 'Salon_HorarioController@store');
   Route::get('salon_horario/horario/{id}', 'Salon_HorarioController@nuevo');
 
@@ -52,6 +54,8 @@ Route::prefix('menualumnos')->group(function(){
   Route::post('/miscursos/lista','AlumnoMenuController@get_courses_by_year');
   Route::get('/horario','AlumnoMenuController@schedule');
   Route::get('/mis_docentes','AlumnoMenuController@my_teachers');
+  Route::get('/mis_companieros','AlumnoMenuController@my_classmates');
+  Route::get('/mis_notas','AlumnoMenuController@my_marks');
 });
 
 Route::prefix('menudocentes')->group(function(){

@@ -156,6 +156,43 @@ class AlumnoMenuController extends Controller
         return view('alumnosmenu.teachers', compact('teachers','last_year'));
     }
     public function my_classmates(){
-        
+       /* $id = Auth::user()->id;
+        $last_year = Grado::max('anio_academico');
+        echo $id;
+        $grade = DB::table('matriculas')->join('grados','grados.id','=','matriculas.id_grado')
+                                       ->where('id_alumno',$id)->where('anio_academico',$last_year) #->orderBy('horario')
+                                       ->select('*')->get();
+        //$grade = $last_register->id_grado;      
+        //echo $grade->id_grado;
+        //echo $grade->id_matricula;
+        //$matriculas = Matricula::where('id_grado', $grade)->first();//DB::table('matriculas')->where('id_grado',$grade) #->orderBy('horario')
+                                      //->select('*')->get();
+
+
+        //Matricula::where('id_grado',$grade)->first();
+        //return;   Nota::where([['id_matricula',$matricula->id],['id_curso',$curso->id],['trimestre','1']])->select('nota')->first();
+       // echo $matriculas;
+        echo $grade;
+        $grade = var_dump($grade);   
+        echo var_dump($grade.id);//$grade->id_grado;                 
+       /* return
+        $class_mates =  DB::table('matriculas')->join('alumnos','alumnos.id','=','matriculas.id_alumno')
+                                       ->where('id_grado',$grade) #->orderBy('horario')
+                                       ->select('nombres', 'apellidos')->get();                            
+        return view('alumnosmenu.class_mates', compact('class_mates', 'last_year'));*/
+
+    }
+    public function my_marks(){
+        $id = Auth::user()->id;
+        $last_year = Grado::max('anio_academico');
+        echo $id;
+        $marks = DB::table('matriculas')->join('grados','grados.id','=','matriculas.id_grado')
+                                       ->join('notas','notas.id_matricula','matriculas.id')
+                                       //->join('notas','notas.id_curso','cursos.id')
+                                       //->join('asignaturas','asignaturas.id','cursos.id_asignatura')
+                                       ->where('id_alumno',$id)->where('anio_academico',$last_year) #->orderBy('horario')
+                                       ->select('*')->get();
+        //echo $marks;
+        return view('alumnosmenu.marks', compact('marks', 'last_year'));
     }
 }

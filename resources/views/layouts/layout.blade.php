@@ -48,6 +48,9 @@
             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
           </a>
           <ul class="dropdown-menu dropdown-user">
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cambiar Contraseña</a>
+            </i>
+            <li class="divider"></li>
             <li>
               <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -89,6 +92,9 @@
                   <a href="/menucoordinadores/alumnos">Alumnos</a>
                 </li>
                 <li>
+                  <a href="/menucoordinadores/listado">Coordinadores</a>
+                </li>
+                <li>
                   <a href="/menucoordinadores/grados">Administrar Grados</a>
                 </li>
                 <li>
@@ -110,7 +116,10 @@
                             <a href="/menucoordinadores/reportes">Lista de Alumnos</a>
                         </li>
                         <li>
-                            <a href="/menucoordinadores/listadocentescurso">Lista de Docentes</a>
+                            <a href="/menucoordinadores/listadocentes">Lista de Docentes</a>
+                        </li>
+                        <li>
+                            <a href="/menucoordinadores/listadocentescurso">Lista de Docentes por Curso</a>
                         </li>
                         <li>
                             <a href="/menucoordinadores/constancias">Constancia de Notas</a>

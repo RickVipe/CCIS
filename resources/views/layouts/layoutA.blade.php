@@ -42,16 +42,14 @@
       <!-- /.navbar-header -->
 
       <ul class="nav navbar-top-links navbar-right">
-        
+
         <!-- /.dropdown -->
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
           </a>
           <ul class="dropdown-menu dropdown-user">
-            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cambiar Contraseña</a>
-            </i>
-            <li class="divider"></li>
+
             <li>
               <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -87,7 +85,7 @@
               <a href="/"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mantenimientos<span class="fa arrow"></span></a>
+              <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Mi Portal<span class="fa arrow"></span></a>
               <ul class="nav nav-second-level">
                 <li>
                   <a href="{!! action('AlumnoMenuController@info') !!}"> Ver mi Info </a>
@@ -102,7 +100,10 @@
                   <a href="{!! action('AlumnoMenuController@my_teachers') !!}">Ver mis docentes</a>
                 </li>
                 <li>
-                  <a href="#">Mis notas</a>
+                  <a href="{!! action('AlumnoMenuController@my_classmates') !!}">Mis compañeros</a>
+                </li>
+                <li>
+                  <a href="{!! action('AlumnoMenuController@my_marks') !!}">Mis notas</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
